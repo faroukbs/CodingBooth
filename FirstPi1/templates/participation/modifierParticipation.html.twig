@@ -1,0 +1,92 @@
+{% extends 'base.html.twig '%}
+{% block head %}
+    <header class="rt-site-header  rt-fixed-top white-menu">
+
+        <div class="col-md-6">
+            <ul class="text-center text-md-right top-social">
+
+                <li><a href=" {{ path('event_list') }}"><i class="fas fa-home"></i>{% trans %}Hote Mode{% endtrans %}</a></li>
+                <li><a href="#" data-target="#rtmodal-1" data-toggle="modal"><i class="far fa-user-circle"></i>{% trans %}Subscribe | Sign in {% endtrans %}</a></li>
+            </ul>
+        </div><!-- end top header single -->
+        </div>
+        </div>
+        </div> <!-- end top header -->
+
+
+
+
+        <ul>
+            <li class="current-menu-item"><a href=" {{ path('event_list') }}">{% trans %}Home{% endtrans %}</a></li>
+
+
+            <li class="menu-item-has-children"><a href="#">{% trans %}Services{% endtrans %}</a>
+                <ul class="sub-menu">
+                    <li><a href="#">{% trans %}Rbnb{% endtrans %}</a></li>
+                    <li><a href=" {{ path('AfficheEvenementsPublic') }}">{% trans %}Events{% endtrans %}</a></li>
+
+
+                </ul>
+
+
+
+
+    </header>
+
+
+{% endblock %}
+{% block body %}
+
+
+
+    <div class="rt-breadcump rt-breadcump-height">
+        <div class="rt-page-bg rtbgprefix-cover" style="">
+        </div><!-- /.rt-page-bg -->
+        <div class="container">
+            <div class="row rt-breadcump-height">
+                <div class="col-12">
+                    <div class="breadcrumbs-content">
+                        <h3>{% trans %}Events{% endtrans %}</h3>
+                        <div class="breadcrumbs">
+                            <span class="divider"><i class="icofont-home"></i></span>
+                            <a href="#" title="Home">{% trans %}Home{% endtrans %}</a>
+                            <span class="divider"><i class="icofont-simple-right"></i></span>
+                            <a href="#" title="Home">{% trans %}Events{% endtrans %}</a>
+
+
+                        </div><!-- /.breadcrumbs -->
+                    </div><!-- /.breadcrumbs-content -->
+                </div><!-- /.col-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.rt-
+    <div class="rt-breadcump rt-breadcump-height">
+        <div class="rt-page-bg rtbgprefix-cover" style="background-image: url(assets/images/backgrounds/bredcump.png)">
+        </div> /.rt-page-bg -->
+
+    </form>
+    <section class="content-area">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="card-description">
+
+
+                        {% for message in app.flashes('info') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                    {% endfor %}
+
+
+
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div></section>
+
+
+
+
+
+
+{% endblock %}

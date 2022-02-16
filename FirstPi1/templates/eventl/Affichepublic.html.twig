@@ -1,0 +1,129 @@
+{% extends 'base.html.twig '%}
+{% block header %}
+    <!-- Preloader Start -->
+
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="front/assets/img/logo/LOGO1.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index.html"><img src="front/assets/img/logo/LOGO.png" alt=""></a>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="courses.html">Courses</a></li>
+                                    <li><a href="pricing.html">Pricing</a></li>
+                                    <li><a href="event.html">Event</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="shop.html">Shop</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Header-btn -->
+                        <div class="d-flex">
+                            <div class="header-btns d-none d-lg-block f-right">
+                                <a href="login.html" class="btn">LOGIN</a>
+                            </div>
+                            <div class="header-btns d-none d-lg-block f-right px-4">
+                                <a href="register.html" class="btn">SIGN UP</a>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+
+    <!--? Hero Start -->
+    <div class="slider-area2">
+        <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 pt-70">
+                            <h2></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+{% endblock %}
+
+
+{% block title %}List Evenements{% endblock %}
+                {% block titleBarre %}List Evenements{% endblock %}
+
+{% block body %}
+
+    <div class="container" style="margin-top: +5%;">
+
+        <div id="tmpmodal"></div>
+        <div class="row">
+            {% for e in eventl %}
+
+                <div class="col-md-3">
+                    <div class="border border-white">
+
+                        <div  ><a href="{{ path('event_list',{'idevent': e.idevent}) }}">
+                                <img src="{{ asset('images/'~e.photo) }}" alt="  {{ e.photo }}" style="height: 250px;width: 270px;margin-bottom: +10%"   data-toggle="modal" data-target="#exampleModalCenter" ></a></div>
+                        <div class="card-footer" style="margin-top: -10%">
+                            <h5 class="text-black" id="exampleModalCenterTitle">Nom: {{ e.titre }}</h5><br>
+                            <h5 class="text-black" id="exampleModalCenterTitle">Description:{{ e.Description }}</h5><br>
+                            <h5 class="text-black" id="exampleModalCenterTitle">Date : {{ e.dateDebut | date("m/d/Y")}}</h5>
+                            <h5 class="text-black" id="exampleModalCenterTitle">adresse: {{ e.adresse}}</h5>
+                            <h5 class="text-black" id="exampleModalCenterTitle">ville: {{ e.ville}}</h5>
+                            <a class="btn btn-light" href="{{ path('addparticipation', {'id': e.idevent }) }}"  style="height:5px;width: 249px;margin-bottom: +18%">Réservez Maintenant</a>
+
+                        </div>        <!-- Modal -->
+                    </div>
+                    <div class="modal fade" id="myModalchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Date Debut:{{ e.dateDebut | date("m/d/Y")}}</h5><br>
+
+                                    <img src="{{ asset('images/'~e.photo) }}"style="height: 5px;width: 5px;margin-bottom: +10%" data-toggle="modal" data-target="#exampleModalCenter">
+
+                                    <p>descriptio</p>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
