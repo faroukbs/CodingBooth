@@ -1,0 +1,42 @@
+{% extends 'base-front/base.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Utilisateur</h1>
+
+    <table class="table">
+        <tbody>
+
+
+
+            <tr>
+                <th>Nom</th>
+                <td>{{ app.user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ app.user.prenom }}</td>
+            </tr>
+
+            <tr>
+                <th>NumTel</th>
+                <td>{{ app.user.numTel }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ app.user.image }}</td>
+            </tr>
+            <tr>
+                <th>IsVerified</th>
+                <td>{{ app.user.isVerified ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('utilisateur_edit',{'id':app.user.id}) }}" class="btn blue">Modifier le profil</a>
+    <a href="{{ path('coach') }}">back to list</a>
+    {{ include('utilisateur/_delete_form.html.twig') }}
+{% endblock %}

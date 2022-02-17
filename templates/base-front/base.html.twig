@@ -6,50 +6,50 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            <link rel="stylesheet" href="front/assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="front/assets/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="front/assets/css/slicknav.css">
-            <link rel="stylesheet" href="front/assets/css/animate.min.css">
-            <link rel="stylesheet" href="front/assets/css/magnific-popup.css">
-            <link rel="stylesheet" href="front/assets/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="front/assets/css/themify-icons.css">
-            <link rel="stylesheet" href="front/assets/css/slick.css">
-            <link rel="stylesheet" href="front/assets/css/nice-select.css">
-            <link rel="stylesheet" href="front/assets/css/style.css">
+            <link rel="stylesheet" href="{{asset('front/assets/css/bootstrap.min.css')}}">
+            <link rel="stylesheet" href="{{asset('front/assets/css/owl.carousel.min.css')}}">
+            <link rel="stylesheet" href="{{asset('front/assets/css/slicknav.css')}}">
+            <link rel="stylesheet" href="{{asset('front/assets/css/animate.min.css')}}">
+            <link rel="stylesheet" href="{{asset('front/assets/css/magnific-popup.css')}}">
+            <link rel="stylesheet" href="{{asset('front/assets/css/fontawesome-all.min.css')}}">
+            <link rel="stylesheet" href="{{asset('front/assets/css/themify-icons.css')}}">
+            <link rel="stylesheet" href="{{asset('front/assets/css/slick.css')}}">
+            <link rel="stylesheet" href="{{asset('front/assets/css/nice-select.css')}}">
+            <link rel="stylesheet" href="{{asset('front/assets/css/style.css')}}">
         {% endblock %}
 
         {% block javascripts %}
-         <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+         <script src="{{asset('./assets/js/vendor/modernizr-3.5.0.min.js')}}"></script>
  <!-- Jquery, Popper, Bootstrap -->
- <script src="front/./assets/js/vendor/jquery-1.12.4.min.js"></script>
- <script src="front/./assets/js/popper.min.js"></script>
- <script src="front/./assets/js/bootstrap.min.js"></script>
+ <script src="{{asset('front/./assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
+ <script src="{{asset('front/./assets/js/popper.min.js')}}"></script>
+ <script src="{{asset('front/./assets/js/bootstrap.min.js')}}"></script>
  <!-- Jquery Mobile Menu -->
- <script src="front/./assets/js/jquery.slicknav.min.js"></script>
+ <script src="{{asset('front/./assets/js/jquery.slicknav.min.js')}}"></script>
 
  <!-- Jquery Slick , Owl-Carousel Plugins -->
- <script src="front/./assets/js/owl.carousel.min.js"></script>
- <script src="front/./assets/js/slick.min.js"></script>
+ <script src="{{asset('front/./assets/js/owl.carousel.min.js')}}"></script>
+ <script src="{{asset('front/./assets/js/slick.min.js')}}"></script>
 
  <!-- One Page, Animated-HeadLin -->
- <script src="front/./assets/js/wow.min.js"></script>
- <script src="front/./assets/js/animated.headline.js"></script>
- <script src="front/./assets/js/jquery.magnific-popup.js"></script>
+ <script src="{{asset('front/./assets/js/wow.min.js')}}"></script>
+ <script src="{{asset('front/./assets/js/animated.headline.js')}}"></script>
+ <script src="{{asset('front/./assets/js/jquery.magnific-popup.js')}}"></script>
 
  <!-- Nice-select, sticky -->
- <script src="front/./assets/js/jquery.nice-select.min.js"></script>
- <script src="front/./assets/js/jquery.sticky.js"></script>
+ <script src="{{asset('front/./assets/js/jquery.nice-select.min.js')}}"></script>
+ <script src="{{asset('front/./assets/js/jquery.sticky.js')}}"></script>
  
  <!-- contact js -->
- <script src="front/./assets/js/contact.js"></script>
- <script src="front/./assets/js/jquery.form.js"></script>
- <script src="front/./assets/js/jquery.validate.min.js"></script>
- <script src="front/./assets/js/mail-script.js"></script>
- <script src="front/./assets/js/jquery.ajaxchimp.min.js"></script>
+ <script src="{{asset('front/./assets/js/contact.js')}}"></script>
+ <script src="{{asset('front/./assets/js/jquery.form.js')}}"></script>
+ <script src="{{asset('front/./assets/js/jquery.validate.min.js')}}"></script>
+ <script src="{{asset('front/./assets/js/mail-script.js')}}"></script>
+ <script src="{{asset('front/./assets/js/jquery.ajaxchimp.min.js')}}"></script>
  
  <!-- Jquery Plugins, main Jquery -->	
- <script src="front/./assets/js/plugins.js"></script>
- <script src="front/./assets/js/main.js"></script>
+ <script src="{{asset('front/./assets/js/plugins.js')}}"></script>
+ <script src="{{asset('front/./assets/js/main.js')}}"></script>
         {% endblock %}
          {% block head %}
            <!-- Preloader Start -->
@@ -93,12 +93,27 @@
                         </div>          
                         <!-- Header-btn -->
                         <div class="d-flex">
+                            {% if app.user and app.user.isVerified %}
+                            <div class="header-btns d-none d-lg-block f-right">
+                                <a href="{{ path('app_logout') }}" class="btn">LOGOUT</a>
+                            </div>
+                            {% else %}
+
                         <div class="header-btns d-none d-lg-block f-right">
-                           <a href="login.html" class="btn">LOGIN</a>
+                           <a href="{{ path('app_login') }}" class="btn">LOGIN</a>
                        </div>
                         <div class="header-btns d-none d-lg-block f-right px-4">
-                            <a href="register.html" class="btn">SIGN UP</a>
+                            <a href="{{ path('app_register') }}" class="btn">SIGN UP</a>
                         </div>
+                            {% endif %}
+                            <!--* profil *-->
+                            {% if app.user and app.user.isVerified %}
+                                <div class="header-btns d-none d-lg-block f-right px-4">
+                                    <a href="{{ path('utilisateur_show',{'id':app.user.id}) }}" class="btn"> PROFIL</a>
+                                </div>
+
+                            {% endif  %}
+                            <!--end profile-->
                     </div>
                        <!-- Mobile Menu -->
                        <div class="col-12">
