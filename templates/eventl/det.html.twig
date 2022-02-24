@@ -1,0 +1,126 @@
+{% extends 'base.html.twig '%}
+{% block body %}
+    <style>
+        form{
+            margin-top: 60px;
+            margin-right: 100px;
+
+        }
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+        }
+        body{
+            background-color: rgb(219,226,226);
+            border-radius: 30px;
+background-color: white;
+        }
+        .row{
+
+
+        }
+        .button{
+            margin-left: 350px;
+            margin-top: 60px;
+            margin-bottom: 50px;
+        }
+        .rounded{
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            width: 1000px;
+            margin-left: 180px;
+            margin-top: 60px;
+        }
+
+
+        .rounded:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+
+        }
+       photo{
+            border-top-left-radius:30px;
+            border-bottom: 30px;
+            width: 1200px;
+            height: 2000px;
+        }
+       .classform{
+           padding: 80px;
+           border: 1px solid black;
+
+       }
+
+
+    </style>
+
+<body >
+<div >
+<section class="form my-4 mx-5">
+    <div class="container">
+
+        <div  class="row no-gutters">
+            <div class="col-lg-5">
+
+                        <img src="{{ asset('images/'~eventl.photo) }}" alt="  {{ eventl.photo }}" style="height: 250px;width: 270px;margin-bottom: +10%" class="rounded" alt="Cinque Terre" >
+
+            </div>
+
+            <div class="col-lg-7" >
+
+<form class="classform">
+    <div class="col-lg-7">
+        <h2 >Nom :  {{ eventl.titre }}</h2>
+    </div>
+
+        <div class="col-lg-7">
+        <h3>  Adresse : {{ eventl.adresse }}</h3>
+        </div>
+
+        <div class="col-lg-7">
+            <h3 class="text-danger" id="exampleModalCenterTitle">Description:{{ eventl.Description }}</h3>
+
+
+
+        </div>
+
+
+        <div class="col-lg-7">
+            <h3  id="exampleModalCenterTitle" class="text-black">Date : {{ eventl.dateDebut | date ("m/d/Y")}}</h3>
+
+        </div>
+    <div class="col-lg-7">
+        <h3  id="exampleModalCenterTitle" class="text-black">Date : {{ eventl.datefin | date ("m/d/Y")}}</h3>
+
+    </div>
+    <div class="col-lg-7">
+        <h3 class="text-danger" id="exampleModalCenterTitle">adresse: {{ eventl.adresse}}</h3>
+    </div>
+    <div class="col-lg-7">
+        <h3 class="text-danger" id="exampleModalCenterTitle">ville: {{ eventl.ville}}</h3>
+            </div>
+    <div class="col-lg-7">
+        <h3 class="text-black" id="exampleModalCenterTitle">Heure: {{ eventl.heure}}</h3>
+    </div>
+</form>
+
+                <div class="button">
+
+                    <a href ="{{ path('ticket',{'id': eventl.idevent }) }}"> <button type="button" class="btn btn-outline-danger" ><font size="3pt" >{% trans %}Reserver Ticket{% endtrans %}</font></button></a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+</div>
+</body>
+
+
+{%endblock%}

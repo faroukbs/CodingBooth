@@ -1,0 +1,47 @@
+{% extends 'base.html.twig '%}
+{% block body %}
+
+    <div class="container p-3 my-3 border">
+
+        <div id="tmpmodal"></div>
+        <div class="row">
+            {% for e in eventl %}
+
+                <div class="col-md-3">
+                    <div class="border border">
+
+                        <div  ><a href="{{ path('event_list',{'idevent': e.idevent}) }}">
+                                <img src="{{ asset('images/'~e.photo) }}" alt="  {{ e.photo }}" style="height: 250px;width: 270px;margin-bottom: +10%" class="rounded" alt="Cinque Terre" ></a></div>
+                        <div class="card-footer" style="margin-top: -10%">
+                            <h3 class="text-black" id="exampleModalCenterTitle">Nom: {{ e.titre }}</h3>
+
+<div>
+
+    <a href="{{ path('detailEvent',{'id': e.idevent }) }}"><button type="button" class="btn btn-outline-danger" ><font size="3pt" >{% trans %}View details{% endtrans %}</font></button></a>
+</div>
+                        </div>        <!-- Modal -->
+                    </div>
+                    <div class="modal fade" id="myModalchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+
+
+                                <img src="{{ asset('images/'~e.photo) }}"style="height: 5px;width: 5px;margin-bottom: +10%" data-toggle="modal" data-target="#exampleModalCenter">
+
+                                <p>descriptio</p>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>        <div class="modal-header">
+
+
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

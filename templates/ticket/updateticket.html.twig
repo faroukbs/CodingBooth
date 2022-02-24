@@ -1,0 +1,8 @@
+{% extends 'base-back/admin.html.twig' %}
+{% form_theme ticketu 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<div class="container">
+    <h2>Modifier</h2>
+
+    {{ form(ticketu) }}
+{% endblock %}
