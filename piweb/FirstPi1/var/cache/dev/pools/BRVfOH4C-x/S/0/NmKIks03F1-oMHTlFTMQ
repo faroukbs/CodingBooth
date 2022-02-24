@@ -1,0 +1,53 @@
+<?php //App%255CEntity%255CEventl%2524description
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        clone $p['Doctrine\\ORM\\Mapping\\Column'],
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Length'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Length')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'type' => [
+                'string',
+                'string',
+            ],
+            'length' => [
+                255,
+                255,
+            ],
+            'precision' => [
+                null,
+                null,
+            ],
+            'scale' => [
+                null,
+                null,
+            ],
+            'maxMessage' => [
+                2 => 'Your first name cannot be longer than {{ limit }} characters',
+            ],
+            'minMessage' => [
+                2 => 'Your first name must be at least {{ limit }} characters long',
+            ],
+            'max' => [
+                2 => 1000,
+            ],
+            'min' => [
+                2 => 4,
+            ],
+            'groups' => [
+                2 => [
+                    'Default',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+    ],
+    []
+); }];

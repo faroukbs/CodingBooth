@@ -1,0 +1,46 @@
+<?php //App%255CEntity%255CEventl%2524datefin
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Date'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Date')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\GreaterThanOrEqual'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\GreaterThanOrEqual')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'datefin',
+            ],
+            'type' => [
+                'date',
+            ],
+            'precision' => [
+                null,
+            ],
+            'scale' => [
+                null,
+            ],
+            'groups' => [
+                1 => [
+                    'Default',
+                ],
+                [
+                    'Default',
+                ],
+            ],
+            'message' => [
+                2 => 'La date du fin doit être supérieure à la date début',
+            ],
+            'propertyPath' => [
+                2 => 'dateDebut',
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+    ],
+    []
+); }];

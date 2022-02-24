@@ -1,0 +1,32 @@
+<?php //App%255CController%255CParticipationController%2523newAction
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+        clone ($p['Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\Method'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\Method')),
+    ],
+    null,
+    [
+        'Symfony\\Component\\Routing\\Annotation\\Route' => [
+            'path' => [
+                '/new/{idevent}',
+            ],
+            'name' => [
+                'participation_new',
+            ],
+        ],
+        'Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\Method' => [
+            'methods' => [
+                1 => [
+                    'GET',
+                    'POST',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+    ],
+    []
+); }];

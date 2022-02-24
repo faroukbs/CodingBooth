@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8ab80b42-adf1-4659-ad4f-837136d21f6b" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/ProjectPi/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="ProjectId" id="24sJNNstj2y4i5DUstbYvTV20n9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CodingBooth" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\piweb\FirstPi1\templates\participation" />
+      <recent name="C:\xampp\htdocs\piweb\FirstPi1\vendor\twig\extra-bundle" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ab80b42-adf1-4659-ad4f-837136d21f6b" name="Changes" comment="" />
+      <created>1644413325961</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644413325961</updated>
+      <workItem from="1644413328943" duration="9892000" />
+      <workItem from="1644425205013" duration="749000" />
+      <workItem from="1644425984525" duration="6429000" />
+      <workItem from="1644442544167" duration="8137000" />
+      <workItem from="1644485588999" duration="645000" />
+      <workItem from="1644497452939" duration="3028000" />
+      <workItem from="1644504516769" duration="605000" />
+      <workItem from="1644528820850" duration="24223000" />
+      <workItem from="1644746370783" duration="35425000" />
+      <workItem from="1644961227094" duration="285000" />
+      <workItem from="1645016049173" duration="34000" />
+      <workItem from="1645016133166" duration="24071000" />
+      <workItem from="1645043005388" duration="20158000" />
+      <workItem from="1645100791196" duration="5226000" />
+      <workItem from="1645272993852" duration="6133000" />
+      <workItem from="1645355991464" duration="16152000" />
+      <workItem from="1645393252210" duration="12909000" />
+      <workItem from="1645445127462" duration="7284000" />
+      <workItem from="1645455457821" duration="1187000" />
+      <workItem from="1645474467286" duration="13847000" />
+      <workItem from="1645548921043" duration="16026000" />
+      <workItem from="1645635529334" duration="17531000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/FirstPi1/src/Controller/EventlController.php</url>
+          <line>5</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
