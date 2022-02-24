@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<main>
+    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+         {% for item in form %}
+            <div class="col-md-3 mb-4">
+            <a href="{{ path('list-item', {id: item.id}) }}">
+                <div class="card shadow-sm"> <img src="{{asset('ulpoads/') ~ item.image}}" class="card-img-top h-500" alt="...">
+                 </a>
+                    <div class="card-body">
+                        
+                        <h5 class="card-title">{{item.nomproduit}}</h5>
+                        <div class="clearfix mb-3"> <span class="float-end price-hp">{{item.Prix}}€</span> </div>
+                        <p class="card-text">{{item.description}}</p>
+                        <div class="text-center my-4"> <a href="#" class="btn btn-warning">Check offer</a> </div>
+                    </div>
+                </div>
+               
+            </div>
+            {% endfor %}
+            
+            
+                </div>
+            </div>
+        </div>
+    </div>
+</main> 
+
+
+                    {% endblock %}

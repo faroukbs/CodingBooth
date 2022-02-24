@@ -99,8 +99,12 @@ class UtilisateurAuthenticator extends AbstractFormLoginAuthenticator implements
 
             return new RedirectResponse($this->urlGenerator->generate('admin'));
         }
+        if($token->getUser()->hasRole('ROLE_COACH')){
 
-        return new RedirectResponse($this->urlGenerator->generate('coach'));
+            return new RedirectResponse($this->urlGenerator->generate('coach'));
+        }
+
+        return new RedirectResponse($this->urlGenerator->generate('home'));
 
     }
 

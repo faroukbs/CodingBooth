@@ -1,229 +1,219 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Travel me</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Front/img/travel.ico')}}">
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-        html, body {
-            min-height: 100%;
-        }
-        body, div, form, input, select, textarea, label {
-            padding: 0;
-            margin: 0;
-            outline: none;
-            font-family: Roboto, Arial, sans-serif;
-            font-size: 14px;
-            color: #666;
-            line-height: 22px;
-        }
-        h1 {
-            position: absolute;
-            margin:0;
-            font-size: 60px;
-            color: #fff;
-            z-index: 2;
-            line-height: 83px;
-            top:30px;
-        }
-        legend {
-            padding: 10px;
-            font-family: Roboto, Arial, sans-serif;
-            font-size: 18px;
-            color: #ffffff;
-            background-color: #c91c1c;
-        }
-        textarea {
-            width: calc(100% - 12px);
-            padding: 5px;
-        }
-        .testbox {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: inherit;
-            padding: 20px;
-        }
-        form {
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
+        body {
+            background: #E1EBEC;
+            font-family: 'Poppins', sans-serif
         }
-        .banner {
-            position: relative;
-            height: 400px;
-            background-image: url("{{ asset('image/Designe_interface/image.jpg') }}");
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+
+        .row {
+            width: 1000px;
+            border: none;
+            border-radius: 0;
+            box-sizing: border-box
         }
-        .banner::after {
-            content: "";
-            background-color: rgba(0, 0, 0, 0.4);
-            position: absolute;
-            width: 100%;
-            height: 100%;
+
+        .lcol {
+            background: linear-gradient(to bottom, rgb(255, 0, 0) 50%, rgb(10, 10, 10) 100%, rgb(10, 10, 10) 100%);
+            height: 800px;
+            padding: 0 20px
         }
-        input, select, textarea {
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+
+        .rcol {
+            background: #ffffff;
+            padding: 005px;
+
+            height: 800px
         }
-        input {
-            width: calc(100% - 10px);
-            padding: 5px;
+
+        span.txt {
+            color: #0a0a0a
         }
-        input[type="date"] {
-            padding: 4px 5px;
+
+        .greeting {
+            padding-top: 200px;
+            padding-right: 60px
         }
-        textarea {
-            width: calc(100% - 12px);
-            padding: 5px;
+
+        h6.mt-3 {
+            padding-right: 115px
         }
-        .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
-            color:  #006622;
+
+        .footer {
+            margin-top: 480px
         }
-        .checkbox input[type=checkbox] {
-            display:inline-block;
-            height:15px;
-            width:15px;
-            margin-right:5px;
-            vertical-align:text-top;
+
+        .footer span {
+            color: #B0A1E2;
+            font-size: 9px;
+            cursor: pointer
         }
-        .item input:hover, .item select:hover, .item textarea:hover {
-            border: 1px solid transparent;
-            box-shadow: 0 0 3px 0  #006622;
-            color: #006622;
+
+        .fab {
+            color: #EDEDF5;
+            font-size: 10px;
+            margin-right: 20px;
+            padding-top: 3px;
+            cursor: pointer
         }
-        .item {
-            position: relative;
-            margin: 10px 0;
+
+        h2.heading {
+            font-weight: bold
         }
-        .item span {
-            color: red;
+
+        .form-control {
+            border: none;
+            border-radius: 0px;
+            border-bottom: 1px solid #F2F2F2
         }
-        .week {
-            display:flex;
-            justfiy-content:space-between;
+
+        .form-control::placeholder {
+            font-size: 13px;
+            color: #C2C2CC
         }
-        .colums {
-            display:flex;
-            justify-content:space-between;
-            flex-direction:row;
-            flex-wrap:wrap;
+
+        .form-control:focus {
+            box-shadow: none;
+            border-bottom: 1px solid #F2F2F2
         }
-        .colums div {
-            width:48%;
+
+        .fone input {
+            padding-left: 20px
         }
-        input[type=radio], input[type=checkbox]  {
-            display: none;
+
+        .fone {
+            position: relative
         }
-        label.radio {
-            position: relative;
-            display: inline-block;
-            margin: 5px 20px 15px 0;
-            cursor: pointer;
-        }
-        .question span {
-            margin-left: 30px;
-        }
-        .question-answer label {
-            display: block;
-        }
-        label.radio:before {
-            content: "";
+
+        .fone .fas {
             position: absolute;
             left: 0;
-            width: 17px;
-            height: 17px;
-            border-radius: 50%;
-            border: 2px solid #ccc;
+            top: 5px;
+            padding: 8px 0px;
+            color: #C2C2CC;
+            font-size: 12px
         }
-        input[type=radio]:checked + label:before, label.radio:hover:before {
-            border: 2px solid  #006622;
-        }
-        label.radio:after {
-            content: "";
+
+        .fone .image {
             position: absolute;
-            top: 6px;
-            left: 5px;
-            width: 8px;
-            height: 4px;
-            border: 3px solid  #006622;
-            border-top: none;
-            border-right: none;
-            transform: rotate(-45deg);
-            opacity: 0;
+            left: 275px;
+            top: 0px;
+            cursor: pointer
         }
-        input[type=radio]:checked + label:after {
-            opacity: 1;
+
+        .form-check-input {
+            margin-top: 10px
         }
-        .flax {
-            display:flex;
-            justify-content:space-around;
+
+        .form-check-label {
+            font-size: 9px;
+            color: #C2C2CC
         }
-        .btn-block {
-            margin-top: 10px;
-            text-align: center;
-        }
-        button {
-            width: 150px;
-            padding: 10px;
+
+        .btn-success {
+            padding: 7px 40px;
+            background: #ff0000;
             border: none;
-            border-radius: 5px;
-            background: #c91c1c;
-            font-size: 16px;
-            color: #fff;
+            border-radius: 30px;
+            font-size: 10px
+        }
+
+        .btn-success:hover {
+            background: #0a0a0a
+        }
+
+        .btn-success:focus {
+            box-shadow: none
+        }
+
+        u {
+            cursor: pointer
+        }
+
+        p.exist {
+            font-size: 9px;
+            color: #C2C2CC
+        }
+
+        p.exist span {
             cursor: pointer;
+            color: #ABA5D3
         }
-        button:hover {
-            background: #c91c1c;
+
+        @media screen and (max-width: 993px) {
+            .fone .image {
+                position: absolute;
+                left: 80px
+            }
+
+            .footer {
+                margin-top: 170px
+            }
         }
-        @media (min-width: 568px) {
-            .name-item, .city-item {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
+
+        @media screen and (max-width: 768px) {
+            .row {
+                width: 450px
             }
-            .name-item input, .name-item div {
-                width: calc(50% - 20px);
+
+            .rcol {
+                padding: 60px 180px 60px 60px
             }
-            .name-item div input {
-                width:97%;}
-            .name-item div label {
-                display:block;
-                padding-bottom:5px;
+        }
+
+        @media screen and (max-width: 920px) {
+            .rcol {
+                padding: 60px 50px 60px 50px
+            }
+
+            .footer {
+                margin-top: 140px
             }
         }
     </style>
 </head>
 <body>
-<div class="testbox">
-    <div style=" width: 100%;
-            padding: 20px;
-            border-radius: 6px;
-            background: #fff;
-            box-shadow: 0 0 8px #006622;">
-
-        <div class="banner">
-
-            <h1>
-            </h1>
-        </div>
-        <br/>
-        <fieldset>
-            <legend>Utilisateur</legend>
-            <div class="colums">
-                <h3>Edit utilisateur</h3>
-
-                    {{ include('utilisateur/_form.html.twig', {'button_label': 'Update'}) }}
-
-                <a href="{{ path('utilisateur_index') }}"><button>back to list</button></a>
-
-                {{ include('utilisateur/_delete_form.html.twig') }}
+<div class="container d-flex justify-content-center">
+    <div class="row my-5">
+        <div class="col-md-6 text-left text-white lcol">
+            <div class="greeting">
+                <h3>Welcome to <span class="txt">GoGym</span></h3>
             </div>
+            <h6 class="mt-3">let's light some fire and get the show on the road...</h6>
+            <div class="footer">
+                <div class="socials d-flex flex-row justify-content-between text-white">
+                    <div class="d-flex flex-row"><i class="fab fa-linkedin-in"></i><i class="fab fa-facebook-f"></i><i class="fab fa-twitter"></i></div> <span>Privacy Policy</span> <span>&copy; 2020 Stoke</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 rcol">
+
+            <p>   <h2><img class="rounded-circle mt-5" width="150px" src="{{ asset('uploads/image/' ~ app.user.image) }}    "class="heading mb-4">Hello {{ app.user.nom }} !  </h2> </p>
+
+
+
+
+
+             {{ include('utilisateur/_form.html.twig', {'button_label': 'Update'}) }}
+<br>
+{{ include('utilisateur/_delete_form.html.twig')}}
+            <br>
+                 <a href="{{ path('home') }}"class="btn btn-success ">back to Home</a>
+
+
+
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

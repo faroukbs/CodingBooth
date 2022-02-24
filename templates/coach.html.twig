@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/css/axentix.min.css">
+    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+</head>
+<body>
+<header>
+    <nav class="navbar red">
+
+        <div class="navbar-menu ml-auto">
+            <a class="navbar-link" href="{{ path('home') }}">Home</a>
+            <div class="dropdown" id="dropdown">
+                <a class="navbar-link dropdown-trigger">
+                    Categories
+                </a>
+                <div class="dropdown-content white shadow-1 rouded-1">
+
+                </div>
+            </div>
+
+
+                <a href="{{ path('app_logout') }}" class="btn white-btn">LOGOUT</a>
+
+
+        </div>
+    </nav>
+</header>
+<div id="example-sidenav" class="sidenav large fixed white">
+    <div class="sidenav-header">
+        <button data-target="example-sidenav" class="sidenav-trigger">
+            <i class="fas fa-times"></i>
+        </button>
+        <img class="logo dropshadow-1" src="../assets/img/logo/LOGO1.png" alt="Logo"/>
+    </div>
+    <a href="{{ path('utilisateur_show',{'id': app.user.id}) }}" class="sidenav-link active">My profil</a>
+
+    <a href="{{ path('messages',{'id': app.user.id}) }}" class="sidenav-link active">Chat </a>
+
+    <a href="#" class="sidenav-link">My courses</a>
+</div>
+<main>
+    {% block body %} {% endblock %}
+</main>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/js/axentix.min.js"></script>
+{% block javascripts %}
+    <script>
+        let drop = new Axentix.Dropdown('#dropdown')
+    </script>
+{% endblock %}
+<script src="{{ asset('js/scripts.js') }}"></script>
+</body>
+</html>

@@ -1,51 +1,74 @@
-{% extends 'base-front/base.html.twig' %}
-
-{% block title %}Utilisateur index{% endblock %}
-
+{% extends 'admin.html.twig' %}
 {% block body %}
-    <h1>Utilisateur index</h1>
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="page-titles">
+            <h4>Liste</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Des</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">membres</a></li>
+            </ol>
+        </div>
+        <!-- row -->
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Date_naissance</th>
-                <th>NumTel</th>
-                <th>Image</th>
-                <th>IsVerified</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for utilisateur in utilisateurs %}
-            <tr>
-                <td>{{ utilisateur.id }}</td>
-                <td>{{ utilisateur.email }}</td>
-                <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
-                <td>{{ utilisateur.password }}</td>
-                <td>{{ utilisateur.nom }}</td>
-                <td>{{ utilisateur.prenom }}</td>
-                <td>{{ utilisateur.dateNaissance ? utilisateur.dateNaissance|date('Y-m-d') : '' }}</td>
-                <td>{{ utilisateur.numTel }}</td>
-                <td>{{ utilisateur.image }}</td>
-                <td>{{ utilisateur.isVerified ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">show</a>
-                    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('utilisateur_new') }}">Create new</a>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Profil des membres </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example3" class="display min-w850">
+                                <thead>
+                                <tr>
+
+                                    <th>Image</th>
+
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Date_naissance</th>
+                                    <th>Email</th>
+                                    <th>NumTel</th>
+                                    <th>actions</th>
+                                </tr>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for utilisateur in utilisateurs %}
+                                    <tr>
+                                        <td><img class="rounded-circle" width="150px" src="{{ asset('uploads/image/' ~ utilisateur.image) }} "></td>
+
+                                        <td>{{ utilisateur.nom }}</td>
+                                        <td>{{ utilisateur.prenom }}</td>
+                                        <td>{{ utilisateur.dateNaissance ? utilisateur.dateNaissance|date('Y-m-d') : '' }}</td>
+                                        <td>{{ utilisateur.email }}</td>
+                                        <td><a href="javascript:void(0);"><strong>{{ utilisateur.numTel }}</strong></a></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="{{ path('utilisateur_edit_admin',{'id':app.user.id}) }}" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                {% else %}
+                                    <tr>
+                                        <td colspan="11">no records found</td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

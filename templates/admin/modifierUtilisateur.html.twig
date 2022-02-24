@@ -1,0 +1,77 @@
+{% extends 'admin.html.twig' %}
+
+
+
+
+{% block body %}
+
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="main-panel">
+
+            <div> <h1>Modifier un Utilisateur</h1></div><br>
+            <form  method="post">
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="start"><h4>Prenom:<abbr title="Ce champ est obligatoire">*</abbr></h4></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <input type="text" name="prenom" required class="form-control" value={{ utilisateur.prenom }}>
+                        <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="start"><h4>Nom:<abbr title="Ce champ est obligatoire">*</abbr></h4></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input  name="nom" required type="text" class="form-control" value={{utilisateur.nom}}>
+                        <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="start"><h4>Cin:<abbr title="Ce champ est obligatoire">*</abbr></h4></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input  name="cin" required type="text" class="form-control" maxlength="8" value={{utilisateur.email}}>
+                        <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="start"><h4>Mot de Passe :<abbr title="Ce champ est obligatoire">*</abbr></h4></label>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <input type="password" name="password" required class="form-control" value={{ utilisateur.password }}>
+                        <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group d-flex justify-content-center">
+                    <div class="form-check form-check-flat mt-0">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" checked> I agree to the terms </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary submit-btn btn-block">Submit</button>
+                </div>
+
+            </form>
+        </nav>
+    </div>
+
+{% endblock %}

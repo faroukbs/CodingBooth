@@ -84,7 +84,7 @@ h6,
   margin-bottom: 0.5rem;
   font-weight: 400;
   line-height: 1.2;
-  color: #344767;
+  color: #ffffff;
 }
 
 h1,
@@ -3561,8 +3561,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #cb0c9f;
-  border-color: #cb0c9f;
+  background-color: rgba(129, 127, 127, 0.56);
+  border-color: rgba(129, 127, 127, 0.56);
 }
 
 .btn-primary:hover {
@@ -4861,7 +4861,7 @@ fieldset:disabled .btn {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #cb0c9f;
+  color: #fc0000;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
@@ -4873,7 +4873,7 @@ fieldset:disabled .btn {
 
 .nav-link:hover,
 .nav-link:focus {
-  color: #830866;
+  color: #a90909;
 }
 
 .nav-link.disabled {
@@ -9907,7 +9907,7 @@ fieldset:disabled .btn {
 }
 
 .bg-gray-100 {
-  background-color: #f8f9fa !important;
+  background-color: #0a0a0a !important;
 }
 
 .bg-gray-200 {
@@ -18919,13 +18919,13 @@ fieldset:disabled .btn {
 
 .btn-primary:hover,
 .btn.bg-gradient-primary:hover {
-  background-color: #cb0c9f;
-  border-color: #cb0c9f;
+  background-color: rgba(129, 127, 127, 0.56);
+  border-color: #ffffff;
 }
 
 .btn-primary .btn.bg-outline-primary,
 .btn.bg-gradient-primary .btn.bg-outline-primary {
-  border: 1px solid #cb0c9f;
+  border: 1px solid rgba(129, 127, 127, 0.56);
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
@@ -18934,8 +18934,8 @@ fieldset:disabled .btn {
 .btn.bg-gradient-primary:not(:disabled):not(.disabled).active,
 .btn.bg-gradient-primary:not(:disabled):not(.disabled):active,
 .show>.btn.bg-gradient-primary.dropdown-toggle {
-  color: color-yiq(#cb0c9f);
-  background-color: #cb0c9f;
+  color: color-yiq(rgba(129, 127, 127, 0.56));
+  background-color: rgba(129, 127, 127, 0.56);
 }
 
 .btn-primary.focus,
@@ -20847,7 +20847,7 @@ hr.horizontal.gray-light {
   padding-left: 1rem;
   padding-right: 1rem;
   font-weight: 500;
-  color: #67748e;
+  color: #ffffff;
 }
 
 .navbar-vertical .navbar-nav .nav-link>i {

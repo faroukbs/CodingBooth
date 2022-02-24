@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+
 /**
  * @Route("/utilisateur")
  */
@@ -80,14 +82,23 @@ class UtilisateurController extends AbstractController
 
     /**
      * @Route("/{id}", name="utilisateur_delete", methods={"POST"})
+     *
      */
     public function delete(Request $request, Utilisateur $utilisateur, EntityManagerInterface $entityManager): Response
     {
+
         if ($this->isCsrfTokenValid('delete'.$utilisateur->getId(), $request->request->get('_token'))) {
             $entityManager->remove($utilisateur);
             $entityManager->flush();
+
         }
 
-        return $this->redirectToRoute('utilisateur_index', [], Response::HTTP_SEE_OTHER);
+
+         $this->container->get('security.token_storage')->setToken(null);
+                      $this->container->get('session')->invalidate();
+
+        return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }
