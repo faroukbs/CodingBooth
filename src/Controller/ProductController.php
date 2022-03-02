@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Category;
 use App\Entity\Produit;
 use App\Form\ProductType;
@@ -15,6 +16,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProduitRepository;
+use App\Repository\UtilisateurRepository;
+use App\Entity\Utilisateur;
+use Mediumart\Orange\SMS\SMS;
+use Mediumart\Orange\SMS\Http\SMSClient;
 
 class ProductController extends AbstractController
 {
@@ -49,13 +54,13 @@ class ProductController extends AbstractController
         $var = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
-        
+
 
 
         return $this->render('shop\shop.html.twig', [
             'form' => $form,
-            'var'=> $var,
-            
+            'var' => $var,
+
         ]);
     }
 
@@ -67,7 +72,7 @@ class ProductController extends AbstractController
         $cat = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
-       
+
         $var = $this->getDoctrine()
             ->getRepository(Category::class)
             ->find($categoryprod);
@@ -75,9 +80,9 @@ class ProductController extends AbstractController
 
 
         return $this->render('shop\shopCat.html.twig', [
-            'cat'=> $cat,
-            'var'=> $var,
-            'form'=>$fetch,
+            'cat' => $cat,
+            'var' => $var,
+            'form' => $fetch,
         ]);
     }
     #show item coté client #
@@ -111,7 +116,7 @@ class ProductController extends AbstractController
     {
         $product = new Produit();
         $form = $this->createForm(ProductType::class, $product);
-
+        $User = $this->getDoctrine()->getRepository(Utilisateur::class)->findAll();
 
 
         $form->handleRequest($request);
@@ -129,6 +134,16 @@ class ProductController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
+            foreach ($User as $User){
+
+                $client = SMSClient::getInstance('2Yf3CBy0mWhiS0TcVCWonAOkEUXs6cLF', 'Bgflgfsi6lEN1e2V');
+                $sms = new SMS($client);
+                $sms->message('Nous avons ajouté un nouveau produit '.$product->getNomprod().'
+'.$product->getDescription())
+                    ->from('+21627300520')
+                    ->to($User->getNumTel())
+                    ->send();
+            }
             return $this->redirectToRoute('list');
         }
 
@@ -171,7 +186,7 @@ class ProductController extends AbstractController
             ])
             ->add('edit', SubmitType::class)
             ->getForm();
-            
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form->get('image')->getData();
@@ -208,32 +223,34 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('adproduct');
     }
 
-/**
+    /**
      * @Route("/search" ,name="ajax_search")
      
      */
 
-    public function searchAction(ProduitRepository $produitRepository,Request $request)
+    public function searchAction(ProduitRepository $produitRepository, Request $request)
     {
-         
-         
+
+
 
         $em = $this->getDoctrine()->getManager();
         $requestString = $request->get('q');
         $product = $produitRepository->findEntitiesByString($requestString);
-         
-        if(!$product) {
+
+        if (!$product) {
             $result['product']['error'] = "Post Not found :( ";
         } else {
             $result['product'] = $this->getRealEntities($product);
         }
         return new Response(json_encode($result));
     }
-    public function getRealEntities($product){
-        foreach ($product as $product){
-            $realEntities[$product->getIdProduit()] = [$product->getImage(),$product->getNomprod()];
-
+    public function getRealEntities($product)
+    {
+        foreach ($product as $product) {
+            $realEntities[$product->getIdProduit()] = [$product->getImage(), $product->getNomprod()];
         }
         return $realEntities;
     }
+
+   
 }

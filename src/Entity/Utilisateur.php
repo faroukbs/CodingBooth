@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
  */
 class Utilisateur
 {
@@ -57,9 +58,9 @@ class Utilisateur
     private $motdepasse;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="num_tel", type="integer", nullable=false)
+     * @ORM\Column(name="num_tel", type="string", nullable=false)
      */
     private $numTel;
 
@@ -149,12 +150,12 @@ class Utilisateur
         return $this;
     }
 
-    public function getNumTel(): ?int
+    public function getNumTel(): ?string
     {
         return $this->numTel;
     }
 
-    public function setNumTel(int $numTel): self
+    public function setNumTel(string $numTel): self
     {
         $this->numTel = $numTel;
 
