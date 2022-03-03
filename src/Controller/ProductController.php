@@ -20,6 +20,8 @@ use App\Repository\UtilisateurRepository;
 use App\Entity\Utilisateur;
 use Mediumart\Orange\SMS\SMS;
 use Mediumart\Orange\SMS\Http\SMSClient;
+use Knp\Component\Pager\PaginatorInterface;
+
 
 class ProductController extends AbstractController
 {
@@ -28,11 +30,16 @@ class ProductController extends AbstractController
     /**
      * @Route("/adminprod", name="adproduct")
      */
-    public function listadmin(): Response
+    public function listadmin(Request $request,PaginatorInterface $paginator): Response
     {
         $form = $this->getDoctrine()
             ->getRepository(Produit::class)
             ->findAll();
+            $form = $paginator->paginate(
+                $form, /* query NOT result */
+                $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+            );
 
 
         return $this->render('product/list.html.twig', [
@@ -46,7 +53,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/list", name="list")
      */
-    public function list(): Response
+    public function list( Request $request,PaginatorInterface $paginator): Response
     {
         $form = $this->getDoctrine()
             ->getRepository(Produit::class)
@@ -55,6 +62,12 @@ class ProductController extends AbstractController
             ->getRepository(Category::class)
             ->findAll();
 
+            
+            $form = $paginator->paginate(
+                $form, /* query NOT result */
+                $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+            );
 
 
         return $this->render('shop\shop.html.twig', [

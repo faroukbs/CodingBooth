@@ -199,6 +199,7 @@ entitySelector.append('<li class="errorLi">' + value + '</li>');
 
 			<!-- Section-->
 			<section class="py-5">
+			
 				<div class="container px-4 px-lg-5 C-5">
 					<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
@@ -230,7 +231,7 @@ entitySelector.append('<li class="errorLi">' + value + '</li>');
 							</div>
 						</div>
 
-
+							
 						{% for item in form %}
 							<div class="col-md-8 mb-5">
 								<a href="{{ path('list-item', {id: item.idproduit}) }}">
@@ -263,10 +264,11 @@ entitySelector.append('<li class="errorLi">' + value + '</li>');
 							</div>
 						{% endfor %}
 
-
+{{ knp_pagination_render(form) }}
 					</div>
 				</div>
 			</section>
+
 			<!-- Footer-->
 			<footer>
 				<!--? Footer Start-->
@@ -326,6 +328,8 @@ entitySelector.append('<li class="errorLi">' + value + '</li>');
 						<!-- Footer Bottom -->
 					</div>
 				</div>
+				
+
 				<!-- Footer End-->
 			</footer>
 			<!-- <footer class="py-5 bg-dark">
