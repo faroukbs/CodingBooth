@@ -1,0 +1,68 @@
+{% extends 'base-front/base.html.twig' %}
+{% block body %}
+<Title>{% block title %}SHOP {% endblock %} </Title>
+
+
+<body>
+
+
+<style>
+.button {
+  background-color: #990F1D; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button2 {background-color: #008CBA;} 
+.button3 {background-color: #f44336;} 
+.button4 {background-color: #e7e7e7; color: black;}
+.button5 {background-color: #555555;} 
+</style>
+
+
+<center>
+<h1>OUR PRODUCTS: </h1>
+<button class="button" ><a href="{{ path('new')  }}"> Add</a></button>
+
+<table border="7px" solid  style="width:40%" >
+  <tr bgcolor="#990F1D">
+    <th>ID</th>
+    <th>Name</th>
+    <th>Prix</th>
+
+    <th>modifier</th>
+    <th>Delete </th>
+    <th>img </th>
+    <th>panier</th>
+
+  </tr>
+  {% for item in form %}
+  <tr bgcolor="#990F1D">
+    <td>{{item.idproduit}}</td>
+    <td>{{item.nomproduit}}</td>
+    <td>{{item.Prix}}</td>
+
+
+    <td><a href="{{ path('update_product',{'idproduit':item.idproduit})  }}"> Modifier</a>  </td>
+    <td><a href="{{ path('sup_product',{'idproduit':item.idproduit})  }}"> Delete</a>  </td>
+    <td><img src="{{asset('ulpoads/') ~ item.image}}"  width="50" height="50"></td>
+    <td><a href="{{ path('cart_add',{'idproduit':item.idproduit})}}"> Add</a></td>
+
+
+  </tr>
+{% endfor %}
+
+</table>
+</center>
+
+
+
+</body>
+{% endblock %}
