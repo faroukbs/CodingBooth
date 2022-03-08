@@ -37,13 +37,15 @@ class Produit
 
     /**
      * @var string
+     * 
+     * 
+     * @ORM\Column(name="description", type="string", length=255, nullable=false)
      * @Assert\Length(
-     *      min = 4,
+     *      min = 12,
      *      
      *      minMessage = "at least {{ limit }} characters long",
      *  
      * )
-     * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
     private $description;
 
