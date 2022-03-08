@@ -2,111 +2,92 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * Commande
- *
- * @ORM\Table(name="commande", indexes={@ORM\Index(name="fk19", columns={"id_produit"}), @ORM\Index(name="fk18", columns={"id_client"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=CommandeRepository::class)
  */
 class Commande
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_commande", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
-    private $idCommande;
+    private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_client", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $nomClient;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank 
      */
-    private $prenom;
+    private $prenomClient;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $adresse;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="numero_client", type="integer", nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank 
      */
-    private $numeroClient;
+    private $postcode;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="code_promo", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank 
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 8,
+     * )
      */
-    private $codePromo;
+    private $phone;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="montant", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank 
      */
     private $montant;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_commande", type="date", nullable=false)
-     */
-    private $dateCommande;
+   
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="etat_commande", type="string", length=255, nullable=false)
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank 
      */
     private $etatCommande;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mode_paiment", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank 
      */
-    private $modePaiment;
+    private $modePaiemenet;
 
     /**
-     * @var \Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_client", referencedColumnName="idutilisateur")
-     * })
+     * @ORM\Column(type="string", length=255)
      */
-    private $idClient;
+    private $produit;
 
-    /**
-     * @var \Produit
-     *
-     * @ORM\ManyToOne(targetEntity="Produit")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_produit", referencedColumnName="id_produit")
-     * })
-     */
-    private $idProduit;
+   
 
-    public function getIdCommande(): ?int
+    
+
+    public function getId(): ?int
     {
-        return $this->idCommande;
+        return $this->id;
     }
 
     public function getNomClient(): ?string
@@ -121,14 +102,14 @@ class Commande
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getPrenomClient(): ?string
     {
-        return $this->prenom;
+        return $this->prenomClient;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setPrenomClient(string $prenomClient): self
     {
-        $this->prenom = $prenom;
+        $this->prenomClient = $prenomClient;
 
         return $this;
     }
@@ -145,101 +126,80 @@ class Commande
         return $this;
     }
 
-    public function getNumeroClient(): ?int
+    public function getPostcode(): ?string
     {
-        return $this->numeroClient;
+        return $this->postcode;
     }
 
-    public function setNumeroClient(int $numeroClient): self
+    public function setPostcode(string $postcode): self
     {
-        $this->numeroClient = $numeroClient;
+        $this->postcode = $postcode;
 
         return $this;
     }
 
-    public function getCodePromo(): ?string
+    public function getPhone(): ?string
     {
-        return $this->codePromo;
+        return $this->phone;
     }
 
-    public function setCodePromo(string $codePromo): self
+    public function setPhone(string $phone): self
     {
-        $this->codePromo = $codePromo;
+        $this->phone = $phone;
 
         return $this;
     }
 
-    public function getMontant(): ?float
+    public function getMontant(): ?string
     {
         return $this->montant;
     }
 
-    public function setMontant(float $montant): self
+    public function setMontant(string $montant): self
     {
         $this->montant = $montant;
 
         return $this;
     }
 
-    public function getDateCommande(): ?\DateTimeInterface
-    {
-        return $this->dateCommande;
-    }
+    
 
-    public function setDateCommande(\DateTimeInterface $dateCommande): self
-    {
-        $this->dateCommande = $dateCommande;
-
-        return $this;
-    }
-
-    public function getEtatCommande(): ?string
+    public function getEtatCommande(): ?int
     {
         return $this->etatCommande;
     }
 
-    public function setEtatCommande(string $etatCommande): self
+    public function setEtatCommande(int $etatCommande): self
     {
         $this->etatCommande = $etatCommande;
 
         return $this;
     }
 
-    public function getModePaiment(): ?string
+    public function getModePaiemenet(): ?string
     {
-        return $this->modePaiment;
+        return $this->modePaiemenet;
     }
 
-    public function setModePaiment(string $modePaiment): self
+    public function setModePaiemenet(string $modePaiemenet): self
     {
-        $this->modePaiment = $modePaiment;
+        $this->modePaiemenet = $modePaiemenet;
 
         return $this;
     }
 
-    public function getIdClient(): ?Utilisateur
+    public function getProduit(): ?string
     {
-        return $this->idClient;
+        return $this->produit;
     }
 
-    public function setIdClient(?Utilisateur $idClient): self
+    public function setProduit(string $produit): self
     {
-        $this->idClient = $idClient;
+        $this->produit = $produit;
 
         return $this;
     }
 
-    public function getIdProduit(): ?Produit
-    {
-        return $this->idProduit;
-    }
-
-    public function setIdProduit(?Produit $idProduit): self
-    {
-        $this->idProduit = $idProduit;
-
-        return $this;
-    }
-
-
+   
+  
 }

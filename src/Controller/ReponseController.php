@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Reponse;
 use App\Form\ReponseType;
-use App\Entity\Contact;
+use App\Entity\Reclamation;
 use App\Repository\ReponseRepository;
-use App\Repository\ContactRepository;
+use App\Repository\ReclamationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,15 +31,15 @@ class ReponseController extends AbstractController
 
 
       /**
-     * @param ContactRepository $rep
-     * @return Response\
+     * @param ReclamationRepository $rep
+     * @return Response
      * @Route("reponse/recList", name="list_reclamation")
      */
-    public function afficher(ContactRepository $rep): Response
+    public function afficher(ReclamationRepository $rep): Response
     {
-        $reponse=$rep->findAll();
+        $reclamations=$rep->findAll();
         return $this->render('reponse/listReclamationAdmin.html.twig', [
-            'tab' => $reponse,
+            'tab' => $reclamations,
         ]);
     }
 
@@ -47,7 +47,7 @@ class ReponseController extends AbstractController
      * @Route("/response/deleteRec/{id}", name="reclam_delete")
      */
 
-    public function Delete_reclamation($id, ContactRepository $rep){
+    public function Delete_reclamation($id, ReclamationRepository $rep){
         $response=$rep->find($id);
         $em=$this->getDoctrine()->getManager();
         $em->remove($response);
@@ -61,9 +61,9 @@ class ReponseController extends AbstractController
     /**
      * @Route("/reponse/add/{id}", name="rep_add")
      */
-    public function addResponse (Contact $recl,Contact $subj,Request $req, ContactRepository $rep, $id,SessionInterface $session)
+    public function addResponse (Reclamation $recl,Reclamation $subj,Request $req, ReclamationRepository $rep, $id,SessionInterface $session)
     {   
-        $contact = $session->get("contact", $recl->getIdCommande());
+        $reclamation = $session->get("reclamation", $recl->getIdCommande());
         $subject = $session->get("subj", $subj->getSubject());
 
 
@@ -77,7 +77,7 @@ class ReponseController extends AbstractController
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid())
         { 
-            $reponses = $reponses->setContact($idReclamation);
+            $reponses = $reponses->setReclamation($idReclamation);
             $em=$this->getDoctrine()->getManager();
             $em->persist($reponses);
             $em->flush();
@@ -88,7 +88,7 @@ class ReponseController extends AbstractController
 
         return $this->render('reponse/addReponse.html.twig', [
             'formA'=>$form->createView(), 
-            'contact' => $contact,
+            'reclamation' => $reclamation,
             'subject' => $subject
             
         ]);

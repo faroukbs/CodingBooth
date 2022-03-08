@@ -1,4 +1,4 @@
-{% extends 'base.html.twig'%}
+{% extends "base.html.twig" %}
 {% block title %}<title>History</title> {% endblock %}
 {% block body %}
     <!-- Begin Li's Breadcrumb Area -->
@@ -24,7 +24,6 @@
             <th>Reclamation Subject</th>
             <th>Message</th>
             <th>Reclamation Type</th>
-            {#<th>CreatedAt</th>#}
             <th>Reclamation Status</th>
         </tr>
         {% for r in tab %}
@@ -36,9 +35,9 @@
                 <td>{{ r.message }}</td>
                 <td>{{ r.type }}</td>
                {% if r.reponse != null %}
-                <td><a href="{{path('etat_rec', {id:r.reponse.id})}}"    onclick="return confirm('Do You want to see The Response to Your reclamation?')">{{ r.etat }}</a></td>
+                <td><a href="{{path('etat_rec', {id:r.id})}}" onclick="return confirm('Do You want to see The Response to Your reclamation?')">{{ r.etat }}</a></td>
                 {% else %}
-                {#<td>{{ r.createdAt|date('Y-m-d H:i:s') }}</td> #}
+
                 <td><a href="#">{{ r.etat }}</a></td>
 
                 {% endif %} 

@@ -81,15 +81,15 @@ class Utilisateurs implements UserInterface
     private $Token;
 
     /**
-     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="client")
+     * @ORM\OneToMany(targetEntity=Reclamation::class, mappedBy="client")
      */
-    private $contact;
+    private $reclamations;
 
 
     public function __construct()
     {
         $this->Livraison = new ArrayCollection();
-        $this->contact = new ArrayCollection();
+        $this->reclamations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -212,29 +212,29 @@ class Utilisateurs implements UserInterface
     public function getSalt(){}
 
     /**
-     * @return Collection|Contact[]
+     * @return Collection|Reclamation[]
      */
-    public function getContact(): Collection
+    public function getReclamations(): Collection
     {
-        return $this->contact;
+        return $this->reclamations;
     }
 
-    public function addContact(Contact $contact): self
+    public function addReclamation(Reclamation $reclamation): self
     {
-        if (!$this->contact->contains($contact)) {
-            $this->contact[] = $contact;
-            $contact->setClient($this);
+        if (!$this->reclamations->contains($reclamation)) {
+            $this->reclamations[] = $reclamation;
+            $reclamation->setClient($this);
         }
 
         return $this;
     }
 
-    public function removeContact(Contact $contact): self
+    public function removeReclamation(Reclamation $reclamation): self
     {
-        if ($this->contact->removeElement($contact)) {
+        if ($this->reclamations->removeElement($reclamation)) {
             // set the owning side to null (unless already changed)
-            if ($contact->getClient() === $this) {
-                $contact->setClient(null);
+            if ($reclamation->getClient() === $this) {
+                $reclamation->setClient(null);
             }
         }
 

@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Reponse;
-use App\Entity\Contact;
+use App\Entity\Reclamation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
