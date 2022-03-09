@@ -37,8 +37,8 @@
 						<td>{{ s.description }}</td>
 						<td>{{ s.materiel}}</td>
                         <td><img src="{{asset('uploads/') ~ s.image}}"  width="50" height="50"></td>
-							<td><a href="{{ path('del',{'id': s.idsalle}) }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Delete{% endtrans %}</font></button></a></td>
-						<td><a href="{{ path('mod',{'id': s.idsalle}) }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Update{% endtrans %}</font>	</button></a></td>
+							<td><a href="{{ path('del',{'idsalle': s.idsalle}) }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Delete{% endtrans %}</font></button></a></td>
+						<td><a href="{{ path('mod',{'idsalle': s.idsalle}) }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Update{% endtrans %}</font>	</button></a></td>
 					</tr>
 					{%endfor%}
 				</table>

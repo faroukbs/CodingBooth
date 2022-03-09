@@ -37,7 +37,7 @@ class SalleController extends AbstractController
      * @param $id
      * @param SalleRepository $rep
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @Route ("/salle/affiche/delete/{id}", name="del")
+     * @Route ("/salle/affiche/delete/{idsalle}", name="del")
      */
     public function supprimer($idsalle,SalleRepository $rep)
     {
@@ -82,7 +82,7 @@ class SalleController extends AbstractController
     /**
      * @param Request $req
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route ("/salle/update/{id}", name="mod")
+     * @Route ("/salle/update/{idsalle}", name="mod")
      */
     public function update($idsalle,SalleRepository $rep,Request $request){
         $salle=$rep->find($idsalle);

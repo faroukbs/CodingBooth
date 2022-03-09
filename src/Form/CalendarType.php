@@ -30,7 +30,7 @@ class CalendarType extends AbstractType
                 
                 ])
                 ->add('idcoach') 
-                ->add('nomsalle',EntityType::class,[
+                ->add('idsalle',EntityType::class,[
                     'class' => Salle::class,
                     'choice_label'=>'nomsalle',
                     
