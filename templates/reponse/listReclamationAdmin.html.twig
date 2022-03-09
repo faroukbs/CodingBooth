@@ -1,0 +1,62 @@
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+    <div class="container">
+        <h5>liste des réponses</h5>
+
+        {%  for message in app.flashes ('info7') %}
+            <div class="alert alert-success">
+                {{ message }}
+
+            </div>
+        {% endfor %}
+        {%  for message in app.flashes ('info6') %}
+            <div class="alert alert-warning">
+                {{ message }}
+
+            </div>
+        {% endfor %}
+        {%  for message in app.flashes ('info5') %}
+            <div class="alert alert-danger">
+                {{ message }}
+
+            </div>
+        {% endfor %}
+        <table   border="1" class="table table-hover">
+            <thead>
+            <tr>
+                  <tr>
+                      
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Reclamation Subject</th>
+                        <th>Message</th>
+                        <th>Reclamation Type</th>
+                        <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for r in tab %}
+            <tr>
+              
+                <td>{{ r.name }}</td>
+                <td>{{ r.email }}</td>
+                <td>{{ r.subject}}</td>
+                <td>{{ r.message }}</td>
+                <td>{{ r.type }}</td>
+                <td>{{ r.etat }}</td>
+                <td>
+                  <a class="btn btn-info" href="{{path('rep_add',{id:r.id})}}">Reply</a>
+                  <a class="btn btn-danger" href="{{path('reclam_delete',{id:r.id})}}">delete</a>
+                       
+                </td>
+            </tr>
+
+
+        {% endfor %}
+        {{ knp_pagination_render(tab) }}
+                  </tbody>
+                </table>
+    </div>
+{% endblock %}
+
+

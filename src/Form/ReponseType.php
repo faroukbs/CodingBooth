@@ -17,7 +17,6 @@ class ReponseType extends AbstractType
         $builder
             ->add('subject')
             ->add('message', TextareaType::class)
-            ->add('idCommande')
             
             
         ;

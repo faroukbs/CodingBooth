@@ -26,25 +26,51 @@ class ReclamationRepository extends ServiceEntityRepository
     public function findById($value)
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.client = :val')
+            ->andWhere('r.user = :val')
             ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
+            ->orderBy('r.user', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    
 
-    /*
-    public function findOneBySomeField($value): ?Reclamation
+    public function findByTypeProduct()
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('r.type = :val')
+            ->setParameter('val', "Product")
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
+
+    public function findByTypeSoft()
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.type = :val')
+            ->setParameter('val', "Coach")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+  
+    
+   /**
+    * 
     */
+    public function countByType(){
+        //$query = $this->createQueryBuilder('c')
+            //->select('SUBSTRING(d.date, 1, 10) as date, COUNT(c) as count')
+            //->groupBy('date')
+        //;
+        //return $query->getQuery()->getResult();
+       $query = $this->getEntityManager()->createQuery("
+           SELECT r.type as type, COUNT(r) as count FROM App\Entity\Reclamation r GROUP BY type
+       ");
+       return $query->getResult();
+   }
+
+
 }

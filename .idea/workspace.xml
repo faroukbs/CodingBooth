@@ -2,37 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96a9e22a-d570-4160-bd00-e45162bc7bbe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/front/assets/css/animate.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/assets/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/assets/css/owl.carousel.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/assets/css/slicknav.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ReclamationController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ReclamationRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/reclamation/afficherReclamationBack.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/reclamation/update.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Demandes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/DemandesRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/add_admin.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/addReponse.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/listReclamationAdmin.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/listReponses.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/update.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220221222210.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220221223827.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220222013146.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220226003216.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ReclamationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReclamationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ReponseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReponseController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Commande.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Contact.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Lignecommande.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Reclamation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reclamation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Reponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reponse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Utilisateur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Utilisateurs.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Utilisateurs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/command.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ContactType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ReclamationType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Utilisateur.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ReclamationType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ReclamationType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/ReponseType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ReponseType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact/add.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/add.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact/contact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/contact.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact/listReclamation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/listReclamation.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact/reponse.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/reponse.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ReclamationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReclamationRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ReponseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReponseRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reclamation/afficherReclamationBack.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/afficherReclamationBack.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reclamation/reponse.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/reponse.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,17 +200,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Repository" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Entity" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\CodingBooth\src\Repository" />
-      <recent name="C:\CodingBooth\templates\reclamation" />
-      <recent name="C:\CodingBooth\templates\contact" />
-      <recent name="C:\CodingBooth\src\Form" />
       <recent name="C:\CodingBooth\src\Entity" />
+      <recent name="C:\CodingBooth\templates" />
+      <recent name="C:\CodingBooth\templates\reponse" />
+      <recent name="C:\CodingBooth\src\Repository" />
+      <recent name="C:\CodingBooth\src\Form" />
     </key>
   </component>
   <component name="RunManager">
@@ -242,7 +231,7 @@
       <workItem from="1646739288517" duration="1924000" />
       <workItem from="1646757056519" duration="211000" />
       <workItem from="1646758596971" duration="14812000" />
-      <workItem from="1646778310996" duration="344000" />
+      <workItem from="1646778310996" duration="9817000" />
     </task>
     <servers />
   </component>

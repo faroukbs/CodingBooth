@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Eventl;
 use App\Entity\Reclamation;
 use App\Entity\Reponse;
 use App\Form\EventlType;
@@ -86,7 +87,7 @@ class ReclamationController extends AbstractController
     }
 
     /**
-     * @Route("/recadmin", name="rec_list_admin")
+     * @Route("/recAdmin", name="rec_list_admin")
      */
     public function afficheradmin (ReclamationRepository $rep)
     {
@@ -96,10 +97,41 @@ class ReclamationController extends AbstractController
         ]);
     }
     /**
+     * @param Request $req
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @Route ("/recAdminadd", name="r_admin_add")
+     */
+
+    public function add_admin(Request $req )
+    {
+        $reclamation=new Reclamation();
+        $form=$this->createForm(ReclamationType::class,$reclamation);
+        $form->add('Ajouter',SubmitType::class  );
+        $form->handleRequest($req);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em=$this->getDoctrine()->getManager();
+            $eventl->setPhoto($filename);
+            $em->persist($eventl);
+            $em->flush();
+            $this->addFlash(
+                'info7',
+                'added successfuly !'
+            );
+
+            return $this->redirectToRoute('r_admin_list');
+        }
+        return $this->render('reclamation/add_admin.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
+
+    }
+    /**
      * @param $id
      * @param ReclamationRepository $rep
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @Route ("/recadmin/delete/{id}", name="del")
+     * @Route ("/recAdmin/delete/{id}", name="del")
      */
     public function supprimer($id,ReclamationRepository $rep)
     {
@@ -117,7 +149,7 @@ class ReclamationController extends AbstractController
     /**
      * @param Request $req
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route ("/reclamation/admin/update/{id}", name="mod")
+     * @Route ("/recAdmin/update/{id}", name="mod")
      */
     public function update($id,ReclamationRepository $rep,Request $request){
         $reclamation=$rep->find($id);

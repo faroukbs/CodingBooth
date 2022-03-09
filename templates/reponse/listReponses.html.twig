@@ -1,0 +1,58 @@
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+  <div class="container">
+    <h5>liste des réponses</h5>
+
+    {%  for message in app.flashes ('info7') %}
+      <div class="alert alert-success">
+        {{ message }}
+
+      </div>
+    {% endfor %}
+    {%  for message in app.flashes ('info6') %}
+      <div class="alert alert-warning">
+        {{ message }}
+
+      </div>
+    {% endfor %}
+    {%  for message in app.flashes ('info5') %}
+      <div class="alert alert-danger">
+        {{ message }}
+
+      </div>
+    {% endfor %}
+    <table   border="1" class="table table-hover">
+      <thead>
+      <tr>
+                  <tr>
+                        <th>User Name</th>
+                        <th>Subject</th>
+                        <th>Response</th>
+                        <th>CreatedAt</th>
+                        <th>ACTION</th>
+                        
+                    </tr>
+                  </thead>
+                  <tbody>
+            {% for r in tab1 %}
+            <tr>
+                
+                <td>{{ r.reclamation.name }}
+                <td>{{ r.subject }}</td>
+                <td>{{ r.message }}</td>
+                <td>{{ r.createdAt|date }}</td>
+                <td>
+                  <a class="btn btn-info" href="{{path('reponse_update',{id:r.id})}}">update</a>
+                  <a class="btn btn-warning" href="{{path('response_delete',{id:r.id})}}">delete</a>    
+                </td>
+            </tr>
+
+
+
+            {% endfor %}
+                  </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+

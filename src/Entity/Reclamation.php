@@ -50,16 +50,12 @@ class Reclamation
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * * @Assert\Choice({"Coach", "Product"})
+     * * @Assert\Choice({"Hardware", "Software", "Reparation"})
      */
     private $type;
 
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     */
-    private $idCommande;
+   
     
     /**
      * @ORM\Column(type="string", length=255)
@@ -79,10 +75,12 @@ class Reclamation
      */
     private $client;
 
-    #/**
-    # * @ORM\Column(type="datetime_immutable")
-    # */
-    #private $createdAt;
+    /**
+     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="reclamations")
+     */
+    private $commande;
+
+ 
 
 
     public function getId(): ?int
@@ -166,24 +164,13 @@ class Reclamation
 
 
 
-    public function getIdCommande(): ?string
-    {
-        return $this->idCommande;
-    }
-
-    public function setIdCommande(string $idCommande): self
-    {
-        $this->idCommande = $idCommande;
-
-        return $this;
-    }
-
-   public function getReponse(): Reponse
+   
+    public function getReponse(): ?Reponse
     {
         return $this->reponse;
     }
 
-    public function setReponse(Reponse $reponse): self
+    public function setReponse(?Reponse $reponse): self
     {
         // unset the owning side of the relation if necessary
         if ($reponse === null && $this->reponse !== null) {
@@ -208,14 +195,12 @@ class Reclamation
     {
         return $this->createdAt;
     }
-
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
-    }
-*/
+    }*/
+
     public function getClient(): ?Utilisateurs
     {
         return $this->client;
@@ -224,6 +209,18 @@ class Reclamation
     public function setClient(?Utilisateurs $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
 
         return $this;
     }
