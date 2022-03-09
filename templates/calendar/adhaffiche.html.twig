@@ -54,6 +54,7 @@
 							<!-- Main-menu -->
 							<div class="main-menu f-right d-none d-lg-block">
 								<nav>
+
 									<ul id="navigation">
 										<li>
 											<a href="{{ path('home') }}">Home</a>
@@ -65,14 +66,16 @@
 											<a href="{{ path('cours') }}">Courses</a>
 										</li>
 										<li>
-											<a href="pricing.html">Pricing</a>
+											<a href="{{ path('pricing') }}">Pricing</a>
 										</li>
 										<li>
-											<a href="{{ path('event') }}">Event</a>
+											<a href="{{ path('AfficheEvenementsPublic') }}">Event</a>
 										</li>
-										<li>
-											<a href="{{ path('contact') }}">Contact</a>
-										</li>
+										{% if app.user and app.user.isVerified %}
+											<li>
+												<a href="{{ path('messages') }}">Chat</a>
+											</li>
+										{% endif %}
 										<li>
 											<a href="{{ path('list') }}">Shop</a>
 										</li>
@@ -81,14 +84,45 @@
 												<i class="bi-cart-fill me-1"></i>
 											</ul>
 										</li>
-									</div>
-									<!-- Header-btn -->
-									<div class="header-btns d-none d-lg-block f-right">
-										<a href="login.html" class="btn">LOGIN</a>
-									</div>
-									<div class="header-btns d-none d-lg-block f-right">
-										<a href="register.html" class="btn">SIGN UP</a>
-									</div>
+									</nav>
+
+								</div>
+
+								<!-- Header-btn -->
+								<div class="d-flex">
+									{% if app.user and app.user.isVerified %}
+										<div class="header-btns d-none d-lg-block f-right">
+											<a href="{{ path('app_logout') }}" class="btn">Deconnexion</a>
+										</div>
+									{% else %}
+
+										<div class="header-btns d-none d-lg-block f-right">
+											<a href="{{ path('app_login') }}" class="btn">Connexion</a>
+										</div>
+										<div class="header-btns d-none d-lg-block f-right px-4">
+											<a href="{{ path('app_register') }}" class="btn">Inscription</a>
+										</div>
+									{% endif %}
+									<!--* profil *-->
+									{% if app.user and app.user.isVerified %}
+										<div class="header-btns d-none d-lg-block f-right px-4">
+											<a href="{{ path('utilisateur_show',{'id': app.user.id}) }}" class="btn">
+												PROFIL</a>
+										</div>
+									{% endif  %}
+									<script type="text/javascript">
+										var Tawk_API = Tawk_API || {},
+Tawk_LoadStart = new Date();
+(function () {
+var s1 = document.createElement("script"),
+s0 = document.getElementsByTagName("script")[0];
+s1.async = true;
+s1.src = 'https://embed.tawk.to/62268b16a34c24564129ecac/1ftj8ukhu';
+s1.charset = 'UTF-8';
+s1.setAttribute('crossorigin', '*');
+s0.parentNode.insertBefore(s1, s0);
+})();
+									</script>
 									<!-- Mobile Menu -->
 									<div class="col-12">
 										<div class="mobile_menu d-block d-lg-none"></div>
@@ -278,10 +312,10 @@
 																			<a href="{{ path('cours') }}">Courses</a>
 																		</li>
 																		<li>
-																			<a href="pricing.html">Pricing</a>
+																			<a href="{{ path('pricing') }}">Pricing</a>
 																		</li>
 																		<li>
-																			<a href="{{ path('event') }}">Event</a>
+																			<a href="{{ path('AfficheEvenementsPublic') }}">Event</a>
 																		</li>
 																		<li>
 																			<a href="{{ path('contact') }}">Contact</a>
@@ -292,80 +326,81 @@
 																		<li>
 																			<a href="">
 																				<i class="bi-cart-fill me-1"></i>
-																			</ul>
+																				Cart</ul>
 																		</li>
-																	</div>
+																	</nav>
 																</div>
 															</div>
 														</div>
-														<!-- Header End -->
-														<!-- social -->
-														<div class="footer-social mt-30 wow fadeInUp" data-wow-duration="3s" data-wow-delay=".8s">
-															<a href="#">
-																<i class="fab fa-twitter"></i>
-															</a>
-															<a href="https://bit.ly/sai4ull">
-																<i class="fab fa-facebook-f"></i>
-															</a>
-															<a href="#">
-																<i class="fab fa-pinterest-p"></i>
-															</a>
-														</div>
+													</div>
+													<!-- Header End -->
+													<!-- social -->
+													<div class="footer-social mt-30 wow fadeInUp" data-wow-duration="3s" data-wow-delay=".8s">
+														<a href="#">
+															<i class="fab fa-twitter"></i>
+														</a>
+														<a href="https://bit.ly/sai4ull">
+															<i class="fab fa-facebook-f"></i>
+														</a>
+														<a href="#">
+															<i class="fab fa-pinterest-p"></i>
+														</a>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<!-- Footer End-->
-							</footer>
-							<!-- Scroll Up -->
-							<div id="back-top">
-								<a title="Go to Top" href="#">
-									<i class="fas fa-level-up-alt"></i>
-								</a>
 							</div>
+							<!-- Footer End-->
+						</footer>
+						<!-- Scroll Up -->
+						<div id="back-top">
+							<a title="Go to Top" href="#">
+								<i class="fas fa-level-up-alt"></i>
+							</a>
+						</div>
 
-							<!-- JS here -->
+						<!-- JS here -->
 
-							<script src="./../assets/js/vendor/modernizr-3.5.0.min.js"></script>
-							<!-- Jquery, Popper, Bootstrap -->
-							<script src="./../assets/js/vendor/jquery-1.12.4.min.js"></script>
-							<script src="./../assets/js/popper.min.js"></script>
-							<script src="./../assets/js/bootstrap.min.js"></script>
-							<!-- Jquery Mobile Menu -->
-							<script src="./../assets/js/jquery.slicknav.min.js"></script>
+						<script src="./../assets/js/vendor/modernizr-3.5.0.min.js"></script>
+						<!-- Jquery, Popper, Bootstrap -->
+						<script src="./../assets/js/vendor/jquery-1.12.4.min.js"></script>
+						<script src="./../assets/js/popper.min.js"></script>
+						<script src="./../assets/js/bootstrap.min.js"></script>
+						<!-- Jquery Mobile Menu -->
+						<script src="./../assets/js/jquery.slicknav.min.js"></script>
 
-							<!-- Jquery Slick , Owl-Carousel Plugins -->
-							<script src="./../assets/js/owl.carousel.min.js"></script>
-							<script src="./../assets/js/slick.min.js"></script>
-							<!-- One Page, Animated-HeadLin -->
-							<script src="./../assets/js/wow.min.js"></script>
-							<script src="./../assets/js/animated.headline.js"></script>
-							<script src="./../assets/js/jquery.magnific-popup.js"></script>
+						<!-- Jquery Slick , Owl-Carousel Plugins -->
+						<script src="./../assets/js/owl.carousel.min.js"></script>
+						<script src="./../assets/js/slick.min.js"></script>
+						<!-- One Page, Animated-HeadLin -->
+						<script src="./../assets/js/wow.min.js"></script>
+						<script src="./../assets/js/animated.headline.js"></script>
+						<script src="./../assets/js/jquery.magnific-popup.js"></script>
 
-							<!-- Date Picker -->
-							<script src="./../assets/js/gijgo.min.js"></script>
-							<!-- Nice-select, sticky -->
-							<script src="./../assets/js/jquery.nice-select.min.js"></script>
-							<script src="./../assets/js/jquery.sticky.js"></script>
+						<!-- Date Picker -->
+						<script src="./../assets/js/gijgo.min.js"></script>
+						<!-- Nice-select, sticky -->
+						<script src="./../assets/js/jquery.nice-select.min.js"></script>
+						<script src="./../assets/js/jquery.sticky.js"></script>
 
-							<!-- counter , waypoint,Hover Direction -->
-							<script src="./../assets/js/jquery.counterup.min.js"></script>
-							<script src="./../assets/js/waypoints.min.js"></script>
-							<script src="./../assets/js/jquery.countdown.min.js"></script>
-							<script src="./../assets/js/hover-direction-snake.min.js"></script>
+						<!-- counter , waypoint,Hover Direction -->
+						<script src="./../assets/js/jquery.counterup.min.js"></script>
+						<script src="./../assets/js/waypoints.min.js"></script>
+						<script src="./../assets/js/jquery.countdown.min.js"></script>
+						<script src="./../assets/js/hover-direction-snake.min.js"></script>
 
-							<!-- contact js -->
-							<script src="./../assets/js/contact.js"></script>
-							<script src="./../assets/js/jquery.form.js"></script>
-							<script src="./../assets/js/jquery.validate.min.js"></script>
-							<script src="./../assets/js/mail-script.js"></script>
-							<script src="./../assets/js/jquery.ajaxchimp.min.js"></script>
+						<!-- contact js -->
+						<script src="./../assets/js/contact.js"></script>
+						<script src="./../assets/js/jquery.form.js"></script>
+						<script src="./../assets/js/jquery.validate.min.js"></script>
+						<script src="./../assets/js/mail-script.js"></script>
+						<script src="./../assets/js/jquery.ajaxchimp.min.js"></script>
 
-							<!-- Jquery Plugins, main Jquery -->
-							<script src="./../assets/js/plugins.js"></script>
-							<script src="./../assets/js/main.js"></script>
+						<!-- Jquery Plugins, main Jquery -->
+						<script src="./../assets/js/plugins.js"></script>
+						<script src="./../assets/js/main.js"></script>
 
-						</body>
-					</html>
+					</body>
+				</html>

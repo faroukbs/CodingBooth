@@ -21,14 +21,14 @@ class ProduitRepository extends ServiceEntityRepository
 
     
 
-    public function findEntitiesByString($str){
+
+    public function findEntitiesByString($term){
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT p
-                FROM App:Produit p
-                WHERE p.nomprod LIKE :str'
+                FROM App:Produit p WHERE p.nomprod LIKE :str or p.image LIKE :str or p.prix LIKE :str or  p.quantity LIKE :str'
             )
-            ->setParameter('str', '%'.$str.'%')
+            ->setParameter('str', '%'.$term.'%')
             ->getResult();
     }
 

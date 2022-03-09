@@ -69,7 +69,7 @@ class ProductController extends AbstractController
             $form = $paginator->paginate(
                 $form, /* query NOT result */
                 $request->query->getInt('page', 1), /*page number*/
-            5 /*limit per page*/
+            3 /*limit per page*/
             );
 
 
@@ -83,7 +83,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/list/cat/{categoryprod}", name="list-cat")
      */
-    public function listCat($categoryprod): Response
+    public function listCat(Request $request,$categoryprod,PaginatorInterface $paginator): Response
     {
         $cat = $this->getDoctrine()
             ->getRepository(Category::class)
@@ -93,6 +93,12 @@ class ProductController extends AbstractController
             ->getRepository(Category::class)
             ->find($categoryprod);
         $fetch = $this->getDoctrine()->getRepository(Produit::class)->findAll();
+
+        $form = $paginator->paginate(
+            $var, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+        3 /*limit per page*/
+        );
 
 
         return $this->render('shop\shopCat.html.twig', [
@@ -120,6 +126,8 @@ class ProductController extends AbstractController
         $noteform = $this->createForm(NoteType::class,$note);
         $noteform->add('ajouter',SubmitType::class);
         $noteform->handleRequest($request);
+
+        
 
         if ($noteform->isSubmitted() && $noteform->isValid()) {
            
@@ -281,6 +289,7 @@ class ProductController extends AbstractController
         }
         return new Response(json_encode($result));
     }
+
     public function getRealEntities($product)
     {
         foreach ($product as $product) {

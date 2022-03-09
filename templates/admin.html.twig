@@ -235,51 +235,7 @@
 							</li>
 						</ul><br><br><br><br>
 
-						<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-						<script type="text/javascript">
-							jQuery(document).ready(function () {
-var searchRequest = null;
-$("#search").keyup(function () {
-var minlength = 1;
-var that = this;
-var value = $(this).val();
-var entitySelector = $("#entitiesNav").html('');
-if (value.length >= minlength) {
-if (searchRequest != null) 
-searchRequest.abort();
-
-
-
-searchRequest = $.ajax({
-type: "GET",
-url: "{{ path('ajax_search') }}",
-data: {
-'q': value
-},
-dataType: "text",
-success: function (msg) { // we need to check if the value is the same
-if (value === $(that).val()) {
-var result = JSON.parse(msg);
-$.each(result, function (key, arr) {
-$.each(arr, function (id, value) {
-if (key === 'product') {
-if (id !== 'error') {
-console.log(value[1]);
-entitySelector.append('<li><b>' + value[1] + '</b><a href="/product/list/' + id + '">' + '<img src="/uploads/' + value[0] + '" style="width: 50px; height: 50px"/>' + '</a></li>');
-} else {
-entitySelector.append('<li class="errorLi">' + value + '</li>');
-}
-}
-});
-});
-}
-}
-});
-}
-});
-});
-						</script>
+						
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
