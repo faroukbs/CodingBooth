@@ -1,0 +1,22 @@
+{% use "bootstrap_4_layout.html.twig" %}
+{% extends 'admin.html.twig' %}
+{% block body %}
+<center>
+<h1>Updating The List: </h1>
+
+
+{{form_start(form)}}
+{{form_widget(form)}}
+{{form_end(form)}}
+<a href="{{ path('adproduct') }}"><button type="button" class="btn btn-outline-danger">
+			<font size="3pt">{% trans %}back to list{% endtrans %}</font>
+		</button>
+	</a>
+
+</center>
+
+{% endblock %}
+
+
+
+

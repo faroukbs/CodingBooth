@@ -1,0 +1,11 @@
+{% use "bootstrap_4_layout.html.twig" %}
+
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+    <center>
+        <h1>modifier Utilisateur </h1>
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        {{form_end(form)}}
+    </center>
+{% endblock %}

@@ -1,0 +1,57 @@
+<table  class="display min-w850">
+        <thead>
+        <tr>
+            <th> &nbsp;Image</th>
+            <th> &nbsp;Nom</th>
+            <th> &nbsp;Prenom</th>
+            <th> &nbsp;Datenaissance &nbsp;</th>
+            <th> &nbsp;Email</th>
+            <th> &nbsp;NumTel</th>
+            <th> &nbsp;actions</th>
+        </tr>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for utilisateur in utilisateurs %}
+
+            <tr>
+                <td><img class="rounded-circle" width="100px" HEIGHT="100px"
+                         src="{{ asset('uploads/image/' ~ utilisateur.image) }} "></td>
+
+                <td>{{ utilisateur.nom }}</td>
+                <td>{{ utilisateur.prenom }}</td>
+                <td>{{ utilisateur.dateNaissance ? utilisateur.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ utilisateur.email }}</td>
+
+                <td><a href="javascript:void(0);"><strong>{{ utilisateur.numTel }}</strong></a>
+                </td>
+                <td>
+                    <div class="d-flex">
+
+                        {% if utilisateur.isverified == 1 %} <a
+                                href="{{ path ('desactiver-user', {'id' : utilisateur.id}) }}"
+                                class="btn btn-dark text-white" href="#">Bloquer</a>
+                        {% else %}<a
+                            href="{{ path ('activer-user', {'id' : utilisateur.id}) }}"
+                            class="btn btn-pinterest " href="#">Débloquer</a> {% endif %}
+                        <a href="{{ path('modifierUtilisateur',{'id':utilisateur.id}) }}"
+                           class="btn btn-primary shadow btn-xs sharp mr-1"><i
+                                    class="fa fa-pencil"></i></a>
+                        <a href="{{ path('delete_admin',{'id':utilisateur.id}) }}"
+                           class="btn btn-danger shadow btn-xs sharp"><i
+                                    class="fa fa-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="users-navigation text-center">
+        {{ knp_pagination_render(utilisateurs) }}
+    </div>
