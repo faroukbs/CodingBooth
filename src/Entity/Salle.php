@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use App\Repository\SalleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
+
 /**
  * @ORM\Entity(repositoryClass=SalleRepository::class)
  */
@@ -17,7 +18,7 @@ class Salle
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idsalle;
 
     /**
      *  
@@ -43,10 +44,7 @@ class Salle
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", columnDefinition="ENUM('k', 'l')")
-     */
-    private $categorie;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -58,9 +56,9 @@ class Salle
      */
     private $image;
 
-    public function getId(): ?int
+    public function getIdSalle(): ?int
     {
-        return $this->id;
+        return $this->idsalle;
     }
 
     public function getNomsalle(): ?string
@@ -87,17 +85,6 @@ class Salle
         return $this;
     }
 
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
 
     public function getMateriel(): ?string
     {
@@ -122,5 +109,25 @@ class Salle
 
         return $this;
     }
+    public function __ToString()
+    {
+        return (string)$this->getIdSalle();
+    }
+    /**
+     *
+     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="idsalle",cascade={"remove"}, orphanRemoval=true)
+     */
+    private $calendar;
 
+    public function __construct()
+    {
+        $this->calendar = new ArrayCollection();
+    }
+    /**
+     * @return Collection|Calendar[]
+     */
+    public function getCalendar(): Collection
+    {
+        return $this->calendar;
+    }
 }

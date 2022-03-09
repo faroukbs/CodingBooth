@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    {%block css%}
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" 
+     integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous">
+    {% block css %}
         <!-- CSS here -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -40,7 +42,7 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    {%block header%}
+    {% block header %}
         <header>
 
             <!-- Header Start -->
@@ -54,7 +56,7 @@
                                 <a href="index.html"><img src="assets/img/logo/LOGO.png" alt=""></a>
                             </div>
                             <!-- Main-menu -->
-                            {% block nav%}
+                            {% block nav %}
                                 <div class="main-menu f-right d-none d-lg-block">
 
                                     <nav>
@@ -73,7 +75,7 @@
                                                 <a href="#">Pricing</a>
                                             </li>
                                             <li>
-                                                <a href="{{ path('AfficheEvenementsPublic') }}">Event</a>
+                                                <a href="#">Event</a>
                                             </li>
                                             <li>
                                                 <a href="#">Contact</a>
@@ -89,7 +91,7 @@
                                     </nav>
 
                                 </div>
-                            {%endblock%}
+                            {% endblock %}
                             <!-- Header-btn -->
                             <div class="d-flex">
                                 <div class="header-btns d-none d-lg-block f-right">
@@ -645,7 +647,7 @@
     {% block body %}
     {% endblock  %}
     </body>
-    {%block footer%}
+    {% block footer %}
         <footer>
             <!--? Footer Start-->
             <div class="footer-area black-bg">
@@ -684,7 +686,7 @@
                                                                 <a href="pricing.html">Pricing</a>
                                                             </li>
                                                             <li>
-                                                                <a href="{{ path('AfficheEvenementsPublic')}}">Event</a>
+                                                                <a href="#">Event</a>
                                                             </li>
                                                             <li>
                                                                 <a href="#">Contact</a>
@@ -724,14 +726,18 @@
             </div>
             <!-- Footer End-->
         </footer>
-    {%endblock%}
+    {% endblock %}
     <!-- Scroll Up -->
     <div id="back-top">
         <a title="Go to Top" href="#">
             <i class="fas fa-level-up-alt"></i>
         </a>
     </div>
-    {%block js%}
+
+
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js" 
+        integrity="sha256-YicH/8aE660iEnJtgll3vT54dJApy3XkYmqNfGVFEzA=" crossorigin="anonymous"></script>
+    {% block js %}
         <!-- JS here -->
 
         <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -772,10 +778,10 @@
         <!-- Jquery Plugins, main Jquery -->
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
-    {%endblock%}
+    {% endblock %}
 
     </body>
-{%endblock%}
+{% endblock %}
 </html>
 
 </html>

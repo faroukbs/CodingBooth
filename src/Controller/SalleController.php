@@ -8,7 +8,6 @@ use App\Repository\SalleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -20,7 +19,7 @@ class SalleController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('affiches.html.twig', [
+        return $this->render('Affiches.html.twig', [
             'controller_name' => 'SalleController',
         ]);
     }
@@ -40,9 +39,9 @@ class SalleController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route ("/salle/affiche/delete/{id}", name="del")
      */
-    public function supprimer($id,SalleRepository $rep)
+    public function supprimer($idsalle,SalleRepository $rep)
     {
-        $salle=$rep->find($id);
+        $salle=$rep->find($idsalle);
         $em=$this->getDoctrine()->getManager();
         $em->remove($salle);
         $em->flush();
@@ -85,8 +84,8 @@ class SalleController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route ("/salle/update/{id}", name="mod")
      */
-    public function update($id,SalleRepository $rep,Request $request){
-        $salle=$rep->find($id);
+    public function update($idsalle,SalleRepository $rep,Request $request){
+        $salle=$rep->find($idsalle);
         $form=$this->createForm(SalleType::class,$salle);
         $form->add('Modifier',SubmitType::class);
         $form->handleRequest($request);

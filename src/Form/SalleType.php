@@ -17,7 +17,6 @@ class SalleType extends AbstractType
         $builder
             ->add('nomsalle',TextType::class,[ 'label' => 'nom de la salle'])
             ->add('description',TextType::class,[ 'label' => 'description de la salle'])
-            ->add('categorie',TextType::class,[ 'label' => 'categorie de la salle'])
             ->add('materiel' , ChoiceType::class,[
                 'label' => 'materiel de la salle',
                 'choices' => [
@@ -36,7 +35,7 @@ class SalleType extends AbstractType
             
         ]);
    }
-//ENUM CATEGORIE
+
 //LISTE DEROULANTE MATERIEL
 
     public function configureOptions(OptionsResolver $resolver): void
