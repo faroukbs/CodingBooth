@@ -68,7 +68,7 @@
 										<a href="{{ path('list') }}">Shop</a>
 									</li>
 									<li>
-										<a href="">
+										<a href="cart-index">
 											<i class="bi-cart-fill me-1"></i>
 											Cart</ul>
 									</li>
@@ -139,7 +139,7 @@ s0.parentNode.insertBefore(s1, s0);
 							<div class="d-flex">
 								<div>
 									<input class="form-control text-center me-12" id="inputQuantity" type="num" value="{{form.quantity}}" style="max-width: 50rem ; height:8rem"/>
-									<a href="{{ path('cart_add',{'idProduit':form.idProduit})}}" ">
+									<a href="{{ path('cart_add',{'idProduit':form.idProduit})}}" >
 										<button type="button" class="btn btn-outline-danger">
 											<font size="3pt">{% trans %}ADD TO CART{% endtrans %}</font>
 										</button>
