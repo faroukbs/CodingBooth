@@ -271,34 +271,30 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/search" ,name="ajax_search")
+     * @Route("/adminprod/search" ,name="ajax_search")
      
      */
 
-    public function searchAction(ProduitRepository $produitRepository, Request $request)
+    public function searchUsers(ProduitRepository $rep,Request $request, PaginatorInterface $paginator): Response
     {
-
-
-
-        $em = $this->getDoctrine()->getManager();
-        $requestString = $request->get('q');
-        $product = $produitRepository->findEntitiesByString($requestString);
-
-        if (!$product) {
-            $result['product']['error'] = "Post Not found :( ";
-        } else {
-            $result['product'] = $this->getRealEntities($product);
+        $term = $request->get("term", false);
+        if($term && $term !== ""){
+            $donnees = $rep->findEntitiesByString($term);
+        }else{
+            $donnees = $this->getDoctrine()->getRepository(Produit::class)->findBy([], ['nomprod' => 'desc']);
         }
-        return new Response(json_encode($result));
+        $form = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            6);
+        return $this->render('product\list.html.twig', [
+            'controller_name' => 'ProductController',
+            'form' => $form
+        ]);
     }
 
-    public function getRealEntities($product)
-    {
-        foreach ($product as $product) {
-            $realEntities[$product->getIdProduit()] = [$product->getImage(), $product->getNomprod()];
-        }
-        return $realEntities;
-    }
+
+
 
 
     ///pdf genrator
@@ -306,7 +302,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/pdf", name="pdf")
      */
-    public function pdfgenrator(ProduitRepository $ProduitRepository, Request $request): Response
+    public function pdfgenrator(ProduitRepository $ProduitRepository): Response
     {
         // Configure Dompdf according to your needs
         $pdfOptions = new Options();

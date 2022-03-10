@@ -39,7 +39,7 @@
                {% if r.reponse != null %}
                 <td><a href="{{path('etat_rec', {id:r.reponse.id})}}"    onclick="return confirm('Do You want to see The Response to Your reclamation?')">{{ r.etat }}</a></td>
                 {% else %}
-                {#<td>{{ r.createdAt|date('Y-m-d H:i:s') }}</td> #}
+                
                 <td><a href="#">{{ r.etat }}</a></td>
 
                 {% endif %} 

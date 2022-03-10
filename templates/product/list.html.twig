@@ -33,13 +33,13 @@
 		</button>
 	</a>
 	
-<table class="table" >
+<table class="display min-w850" >
 <thead>
   <tr >
-    <th scope="col">ID</th>
-    <th scope="col">Description</th>
+    
+    
     <th scope="col">Name</th>
-
+<th scope="col">Description</th>
     <th scope="col">Prix</th>
     <th scope="col">modifier</th>
     <th scope="col">Delete </th>
@@ -49,14 +49,13 @@
   </thead>
 
   
-  <tbody id="myTable tr">
+  <tbody id="">
   {% for item in form %}
   <tr>
   
-  <th scope="row">{{item.idproduit}}</th>
   
-    <td>{{item.description}}</td>
     <td>{{item.nomprod}}</td>
+    <td>{{item.description}}</td>
     <td>{{item.Prix}}</td>
     <td>{{item.quantity}}</td>
 
@@ -66,18 +65,21 @@
     <td><img src="{{asset('uploads/image/') ~ item.image}}"  width="50" height="50"></td>
    
 </tr>
- {% endfor %}
- 
+    {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
 
   </tbody>
 
 
 </table>
 <a href="{{ path('pdf') }}">pdf</a>
-
+{{ knp_pagination_render(form) }}
 </center>
 
-{{ knp_pagination_render(form) }}
+
 
 
 </body>
