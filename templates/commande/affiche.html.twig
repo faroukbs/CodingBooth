@@ -1,0 +1,62 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+    <body class="bg-white">
+
+    <center> <h1>Liste commande: </h1></center>
+
+    {%  for message in app.flashes ('info') %}
+        <div class="alert alert-success">
+            {{ message }}
+
+        </div>
+    {% endfor %}
+    <table class="table table-striped">
+
+        <tr>
+            <th>Date</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Numero telephone</th>
+            <th>Adresse</th>
+            <th>Etat de commande</th>
+            <th>mode de paiement</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+            <th>Confirmer</th>
+
+        </tr>
+        {% for item in form %}
+            <tr>
+                <td>{{item.Date | date("m/d/y")}}</td>
+                <td>{{item.getNomClient()}}</td>
+                <td>{{item.getPrenomClient()}}</td>
+                <td>{{item.telephone}}</td>
+                <td>{{item.adresse}}</td>
+                {% if item.getEtatCommande() == 0 %}
+                    <td>Non Payer </td>
+                {% else %}
+                    <td> Payer </td>
+                {% endif %}
+                {% if item.getModePaiement() == 0 %}
+                    <td>Par Carte Bancaire </td>
+                {% else %}
+                    <td>Par Cash </td>
+                {% endif %}
+
+
+                <td><a class="btn" href="{{ path('UserModify',{'idcommande':item.idcommande})  }}"> Modifier</a> </td>
+                <td><a class="btn"href="{{ path('UserDelete',{'idcommande':item.idcommande})  }}"> Supprimer</a> </td>
+                </td>
+                 <td><a href="{{ path('email',{'id': item.idcommande}) }}">
+                         <button type="button" class="btn btn-outline"><font size="3pt">{% trans %}Confirm Reservation{% endtrans %}</font></button></a></td>
+
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+    </body>
+
+{%endblock%}

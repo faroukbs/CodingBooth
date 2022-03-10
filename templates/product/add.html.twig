@@ -1,0 +1,19 @@
+{% use "bootstrap_4_layout.html.twig" %}
+
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+
+<h1>ADD produit: </h1>
+
+{{form_start(form)}}
+<div class="row">
+<div class="form-group">
+{{form_widget(form)}}
+</div>
+{{form_end(form)}}
+
+<center>
+<a href="{{ path('adproduct') }}"><button type="button" class="btn btn-outline-danger">
+			<font size="3pt">{% trans %}back to list{% endtrans %}</font></a>
+</Center>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ app.user.nom }} {{ app.user.prenom }}{% endblock %}
+
+ {% block body %}
+     <div class="grix xs4 container">
+         {% for message in app.flashes('message') %}
+             <div class="col-xs4">
+                 <div class="p-3 my-2 rounded-2 success">{{message}}</div>
+             </div>
+         {% endfor %}
+         <div class="col-xs4">
+             <h1>Profil de {{ utilisateur.nom }} {{ utilisateur.prenom }}</h1>
+         </div>
+         <div class="col-xs1">Nom :</div>
+         <div class="col-xs3">{{ utilisateur.nom }}</div>
+         <div class="col-xs1">Prénom :</div>
+         <div class="col-xs3">{{ utilisateur.prenom }}</div>
+         <div class="col-xs1">Email :</div>
+         <div class="col-xs3">{{ utilisateur.email }}</div>
+         <div class="col-xs4">
+             <a href="{{ path('utilisateur_edit',{'id':app.user.id}) }}" class="btn blue">Modifier le profil</a>
+             <a href="" class="btn blue">Modifier le mot de passe</a>
+
+         </div>
+
+
+
+
+     </div>
+ {% endblock %}

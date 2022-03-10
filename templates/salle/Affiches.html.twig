@@ -1,0 +1,48 @@
+{% use "bootstrap_4_layout.html.twig" %}
+
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+
+	<body>
+
+
+		<center>
+			<h1>la liste des salle</h1>
+			<div>
+				<td>
+					<a href="{{ path('s_add')}}">
+						<button type="button" class="btn btn-outline-danger">
+							<font size="3pt">{% trans %}Ajouter{% endtrans %}</font>
+						</button>
+					</a>
+				</td>
+			</div>
+
+			<table border="1" class="table table-hover">
+				<thead>
+					<tr>
+
+						<th scope="col">ID</th>
+						<th scope="col">Nom Salle</th>
+						<th scope="col">description</th>
+						<th scope="col">materiel</th>
+						<th scope="col">image</th>
+
+					</tr>
+				</thead>
+				{% for s in salle  %}
+					<tr>
+						<td>{{ s.idsalle }}</td>
+						<td>{{ s.nomsalle }}</td>
+						<td>{{ s.description }}</td>
+						<td>{{ s.materiel}}</td>
+                        <td><img src="{{asset('uploads/image/') ~ s.image}}"  width="50" height="50"></td>
+							<td><a href="{{ path('del',{'idsalle': s.idsalle}) }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Delete{% endtrans %}</font></button></a></td>
+						<td><a href="{{ path('mod',{'idsalle': s.idsalle}) }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Update{% endtrans %}</font>	</button></a></td>
+					</tr>
+					{%endfor%}
+				</table>
+
+			</center>
+		</body>
+{% endblock %}

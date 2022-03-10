@@ -1,0 +1,139 @@
+{% extends 'base-back/admin.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+ {% block title %} <title>Formulaire event</title> {% endblock %}
+{% block body %}
+
+<style>
+    /* - - - - - LIKE */
+    #like {
+        bottom: -65px;
+    }
+    #eventl[evaluation]:not(:checked) > label {
+        cursor:pointer;
+        float: right;
+        width: 30px;
+        height: 30px;
+        display: block;
+
+        color: rgba(233, 54, 40, .4);
+        line-height: 33px;
+        text-align: center;
+    }
+    #eventl[evaluation]:not(:checked) > label:hover,
+    #eventl[evaluation]:not(:checked) > label:hover ~ label {
+        color: rgba(233, 54, 40, .6);
+    }
+    #eventl[evaluation] > input:checked + label:hover,
+    #eventl[evaluation]> input:checked + label:hover ~ label,
+    #eventl[evaluation] > input:checked ~ label:hover,
+    #eventl[evaluation] > input:checked ~ label:hover ~ label,
+    #eventl[evaluation] > label:hover ~ input:checked ~ label {
+        color: rgba(233, 54, 40, .8);
+    }
+    #eventl[evaluation] > input:checked ~ label {
+        color: rgb(233, 54, 40);
+    }
+</style>
+
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Ajouter un evenement</h4>
+                            <p class="card-description">
+
+                            </p>
+
+                            {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+
+
+                            <div class="form-group">
+                                <label for="exampleInputName1">{{ form_label(form.titre) }}</label>
+                                {{ form_widget(form.titre,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors(form.titre) }}
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">{{ form_label(form.description) }}</label>
+                                {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors(form.description) }}
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">{{ form_label(form.ville) }}</label>
+                                {{ form_widget(form.ville,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors(form.ville) }}
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">{{ form_label(form.adresse) }}</label>
+                                {{ form_widget(form.adresse,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors(form.adresse) }}
+                            </div>
+                            <div class="form">
+                                <label>{% trans %}Start date{% endtrans %}</label>
+                                {{ form_widget(form.datedebut,{'attr':{'class':'form-control'}}) }}
+
+                            </div>
+
+                            <div class="form">
+                                <label>{% trans %}End date{% endtrans %}</label>
+                                {{ form_widget(form.datefin,{'attr':{'class':'form-control'}}) }}
+
+                            </div>
+
+                            <div class="form">
+                                <label>{% trans %}Hour{% endtrans %}</label>
+                                {{ form_widget(form.heure,{'attr':{'class':'form-control'}}) }}
+
+                            </div>
+                              <div class="form">
+                                <label>{% trans %}View{% endtrans %}</label>
+                                {{ form_widget(form.view,{'attr':{'class':'form-control'}}) }}
+
+                            </div>
+                            <div class="form-group">
+                                <label>File upload</label>
+                                <label for="exampleInputName1">{{ form_label(form.photo) }}</label>
+
+                                <div class="input-group col-xs-12">
+                                    {{ form_widget(form.photo,{'attr':{'class':'form-control'}}) }}
+                                    {{ form_errors(form.photo) }}
+
+                                </div>
+                            </div>
+                            <section id="form-chek" class="form-check">
+                                <div class="form">
+                                    <label>{% trans %}Evaluation{% endtrans %}
+                                        <label for="form_evaluation"><h3></h3> </label>
+                                        {{form_widget(form.evaluation)}}
+                                    </label>
+                                </div>
+                            </section>
+
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+
+        <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    </div>
+
+{% endblock%}

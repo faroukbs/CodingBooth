@@ -1,0 +1,65 @@
+{% extends 'base2.html.twig '%}
+{% block title %}Gerer Qr code{% endblock %}
+
+{% block body %}
+
+
+    <div class="inner-page">
+    <div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
+        <div class="wpb_text_column wpb_content_element " >
+            <div class="wpb_wrapper">
+
+
+
+
+
+                <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                    <div class="wpb_column vc_column_container vc_col-sm-6">
+                        <div class="vc_column-inner">
+                            <div class="wpb_wrapper">
+                                <div class="wpb_raw_code wpb_content_element wpb_raw_html" >
+                                    <div class="example-wrapper">
+                                        <h1 style="color: whitesmoke">Gogym QR-Code </h1> <hr>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form_start(form) }}
+                                                {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Recherche'}}) }}
+                                                <hr>
+                                                <button type="submit" class="btn btn-block">Recherche</button>
+                                                {{ form_end(form) }}
+                                            </div>
+                                            <div class="author-bottom">
+                                                <a href ="{{ path('MesReservation') }}"> <button type="button" class="btn btn-outline-danger" ><font size="3pt" >{% trans %}Confirmer{% endtrans %}</font></button></a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                {% if qrCode %}
+                                                    <img src="{{ qrCode }}" alt="qr-code">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+{% endblock %}

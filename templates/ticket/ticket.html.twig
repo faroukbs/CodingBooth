@@ -1,0 +1,50 @@
+{% extends 'base2.html.twig '%}
+{% block body %}
+    <a href="{{ path('MesReservation') }}" class="btn "> voir mes Reserveration</a>
+    <div class="container p-3 my-4 border">
+
+        <div id="tmpmodal"></div>
+        <div class="row">
+            {% for t in ticket %}
+
+                <div class="col-md-3">
+                    <div class="border border">
+
+                        <div  ><a href="{{ path('ticket',{'id': t.idticket}) }}">
+                                <img src="{{ asset('uploads/image/'~t.image) }}" alt="  {{ t.image }}" style="height: 250px;width: 270px;margin-bottom: +10%" class="rounded" alt="Cinque Terre" ></a></div>
+                        <div class="card-footer" style="margin-top: -10%">
+                            <h3 class="text-danger" id="exampleModalCenterTitle">Nom: {{ t.description }}</h3>
+                            <h4 class="text-black" id="exampleModalCenterTitle">Description:{{ t.typeticket }}</h4>
+                            <h4 class="text-black" id="exampleModalCenterTitle">Prix:{{ t.prix }}</h4>
+                                <!-- <button class="rt-btn pill rt-sm rt-gradient d-block" data-toggle="modal"data-target="#reserv-modal" >Reserver</button>-->
+                                <a href="{{ path('addReservation',{'id': t.idticket }) }}" class="btn">Reserver</a>
+
+
+                        </div>        <!-- Modal -->
+                    </div>
+                    <div class="modal fade" id="myModalchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+
+
+                                <img src="{{ asset('uploads/image/'~t.image) }}"style="height: 5px;width: 5px;margin-bottom: +10%" data-toggle="modal" data-target="#exampleModalCenter">
+
+                                <p>descriptio</p>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>        <div class="modal-header">
+
+
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
