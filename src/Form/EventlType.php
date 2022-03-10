@@ -12,8 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\DateTime;
-
-
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class EventlType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -27,6 +27,19 @@ class EventlType extends AbstractType
             ->add('photo',FileType::class ,array('data_class' => null))
             ->add('datefin',DateType::class,[ 'label' => 'Date fin'])
             ->add('heure',TextType::class,[ 'label' => 'L\'heure'])
+
+->add('evaluation', ChoiceType::class, array(
+        'choices' => array('1  ' => '1'
+        , ' 2' => '2',
+            ' 3' => '3',
+            ' 4' => '4'),
+
+        'expanded' => true,
+    ))
+            ->add('nombreParticipants', NumberType::class, [
+                'attr' => ['class' => 'form-control']
+            ])
+
         ;
     }
 

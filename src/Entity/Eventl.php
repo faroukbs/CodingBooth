@@ -1,125 +1,108 @@
 <?php
 
 namespace App\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Validator\Constraints as Assert;
-use App\Repository\EventlRepository;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=EventlRepository::class)
+ * Eventl
+ *
+ * @ORM\Table(name="eventl")
+ * @ORM\Entity
  */
 class Eventl
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="idevent", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idevent;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     *      min = 4,
-     *      max = 100,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long",
-     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
-     * )
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
      */
-
     private $titre;
 
     /**
+     * @var string
      *
-     * @ORM\Column(name="datefin", type="date")
-     *  @Assert\Date
-     * @Assert\GreaterThanOrEqual(propertyPath="dateDebut",
-    message="La date du fin doit être supérieure à la date début")
-     */
-    private $datefin;
-
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     *  * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     *      min = 4,
-     *      max = 1000,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long",
-     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
-     * )
+     * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
     private $description;
 
     /**
-     * @Assert\Length(
-     *      min = 4,
-     *      max = 20,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long",
-     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
-     * )
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255, nullable=false)
      */
     private $ville;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $heure;
-
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
      *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
      */
     private $adresse;
 
     /**
+     * @var \DateTime
      *
-     * @ORM\Column(name="datedebut", type="date")
-     *  @Assert\Date
-     * @Assert\GreaterThanOrEqual("today")
+     * @ORM\Column(name="datedebut", type="date", nullable=false)
      */
-
     private $datedebut;
 
-
-
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Please, upload the photo.")
-     *  @Assert\File(mimeTypes={ "image/png", "image/jpeg" , "image/jpg" })
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255, nullable=false)
      */
     private $photo;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datefin", type="date", nullable=false)
+     */
+    private $datefin;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="heure", type="string", length=255, nullable=false)
+     */
+    private $heure;
 
-    public function getDateFin(): ?\DateTimeInterface
-    {
-        return $this->datefin;
-    }
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="evaluation", type="integer", nullable=false)
+     */
+    private $evaluation;
 
-    public function setDateFin(\DateTimeInterface $datefin): self
-    {
-        $this->datefin = $datefin;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nombre_participants", type="integer", nullable=false)
+     */
+    private $nombreParticipants;
 
-        return $this;
-    }
-
-
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="view", type="integer", nullable=false)
+     */
+    private $view;
 
     public function getIdevent(): ?int
     {
         return $this->idevent;
     }
-    public function setIdevent(string $idevent): self
-    {
-        $this->idevent = $idevent;
 
-        return $this;
-    }
     public function getTitre(): ?string
     {
         return $this->titre;
@@ -128,17 +111,6 @@ class Eventl
     public function setTitre(string $titre): self
     {
         $this->titre = $titre;
-
-        return $this;
-    }
-    public function getHeure(): ?string
-    {
-        return $this->heure;
-    }
-
-    public function setHeure(string $heure): self
-    {
-        $this->heure= $heure;
 
         return $this;
     }
@@ -179,12 +151,10 @@ class Eventl
         return $this;
     }
 
-
     public function getDatedebut(): ?\DateTimeInterface
     {
         return $this->datedebut;
     }
-
 
     public function setDatedebut(\DateTimeInterface $datedebut): self
     {
@@ -193,53 +163,77 @@ class Eventl
         return $this;
     }
 
-
-    public function getPhoto()
+    public function getPhoto(): ?string
     {
         return $this->photo;
     }
 
-    public function setPhoto($photo)
+    public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
 
         return $this;
     }
-    public function __toString()
-    {
-        return (string)$this->getIdevent();
-    }
-    /**
-     *
-     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="idevent",cascade={"remove"}, orphanRemoval=true)
-     */
-    private $ticket;
 
-    public function __construct()
+    public function getDatefin(): ?\DateTimeInterface
     {
-        $this->ticket = new ArrayCollection();
-    }
-    /**
-     * @return Collection|Ticket[]
-     */
-    public function getTicket(): Collection
-    {
-        return $this->ticket;
+        return $this->datefin;
     }
 
-
-
-    /**
-     * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="idevent",cascade={"remove"}, orphanRemoval=true )
-     */
-    private $Participation;
-
-    public function __construct1()
+    public function setDatefin(\DateTimeInterface $datefin): self
     {
-        $this->participation = new ArrayCollection();
+        $this->datefin = $datefin;
+
+        return $this;
     }
 
+    public function getHeure(): ?string
+    {
+        return $this->heure;
+    }
 
+    public function setHeure(string $heure): self
+    {
+        $this->heure = $heure;
+
+        return $this;
+    }
+
+    public function getEvaluation(): ?int
+    {
+        return $this->evaluation;
+    }
+
+    public function setEvaluation(int $evaluation): self
+    {
+        $this->evaluation = $evaluation;
+
+        return $this;
+    }
+
+    public function getNombreParticipants(): ?int
+    {
+        return $this->nombreParticipants;
+    }
+
+    public function setNombreParticipants(int $nombreParticipants): self
+    {
+        $this->nombreParticipants = $nombreParticipants;
+
+        return $this;
+    }
+
+    public function getView(): ?int
+    {
+        return $this->view;
+    }
+
+    public function setView(int $view): self
+    {
+        $this->view = $view;
+
+        return $this;
+    }
 
 
 }

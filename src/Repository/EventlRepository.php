@@ -18,6 +18,17 @@ class EventlRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Eventl::class);
     }
+    /**
+     * @param $recherche
+     * @return int|mixed|string
+     */
+    public function findByKey($recherche){
+        $query = $this->createQueryBuilder('e')
+            ->where('e.titre LIKE :key')
+            ->setParameter('key' , '%'.$recherche.'%')->getQuery();
+
+        return $query->getResult();
+    }
 
     // /**
     //  * @return Eventl[] Returns an array of Eventl objects

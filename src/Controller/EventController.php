@@ -29,16 +29,7 @@ class EventController extends AbstractController
             'controller_name' => 'EventController',
         ]);
     }
-    /**
-     * @Route("/contact", name="contact")
-     */
-    public function afficher1():Response
-    {
 
-        return $this->render('contact/contact.html.twig', [
-            'controller_name' => 'EventController',
-        ]);
-    }
     /**
      * @Route("/course", name="course")
      */
@@ -49,26 +40,7 @@ class EventController extends AbstractController
             'controller_name' => 'EventController',
         ]);
     }
-    /**
-     * @Route("/login", name="login")
-     */
-    public function afficher3():Response
-    {
 
-        return $this->render('login/login.html.twig', [
-            'controller_name' => 'EventController',
-        ]);
-    }
-    /**
-     * @Route("/signup", name="signup")
-     */
-    public function afficher4():Response
-    {
-
-        return $this->render('signup/inscription.html.twig', [
-            'controller_name' => 'EventController',
-        ]);
-    }
     /**
      * @Route("/produit", name="produit")
      */
@@ -99,7 +71,15 @@ class EventController extends AbstractController
             'controller_name' => 'EventController',
         ]);
     }
-
+    /**
+     * @Route("/eventr", name="event")
+     */
+    public function index2(): Response
+    {
+        return $this->render('about/rating.html.twig', [
+            'controller_name' => 'EventController',
+        ]);
+    }
 
 
 }
