@@ -21,6 +21,9 @@ security:
             guard:
                 authenticators:
                     - App\Security\UtilisateurAuthenticator
+
+            access_denied_handler: App\Security\AccessDeniedHandler
+            
             logout:
                 path: app_logout
                 target: home

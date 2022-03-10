@@ -1,9 +1,91 @@
-<h3>Confirmation</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/gijgo.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/animated-headline.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-Salut {{ nom }}  {{ prenom }}!
 
-votre commande    a été confirmé pour le {{ dt |date}}
-Montant {{M}}
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
+<body>
+<div class="head-title">
+    <h1 class="text-center m-0 p-0 ">GO GYM</h1>
+</div>
+<div class="add-detail mt-1">
+    <div class="w-50 float-left mt-10">
+        <p class="m-0 pt-5 text-bold w-1">Order Date - <span class="gray-color">{{ dt | date("d/m/Y")}}</span></p>
+    </div>
+    <div class="w-50 float-left logo mt-10">
+    </div>
+    <div style="clear: both;"></div>
+</div>
+<div class="table-section bill-tbl w-100 mt-10">
+    <table class="table w-100 mt-10">
+        <tr>
+            <th class="w-50">From</th>
+            <th class="w-50">To</th>
+        </tr>
+        <tr>
+            <td>
+                <div class="box-text">
+                    <p>GO GYM</p>
+                    <p>Esprit cité el Ghazela</p>
+                    <p>Email : GoGym@gmail.com</p>
+                    <p>Contact : 27896414</p>
+                </div>
+            </td>
+            <td>
+                <div class="box-text">
+                    <p>Nom :{{nom}}</p>
+                    <p>Prenom :{{prenom}}</p>
+                    
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
 
-Merci D'avoir utiliser Gogym!
+<div class="table-section bill-tbl w-100 mt-10">
+    <table class="table w-100 mt-10">
+        
+        <tr>
+            <td colspan="7">
+                <div class="total-part">
+                    <div class="total-left w-85 float-left" align="right">
+                        <p>Sub Total</p>
+                        <p>Tax (19%)</p>
+                        <p>Total Payable</p>
+                    </div>
+                    <div class="total-right w-15 float-left text-bold" align="right">
+                        <p>{{M}}DT</p>
+                        <p>{{M * 0.019}}</p>
+                        <p>{{M * 0.019 +  M}}</p>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</html>

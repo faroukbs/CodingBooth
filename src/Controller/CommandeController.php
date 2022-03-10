@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Commande;
 use App\Entity\Produit;
 use App\Form\CommandeType;
+use App\Form\CommandeBackType;
 use App\Services\cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -112,7 +113,7 @@ class CommandeController extends AbstractController
         $dataPanier=$cartservice->getFullCart();
         $total=$cartservice->getTotal();
         $Commande = new Commande();
-        $form = $this->createForm(CommandeType::class,$Commande);
+        $form = $this->createForm(CommandeBackType::class,$Commande);
         $form->add('Ajouter',SubmitType::class) ;
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

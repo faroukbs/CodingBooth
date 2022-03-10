@@ -23,6 +23,7 @@
             <th>mode de paiement</th>
             <th>Modifier</th>
             <th>Supprimer</th>
+            <th>confirmation</th>
 
         </tr>
         {% for item in form %}
@@ -48,7 +49,7 @@
                 <td><a class="btn"href="{{ path('UserDelete',{'idcommande':item.idcommande})  }}"> Supprimer</a> </td>
                 </td>
                  <td><a href="{{ path('email',{'id': item.idcommande}) }}">
-                         <button type="button" class="btn btn-outline"><font size="3pt">{% trans %}Confirm Reservation{% endtrans %}</font></button></a></td>
+                         <button type="button" class="btn btn-outline"><font size="3pt">{% trans %}Confirm commande{% endtrans %}</font></button></a></td>
 
             </tr>
 
