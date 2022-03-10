@@ -286,7 +286,20 @@
 							<div class="d-flex bd-highlight">
 								<div>
 									<div class="list-group">
-										<a href="{{ path("home") }}" class="btn btn-danger ">back to home</a>
+										 {% if (app.user.hasRole('ROLE_ADMIN')) %}
+                        <tr>
+                            <td>   <a href="{{ path('admin') }}"class="btn btn-danger  ">back to Home</a></td>
+                        <tr>
+                        {% elseif (app.user.hasRole('ROLE_COACH'))  %} 
+                        <tr>
+                        <td>   <a href="{{ path('coach') }}"class="btn btn-danger ">back to Home</a></td>
+                    <tr>
+                    {% else %}
+
+                    <tr>
+                        <td>   <a href="{{ path('home') }}"class="btn btn-danger  ">back to Home</a></td>
+                    <tr>
+                        {% endif %}
 									</div>
 								</div>
 							</div>

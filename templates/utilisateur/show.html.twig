@@ -231,6 +231,10 @@
                         <tr>
                             <td>   <a href="{{ path('admin') }}"class="btn btn-success ">back to Home</a></td>
                         <tr>
+                        {% elseif (app.user.hasRole('ROLE_COACH')) %} 
+                        tr>
+                        <td>   <a href="{{ path('coach') }}"class="btn btn-success ">back to Home</a></td>
+                    <tr>
                     {% else %}
 
                     <tr>

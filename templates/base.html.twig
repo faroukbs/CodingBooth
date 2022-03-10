@@ -50,10 +50,18 @@
 				<div class="container-fluid">
 					<div
 							class="menu-wrapper d-flex align-items-center justify-content-between">
+							
 						<!-- Logo -->
 						<div class="logo">
-							<a href="index.html"><img src="../assets/img/logo/LOGO.png" alt=""></a>
+
+                             
+
+							 <a href="{{ path('admin') }}"  ><img src="../assets/img/logo/LOGO.png" alt=""></a>  
+                    
+                        
+							
 						</div>
+						
 						<!-- Main-menu -->
 						{% block nav%}
 							<div class="main-menu f-right d-none d-lg-block">
@@ -79,6 +87,11 @@
 										{% if app.user and app.user.isVerified %}
 											<li>
 												<a href="{{ path('messages') }}">Chat</a>
+											</li>
+										{% endif %}
+										{% if app.user and app.user.isVerified and app.user.hasRole('ROLE_COACH') %}
+											<li>
+												<a href="{{ path('coach') }}">work</a>
 											</li>
 										{% endif %}
 										<li>
@@ -109,6 +122,9 @@
 								</div>
 							{% endif %}
 							<!--* profil *-->
+							
+						
+				
 							{% if app.user and app.user.isVerified %}
 								<div class="header-btns d-none d-lg-block f-right px-4">
 									<a href="{{ path('utilisateur_show',{'id': app.user.id}) }}" class="btn"> PROFIL</a>
