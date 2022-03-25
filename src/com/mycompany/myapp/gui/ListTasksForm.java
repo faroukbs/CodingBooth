@@ -8,7 +8,7 @@ package com.mycompany.myapp.gui;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
-import com.mycompany.myapp.services.ServiceTask;
+import com.mycompany.myapp.services.ServiceCategory;
 
 /**
  *
@@ -20,7 +20,7 @@ public class ListTasksForm extends Form {
         setTitle("List category");
 
         SpanLabel sp = new SpanLabel();
-        sp.setText(ServiceTask.getInstance().getAllTasks().toString());
+        sp.setText(ServiceCategory.getInstance().getAllTasks().toString());
         add(sp);
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> previous.showBack());
     }

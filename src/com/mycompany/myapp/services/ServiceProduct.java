@@ -109,9 +109,49 @@ public class ServiceProduct {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return prod;
     }
-         public boolean  Delete(int idProduit){
-       String url = "http://127.0.0.1:8000" + "/product/Delete/?id=" +idProduit;
+    
+     public Product Detailprod( int idProduit , Product p) {
+        
+        String url = Statics.BASE_URL+"/product/list=?"+idProduit;
+        req.setUrl(url);
+        
+        String str  = new String(req.getResponseData());
+        req.addResponseListener(((evt) -> {
+        
+            JSONParser jsonp = new JSONParser();
+            try {
+                
+                Map<String,Object>obj = jsonp.parseJSON(new CharArrayReader(new String(str).toCharArray()));
+                
+                p.setNomprod(obj.get("nomprod").toString());
+                p.setDescription(obj.get("description").toString());
+                p.setImage(obj.get("image").toString());
+                p.setPrix(Integer.parseInt(obj.get("prix").toString()));
+                p.setQuantity(Integer.parseInt(obj.get("quantity").toString()));
+                
+            }catch(IOException ex) {
+                System.out.println("error related to sql :( "+ex.getMessage());
+            }
+            
+            
+            System.out.println("data === "+str);
+            
+            
+            
+        }));
+        
+              NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
 
+              return p;
+        
+        
+    }
+    
+    
+
+         public boolean  Delete(Product p){
+       String url = Statics.BASE_URL + "product/Delete/" +p.getIdProduit();
+  
         req.setUrl(url);
         req.setPost(false);
         req.setFailSilently(true);
@@ -121,15 +161,32 @@ public class ServiceProduct {
                  resultOK = req.getResponseCode() == 200;
                 req.removeResponseListener(this);
             }
-
+    
         });
         NetworkManager.getInstance().addToQueueAndWait(req);
         return resultOK;
+
       
-      
-      }
+}
+             //Update 
+    public boolean modifierProduct(Product p) {
+        String url = Statics.BASE_URL +"edit/"+p.getIdProduit()+"?nomprod=" + p.getNomprod()+"&description=" +p.getDescription()+"&image=" + p.getImage()+"&prix=" + p.getPrix()+"&quantity=" + p.getQuantity();
+        req.setUrl(url);
+        
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200 ;  // Code response Http 200 ok
+                req.removeResponseListener(this);
+            }
+        });
+        
+    NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
+    return resultOK;
+        
+    }
 
 }
 
-
+ 
  

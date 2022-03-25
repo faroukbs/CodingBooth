@@ -15,38 +15,33 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.myapp.entities.Category;
-import com.mycompany.myapp.entities.Product;
-import com.mycompany.myapp.services.ServiceProduct;
+import com.mycompany.myapp.entities.Task;
 import com.mycompany.myapp.services.ServiceCategory;
 
 /**
  *
- * @author bouss
+ * @author bhk
  */
-public class AddProduct extends Form{
-    public AddProduct(Form previous) {
-        setTitle("Add a new product");
+public class AddCategory extends Form{
+
+    public AddCategory(Form previous) {
+        setTitle("Add a new category");
         setLayout(BoxLayout.y());
         
-        TextField tfNom = new TextField("","product name");
-        TextField tfDesc = new TextField("","product description");
-        TextField tfImg = new TextField("","product image");
-        TextField tfPrix = new TextField("","product price");
-        TextField tfQnt = new TextField("","product quantity");
+        TextField tfNom = new TextField("","category name");
         
-        
-        Button btnValider = new Button("Add product");
+        Button btnValider = new Button("Add Category");
         
         btnValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                if ((tfNom.getText().length()==0) && (tfDesc.getText().length()==0)&& (tfPrix.getText().length()==0)&& (tfQnt.getText().length()==0) && (tfImg.getText().length()==0) )
+                if ((tfNom.getText().length()==0))
                     Dialog.show("Alert", "Please fill all the fields", new Command("OK"));
                 else
                 {
                     try {
-                        Product  p = new Product (tfNom.getText().toString(),tfDesc.getText().toString(),tfImg.getText().toString(),Float.parseFloat(tfPrix.getText().toString()),Integer.parseInt(tfQnt.getText().toString()) );
-                        if( ServiceProduct.getInstance().addProduct(p))
+                        Category c = new Category (tfNom.getText().toString());
+                        if( ServiceCategory.getInstance().addTask(c))
                         {
                            Dialog.show("Success","Connection accepted",new Command("OK"));
                         }else
@@ -61,8 +56,10 @@ public class AddProduct extends Form{
             }
         });
         
-        addAll(tfNom,tfDesc,tfImg,tfPrix,tfQnt,btnValider);
+        addAll(tfNom,btnValider);
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e-> previous.showBack());
                 
     }
+    
+    
 }

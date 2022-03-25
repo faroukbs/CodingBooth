@@ -9,6 +9,8 @@ import com.codename1.ui.Button;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.util.Resources;
+import com.mycompany.myapp.entities.Product;
 
 /**
  *
@@ -16,7 +18,7 @@ import com.codename1.ui.layouts.BoxLayout;
  */
 public class HomeForm extends Form{
 Form current;
-    public HomeForm() {
+    public HomeForm(Product p) {
         current=this; //Back 
         setTitle("Home");
         setLayout(BoxLayout.y());
@@ -32,12 +34,12 @@ Form current;
         
         
         //product
-         btnAddProd.addActionListener(e-> new AddProduct(current).show());
+        btnAddProd.addActionListener(e-> new AddProduct(current).show());
         btnListProd.addActionListener(e-> new ListProduct(current).show());
         addAll(btnAddProd,btnListProd);
         
         //category
-        btnAddTask.addActionListener(e-> new AddTaskForm(current).show());
+        btnAddTask.addActionListener(e-> new AddCategory(current).show());
         btnListTasks.addActionListener(e-> new ListTasksForm(current).show());
         addAll(btnAddTask,btnListTasks);
         

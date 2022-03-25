@@ -19,6 +19,7 @@ public class Product {
 //    private int categoryprod;
 
     public Product(int idProduit, String nomprod, String description, String image, float prix, int quantity) {
+        this.idProduit=idProduit;
         this.nomprod = nomprod;
         this.description = description;
         this.image = image;

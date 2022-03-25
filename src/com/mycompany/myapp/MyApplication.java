@@ -13,6 +13,7 @@ import com.codename1.ui.Toolbar;
 import java.io.IOException;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.io.NetworkEvent;
+import com.mycompany.myapp.entities.Product;
 import com.mycompany.myapp.gui.HomeForm;
 
 /**
@@ -48,7 +49,8 @@ public class MyApplication {
     }
     
     public void start() {
-        new HomeForm().show();
+        Product p=new Product();
+        new HomeForm(p).show();
     }
 
     public void stop() {
