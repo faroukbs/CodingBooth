@@ -11,7 +11,6 @@ import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
-import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.entities.Product;
 import com.mycompany.myapp.services.ServiceProduct;
 
@@ -21,7 +20,7 @@ import com.mycompany.myapp.services.ServiceProduct;
  */
 public class DeleteProduct extends Form{
     public DeleteProduct(Product p, Form previous) {
-      //  setTitle("delete Personne");
+        setTitle("delete Product");
         
 
         Button btnSubmit = new Button("Delete");

@@ -12,6 +12,7 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.myapp.entities.Category;
+import com.mycompany.myapp.entities.Product;
 import com.mycompany.myapp.utils.Statics;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -101,6 +102,43 @@ public class ServiceCategory {
         });
         NetworkManager.getInstance().addToQueueAndWait(req);
         return cat;
+    }
+    
+       public boolean  Delete(Category c){
+       String url = Statics.BASE_URL + "category/Delete/" +c.getId();
+  
+        req.setUrl(url);
+        req.setPost(false);
+        req.setFailSilently(true);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                 resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+    
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+
+      
+}
+             //Update 
+    public boolean ModifierCategory(Category c) {
+        String url = Statics.BASE_URL +"category/edit/"+c.getId()+"?nom=" + c.getNom();
+        req.setUrl(url);
+        
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200 ;  // Code response Http 200 ok
+                req.removeResponseListener(this);
+            }
+        });
+        
+    NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
+    return resultOK;
+        
     }
 
           

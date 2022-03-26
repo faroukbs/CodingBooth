@@ -6,16 +6,13 @@
 package com.mycompany.myapp.gui;
 
 import com.codename1.components.MultiButton;
-import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.entities.Product;
 import com.mycompany.myapp.services.ServiceProduct;
-import java.util.List;
 
 
 /**
@@ -52,7 +49,7 @@ public class ListProduct extends Form {
 //        SpanLabel sp = new SpanLabel();
 //        sp.setText(ServiceProduct.getInstance().getAllProduct().toString());
 //        add(sp);
-//        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> previous.showBack());
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> previous.showBack());
     }
          
     
