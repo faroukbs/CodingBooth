@@ -57,7 +57,7 @@ public class AfficheEForm  extends BaseFormBack{
         setTitle("Ajout Eventl");
         getContentPane().setScrollVisible(false);
          
-        
+         super.addSideMenu1(res);
         tb.addSearchCommand(e ->  {
             
         });
@@ -67,7 +67,7 @@ public class AfficheEForm  extends BaseFormBack{
         Label s1 = new Label();
         Label s2 = new Label();
         
-        addTab(swipe,s1, res.getImage("gallery2.png"),"","",res);
+        addTab(swipe,s1, res.getImage("gallery4.png"),"","",res);
         
        
          swipe.setUIID("Container");

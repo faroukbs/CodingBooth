@@ -34,7 +34,7 @@ public class SigninBa extends BaseForm {
         getTitleArea().setUIID("Container");
         setUIID("SignIn");
         
-        add(BorderLayout.NORTH, new Label(res.getImage("gllery4.png"), "LogoLabel"));
+        add(BorderLayout.NORTH, new Label(res.getImage("gallery4.jpg"), "LogoLabel"));
         
         TextField username = new TextField("", "Username", 20, TextField.ANY);
         TextField password = new TextField("", "Password", 20, TextField.PASSWORD);

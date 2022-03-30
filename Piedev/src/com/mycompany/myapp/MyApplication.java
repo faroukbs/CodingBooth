@@ -55,8 +55,8 @@ public class MyApplication {
         } 
              //new Ticketf (theme).show();
             //  new Ajoutticket (theme).show();
-     //   new ListEventForm(current,0,theme).show();
-       new AfficheEForm(theme,"").show();
+        new ListEventForm(current,0,theme).show();
+      // new AfficheEForm(theme,"").show();
     //new WalkthruForm(theme).show();
    //  new Rechere("").show();
     }

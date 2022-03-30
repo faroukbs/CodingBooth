@@ -64,11 +64,12 @@ public class BaseFormBack extends BaseForm {
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
                 sl,
                 FlowLayout.encloseCenterBottom(
-                        new Label(res.getImage("aicha.jpg"), "PictureWhiteBackgrond"))
+                        new Label(res.getImage("profile.jpg"), "PictureWhiteBackgrond"))
         ));
         
         tb.addMaterialCommandToSideMenu("liste evenement", FontImage.MATERIAL_UPDATE, e -> new AfficheEForm(res,"").show());
         tb.addMaterialCommandToSideMenu("liste ticket", FontImage.MATERIAL_UPDATE, e -> new Ticketf(res).show());
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListEventForm(current,0,res).show());
+        tb.addMaterialCommandToSideMenu("MAP", FontImage.MATERIAL_EXIT_TO_APP, e -> new MapForm(res,this));
     }
 }
