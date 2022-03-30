@@ -17,8 +17,11 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
+import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
@@ -40,9 +43,12 @@ import java.util.ArrayList;
  *
  * @author Home
  */
-public class AfficheEForm  extends BaseForm{
+public class AfficheEForm  extends BaseFormBack{
      Form current;
-    public AfficheEForm (Resources res ) {
+     int Oxeeeeee;
+     int n=0;
+    public AfficheEForm (Resources res,String titre) {
+        
           super("Newsfeed",BoxLayout.y()); //herigate men Newsfeed w l formulaire vertical
         Toolbar tb = new Toolbar(true);
         current = this ;
@@ -50,7 +56,7 @@ public class AfficheEForm  extends BaseForm{
         getTitleArea().setUIID("Container");
         setTitle("Ajout Eventl");
         getContentPane().setScrollVisible(false);
-        
+         
         
         tb.addSearchCommand(e ->  {
             
@@ -92,7 +98,7 @@ public class AfficheEForm  extends BaseForm{
             radioContainer.add(rbs[iter]);
         }
 
-        rbs[0].setSelected(true);
+   rbs[0].setSelected(true);
         swipe.addSelectionListener((i, ii) -> {
             if (!rbs[ii].isSelected()) {
                 rbs[ii].setSelected(true);
@@ -101,7 +107,7 @@ public class AfficheEForm  extends BaseForm{
 
         Component.setSameSize(radioContainer, s1, s2);
         add(LayeredLayout.encloseIn(swipe, radioContainer));
-
+  
         ButtonGroup barGroup = new ButtonGroup();
         RadioButton mesListes = RadioButton.createToggle("Mes   Evenemens", barGroup);
         mesListes.setUIID("SelectBar");
@@ -116,32 +122,59 @@ public class AfficheEForm  extends BaseForm{
                InfiniteProgress ip = new InfiniteProgress();
         final Dialog ipDlg = ip.showInifiniteBlocking();
         
-        //  ListReclamationForm a = new ListReclamationForm(res);
-          //  a.show();
+         Ticketf a = new Ticketf(res);
+            a.show();
             refreshTheme();
         });
 
-        add(LayeredLayout.encloseIn(
+       add(LayeredLayout.encloseIn(
                 GridLayout.encloseIn(3, mesListes, liste, partage),
                 FlowLayout.encloseBottom(arrow)
         ));
+            
+      
+  
+
 
         partage.setSelected(true);
-        arrow.setVisible(false);
-        addShowListener(e -> {
+       arrow.setVisible(false);
+       addShowListener(e -> {
             arrow.setVisible(true);
             updateArrowPosition(partage, arrow);
         });
-        bindButtonSelection(mesListes, arrow);
-        bindButtonSelection(liste, arrow);
+       bindButtonSelection(mesListes, arrow);
+       bindButtonSelection(liste, arrow);
         bindButtonSelection(partage, arrow);
-        // special case for rotation
-        addOrientationListener(e -> {
+         //special case for rotation
+       addOrientationListener(e -> {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
-        
+      
       
         //Appel affichage methode
+                  if(titre==""){
+          TextField titree=new TextField("","ENTER NOM");
+            titree.setUIID("TextFieldBlack");
+             addStringValue("titre",titree);
+         Button recherche = new Button("recherche ");
+  
+           
+   recherche.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+       
+
+                 
+                     new AfficheEForm(res,titree.getText()).show();      
+                   
+                   
+                }
+               
+               
+           
+        });
+                    addAll(recherche);
+    
         ArrayList<Eventl>list = ServiceEventl.getInstance().affichageEvent();
         
         for(Eventl rec : list ) {
@@ -160,14 +193,51 @@ public class AfficheEForm  extends BaseForm{
                 image.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
         }
         
+    }
+        else
+        {
+       TextField titree=new TextField("","ENTER NOM");
+            titree.setUIID("TextFieldBlack");
+             addStringValue("titre",titree);
+         Button recherche = new Button("recherche ");
+  
+           
+   recherche.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+       
+
+                 
+                     new AfficheEForm(res,titree.getText()).show();      
+                   
+                   
+                }
+               
+               
+           
+        });
+                    addAll(recherche);
+                     ArrayList<Eventl>list = ServiceEventl.getInstance().titrerecher(titre);
         
+        for(Eventl rec : list ) {
+             String urlImage ="back-logo.jpeg";//image statique pour le moment ba3d taw fi  videos jayin nwarikom image 
+            
+             Image placeHolder = Image.createImage(120, 90);
+             EncodedImage enc =  EncodedImage.createFromImage(placeHolder,false);
+             URLImage urlim = URLImage.createToStorage(enc, urlImage, urlImage, URLImage.RESIZE_SCALE);
+             
+                addButton(urlim,rec,res);
         
+                ScaleImageLabel image = new ScaleImageLabel(urlim);
+                
+                Container containerImg = new Container();
+                
+                image.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+        }
     }
     
     
-    
-    
-    
+    }
     
     
     
@@ -203,7 +273,7 @@ public class AfficheEForm  extends BaseForm{
                     )
                 );
         
-        swipe.addTab("",res.getImage("back-logo.jpeg"), page1);
+       swipe.addTab("",res.getImage("back-logo.jpeg"), page1);
         
         
         
@@ -227,7 +297,7 @@ public class AfficheEForm  extends BaseForm{
         l.getParent().repaint();
     }
 
-    private void addButton(Image img,Eventl rec , Resources res) {
+    private void addButton(Image img,Eventl rec, Resources res ) {
         
         int height = Display.getInstance().convertToPixels(11.5f);
         int width = Display.getInstance().convertToPixels(14f);
@@ -238,10 +308,10 @@ public class AfficheEForm  extends BaseForm{
         
         
         //kif nzidouh  ly3endo date mathbih fi codenamone y3adih string w y5alih f symfony dateTime w ytab3ni cha3mlt taw yjih
-        Label titreTxt = new Label("Titre : "+rec.getTitre(),"NewsTopLine2");
-        Label villeTxt = new Label("ville : "+rec.getVille(),"NewsTopLine2");
-        Label photoTxt = new Label("photo : "+rec.getPhoto(),"NewsTopLine2" );
-     
+        Label titreTxt = new Label("Date : "+rec.getTitre(),"NewsTopLine2");
+        Label villeTxt = new Label("objet : "+rec.getVille(),"NewsTopLine2");
+        Label photoTxt = new Label("etat : "+rec.getPhoto(),"NewsTopLine2" );
+          Label idTxt = new Label("description : "+rec.getIdevent(),"NewsTopLine2");
         createLineSeparator();
       
         
@@ -268,11 +338,11 @@ public class AfficheEForm  extends BaseForm{
                  }
                 //n3ayto l suuprimer men service Reclamation
                 if(ServiceEventl.getInstance().deleteEvenement(rec.getIdevent())) {
-                   new  AfficheEForm(res).show();
+                  new  AfficheEForm(res,"").show();
                 }
            
         });
-        
+       
         //Update icon 
         Label lModifier = new Label(" ");
         lModifier.setUIID("NewsTopLine");
@@ -285,8 +355,8 @@ public class AfficheEForm  extends BaseForm{
         
         
         lModifier.addPointerPressedListener(l -> {
-            //System.out.println("hello update");
-            new ModifierEvent(res,rec).show();
+            System.out.println("hello update");
+           new ModifierEvent(res,rec).show();
         });
         
         
@@ -294,11 +364,21 @@ public class AfficheEForm  extends BaseForm{
                 
                 BoxLayout.encloseX(titreTxt),
                 BoxLayout.encloseX(villeTxt),
+                BoxLayout.encloseX(idTxt),
                 BoxLayout.encloseX(photoTxt,lModifier,lSupprimer)));
         
         
         
         add(cnt);
+    }
+
+      private void addStringValue(String s, Component v) {
+   
+        add(BorderLayout.west(new Label(s,"PaddedLabel"))
+        .add(BorderLayout.CENTER,v)
+        );
+        
+        add(createLineSeparator(Oxeeeeee));
     }
     
    

@@ -9,7 +9,6 @@ import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
 import com.codename1.components.ToastBar;
-import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Command;
@@ -37,7 +36,6 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
-import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
 import com.mycompany.entities.Eventl;
 import com.mycompany.services.ServiceEventl;
@@ -152,16 +150,12 @@ public class AjoutEventForm  extends BaseForm {
             TextField ville=new TextField("","ville");
               ville.setUIID("TextFieldBlack");
       addStringValue("ville",ville);
-     
-      
-       Picker datePicker = new Picker();
-         datePicker.setUIID("TextFieldBlack");
-   datePicker.setType(Display.PICKER_TYPE_DATE);
-   addStringValue("datePicker",datePicker);
-     TextField photo=new TextField("","photo");
+       TextField photo=new TextField("","photo");
               photo.setUIID("TextFieldBlack");
       addStringValue("photo",photo);
- 
+      
+         
+        
       Button btnAjouter= new Button("ajouter:");
       addStringValue("", btnAjouter);
      btnAjouter.addActionListener(new ActionListener() {
@@ -175,22 +169,16 @@ public class AjoutEventForm  extends BaseForm {
                  else{
                      InfiniteProgress ip= new InfiniteProgress();
                      final Dialog iDialog = ip.showInfiniteBlocking();
-                      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                     Eventl e = new Eventl(
-                          
+                     Eventl e = new Eventl(String.valueOf(titre.getText()).toString(),
                             
-                             String.valueOf(titre.getText()).toString(),
-                      String.valueOf(ville.getText()
-                                  ).toString(),
-                       String.valueOf(photo.getText()
+                             String.valueOf(ville.getText()).toString(),
+                      String.valueOf(photo.getText()
                                   ).toString()
-                        
                      );
-                  
                      System.out.println(" data evenement" +e);
                      ServiceEventl.getInstance().ajouterevent(e);
                      iDialog.dispose();
-                     new ListEventForm(res).show();
+                     new ListEventForm(current,0,res).show();
                      refreshTheme();
                  }
              }

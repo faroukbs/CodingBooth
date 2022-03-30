@@ -53,10 +53,12 @@ public class MyApplication {
             current.show();
             return;
         } 
-               //new ListEventForm(theme).show();
-   // new AjoutEventForm(theme).show();
-       //new SignInForm(theme).show();
-        new MapForm();
+             //new Ticketf (theme).show();
+            //  new Ajoutticket (theme).show();
+     //   new ListEventForm(current,0,theme).show();
+       new AfficheEForm(theme,"").show();
+    //new WalkthruForm(theme).show();
+   //  new Rechere("").show();
     }
     
 

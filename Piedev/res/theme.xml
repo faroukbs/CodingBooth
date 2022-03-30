@@ -2,10 +2,17 @@
 
 <resource majorVersion="1" minorVersion="11" useXmlUI="false">
     <image name="activation-background.jpg"  />
+    <image name="aicha.jpg"  />
     <image name="confirmation-background.jpg"  />
     <image name="dog.jpg"  />
     <image name="facebook-logo.png" type="multi"  />
+    <image name="faf.jpg"  />
+    <image name="gallery1.png"  />
     <image name="gallery2.png"  />
+    <image name="gallery3.png"  />
+    <image name="gallery4.png"  />
+    <image name="gallery5.png"  />
+    <image name="gallery6.png"  />
     <image name="Logo.png" type="multi"  />
     <image name="news-item-1.jpg"  />
     <image name="news-item-2.jpg"  />

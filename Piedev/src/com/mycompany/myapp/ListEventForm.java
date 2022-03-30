@@ -59,10 +59,12 @@ import static java.util.concurrent.ThreadLocalRandom.current;
  */
 public class ListEventForm extends BaseForm {
            Form current;
+              int n=0;
 Image imgg = null;
     ImageViewer iv = null;
+     private Resources theme;
     EncodedImage ec;
-    public ListEventForm(Resources res) {
+    public ListEventForm (Form previous,int n, Resources res) {
         
         super("Newsfeed",BoxLayout.y());
      Toolbar tb=new Toolbar(true);
@@ -70,7 +72,7 @@ Image imgg = null;
             setToolBar(tb);
             getTitleArea().setUIID("Container");
             getContentPane().setScrollVisible(false);
-    
+      
         super.addSideMenu(res);
         tb.addSearchCommand(e -> {});
         
@@ -78,7 +80,7 @@ Image imgg = null;
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
-        addTab(swipe, res.getImage("gallery2.png"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
+       addTab(swipe, res.getImage("gallery2.png"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
          swipe.setUIID("Container");
         swipe.getContentPane().setUIID("Container");
         swipe.hideTabs();
@@ -106,18 +108,23 @@ Image imgg = null;
             rbs[iter].setUIID("Label");
             radioContainer.add(rbs[iter]);
         }
-                
-        rbs[0].setSelected(true);
+//                
+       rbs[0].setSelected(true);
         swipe.addSelectionListener((i, ii) -> {
-            if(!rbs[ii].isSelected()) {
-                rbs[ii].setSelected(true);
-            }
-        });
+          if(!rbs[ii].isSelected()) {
+             rbs[ii].setSelected(true);
+          }
+       });
         
         Component.setSameSize(radioContainer, spacer1, spacer2);
         add(LayeredLayout.encloseIn(swipe, radioContainer));
         
         ButtonGroup barGroup = new ButtonGroup();
+              Button BUTActualiser = new Button("Actualiser");
+        BUTActualiser.addActionListener((evt) -> new ListEventForm(current,0,res).show());
+            Button BUTTrieNom = new Button("Trie selon Nom ");
+            BUTTrieNom.addActionListener((evt) -> new ListEventForm(current,1,res).show());
+            addAll(BUTTrieNom,BUTActualiser);
         RadioButton all = RadioButton.createToggle("All", barGroup);
         all.setUIID("SelectBar");
         RadioButton featured = RadioButton.createToggle("Featured", barGroup);
@@ -126,20 +133,30 @@ Image imgg = null;
         popular.setUIID("SelectBar");
         RadioButton myFavorite = RadioButton.createToggle("My Favorites", barGroup);
         myFavorite.setUIID("SelectBar");
-        Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
+        
+       Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
            all.addActionListener((e) -> {
                InfiniteProgress ip = new InfiniteProgress();
-     //   final Dialog ipDlg = ip.showInifiniteBlocking();
+       final Dialog ipDlg = ip.showInifiniteBlocking();
         
-        AfficheEForm a = new AfficheEForm(res);
+        AfficheEForm a = new AfficheEForm(res,"");
             a.show();
             refreshTheme();
         });
+              featured .addActionListener((e) -> {
+               InfiniteProgress ip = new InfiniteProgress();
+       final Dialog ipDlg = ip.showInifiniteBlocking();
+        
+        AfficheEForm a = new AfficheEForm(res,"");
+            a.show();
+            refreshTheme();
+        });
+                           featured.addActionListener((evt) -> new AfficheEForm(res,"").show());
 
         add(LayeredLayout.encloseIn(
                 GridLayout.encloseIn(4, all, featured, popular, myFavorite),
                 FlowLayout.encloseBottom(arrow)
-        ));
+       ));
         
         all.setSelected(true);
         arrow.setVisible(false);
@@ -153,9 +170,12 @@ Image imgg = null;
         bindButtonSelection(myFavorite, arrow);
         
         // special case for rotation
-        addOrientationListener(e -> {
+           addOrientationListener(e -> {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
+        
+         if(n==0)
+            {
         ArrayList<Eventl> eventls = ServiceEventl.getInstance().affichageEvent();
         Container list = new Container(BoxLayout.y());
          list.setScrollableY(true);
@@ -184,6 +204,40 @@ Image imgg = null;
         this.add(list);
         //getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> res.showBack());
 
+    }
+    
+         if(n==1)
+            {
+                  ArrayList<Eventl> eventls = ServiceEventl.getInstance().order_By_NomJSON();
+        Container list = new Container(BoxLayout.y());
+         list.setScrollableY(true);
+        for (Eventl eventl : eventls) {
+            ImageViewer photo = new ImageViewer();
+              EncodedImage placeholder = EncodedImage.createFromImage(Image.createImage(200, 150, 0xffff0000), true);
+              Image i = URLImage.createToStorage(placeholder,eventl.getPhoto(),Statics.BOOK_IMG_URL +eventl.getPhoto());
+             MultiButton sp = new MultiButton(eventl.getTitre());
+                      
+             sp.setIcon(i.fill(200,200));
+              sp.setTextLine1("titre: "+eventl.getTitre()+" ville : "+eventl.getVille());
+            
+                     list.add(sp);
+                      
+                     sp.addActionListener((evt) -> {
+                         //affichage en details details(voyage).show(); 
+                         //autre page 
+                         //ajouter panier 
+                     });
+                     
+        }
+        
+        
+         //SpanLabel sp = new SpanLabel();
+        //sp.setText(ServiceVoyage.getInstance().affichageVoyage().toString());
+        this.add(list);
+        //getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> res.showBack());
+            
+            
+            }
     }
      private void addButton(Image img, String titre, String ville,Eventl rec, boolean liked, int likeCount, int commentCount) {
        int height = Display.getInstance().convertToPixels(11.5f);

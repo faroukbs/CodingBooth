@@ -39,8 +39,7 @@ public class ModifierEvent extends BaseForm{
         
         TextField titre = new TextField(rec.getTitre() , "titre" , 20 , TextField.ANY);
         TextField ville = new TextField(rec.getVille() , "ville" , 20 , TextField.ANY);
-          TextField photo = new TextField(rec.getPhoto() , "photo" , 20 , TextField.ANY);   
- 
+ TextField photo = new TextField(rec.getPhoto() , "photo" , 20 , TextField.ANY);
         //etat bch na3mlo comobbox bon lazm admin ya3mlleha approuver mais just chnwarikom ComboBox
         
     
@@ -65,17 +64,18 @@ public class ModifierEvent extends BaseForm{
            
            rec.setTitre(titre.getText());
            rec.setVille(ville.getText());
-                rec.setPhoto(photo.getText());
+            rec.setPhoto(photo.getText());
+          
        
        //appel fonction modfier reclamation men service
        
        if(ServiceEventl.getInstance().modifierevent(rec)) { // if true
-           new AfficheEForm(res).show();
+           new AfficheEForm(res,"").show();
        }
         });
        Button btnAnnuler = new Button("Annuler");
        btnAnnuler.addActionListener(e -> {
-           new AfficheEForm(res).show();
+           new AfficheEForm(res,"").show();
        });
        
        

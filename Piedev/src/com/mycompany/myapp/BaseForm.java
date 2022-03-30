@@ -40,7 +40,7 @@ import com.mycompany.myapp.NewsfeedForm;
  * @author Shai Almog
  */
 public class BaseForm extends Form {
-
+      Form current;
     public BaseForm() {
     }
 
@@ -83,8 +83,9 @@ public class BaseForm extends Form {
                         new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
         ));
         
-        tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, e -> new NewsfeedForm(res).show());
+        tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, e -> new ListEventForm(current,0,res).show());
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
+           tb.addMaterialCommandToSideMenu("Admin", FontImage.MATERIAL_EXIT_TO_APP, e -> new SigninBa(res).show());
     }
 }

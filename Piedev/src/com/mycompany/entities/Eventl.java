@@ -17,7 +17,7 @@ public class Eventl {
         private  String ville;
           private  String adresse;
            private  String description;
-            private  String  datedebut;
+            private  String datedebut;
                private  Date datefin;
                   private  String photo;
                    private  String heure;
@@ -86,11 +86,11 @@ public class Eventl {
         this.description = description;
     }
 
-    public String  getDatedebut() {
+    public String getDatedebut() {
         return datedebut;
     }
 
-    public void setDatedebut(String  datedebut) {
+    public void setDatedebut(String datedebut) {
         this.datedebut = datedebut;
     }
 
@@ -142,12 +142,22 @@ public class Eventl {
         this.nombreParticipants = nombreParticipants;
     }
 
-    @Override
-    public String toString() {
-        return "Eventl{" + "idevent=" + idevent + ", titre=" + titre + ", ville=" + ville + ", adresse=" + adresse + ", description=" + description + ", datedebut=" + datedebut + ", datefin=" + datefin + ", photo=" + photo + ", heure=" + heure + ", evaluation=" + evaluation + ", view=" + view + ", nombreParticipants=" + nombreParticipants + '}';
+    public Eventl(int idevent, String titre, String ville, String datedebut, String photo) {
+        this.idevent = idevent;
+        this.titre = titre;
+        this.ville = ville;
+        this.datedebut = datedebut;
+        this.photo = photo;
     }
 
-    public Eventl(int idevent, String titre, String ville, String adresse, String description, String  datedebut, Date datefin, String photo, String heure, int evaluation, int view, int nombreParticipants) {
+    @Override
+    public String toString() {
+        return "Eventl{" + "idevent=" + idevent + ", titre=" + titre + ", ville=" + ville + ", datedebut=" + datedebut + ", photo=" + photo + '}';
+    }
+
+  
+
+    public Eventl(int idevent, String titre, String ville, String adresse, String description, String datedebut, Date datefin, String photo, String heure, int evaluation, int view, int nombreParticipants) {
         this.idevent = idevent;
         this.titre = titre;
         this.ville = ville;

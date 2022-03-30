@@ -28,7 +28,7 @@ import java.util.Map;
  */
 public class ServiceEventl {
     
-  
+  public ArrayList<Eventl> Eventl;
     
       public static ServiceEventl instance = null;
     private ConnectionRequest req;
@@ -146,41 +146,105 @@ return resultOK;
            return result;
     }  
   
-    
-     
-    public Eventl DetailRecalamation( int idevent , Eventl eventl) {
-        
-        String url = Statics.BASE_URL+"/detailevent?"+idevent;
-        req.setUrl(url);
-        
-        String str  = new String(req.getResponseData());
-        req.addResponseListener(((evt) -> {
-        
-            JSONParser jsonp = new JSONParser();
-            try {
-                
-                Map<String,Object>obj = jsonp.parseJSON(new CharArrayReader(new String(str).toCharArray()));
-                
-                eventl.setTitre(obj.get("titre").toString());
-                eventl.setVille(obj.get("ville").toString());
-                 eventl.setVille(obj.get("photo").toString());
-                
-            }catch(IOException ex) {
-                System.out.println("error related to sql :( "+ex.getMessage());
-            }
-            
-            
-            System.out.println("data === "+str);
-            
-            
-            
-        }));
-        
-              NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
+      public ArrayList<Eventl> order_By_NomJSON() 
+     {
+        ArrayList<Eventl> result = new ArrayList<>();
+            String  url = Statics.BASE_URL +"/order_By_ville";
+         req.setUrl(url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                JSONParser jsonp;                
+                jsonp = new JSONParser();
+                try {
+                    //renvoi une map avec clé = root et valeur le reste
+                    Map<String, Object> mapEvent = jsonp.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
 
-              return eventl;
+                    List<Map<String, Object>> listOfMaps = (List<Map<String, Object>>) mapEvent.get("root");
+                      
+                    for (Map<String, Object> obj : listOfMaps) {
+                        Eventl e = new Eventl();
+                        int id = (int) Float.parseFloat(obj.get("idevent").toString());
+                        String ville = obj.get("ville").toString();
+                        String titre = obj.get("titre").toString();
+                       
+   String photo = obj.get("photo").toString();
+                        
+                        e.setIdevent((int) id);
+                        e.setTitre(titre);
+                        e.setVille(ville);
+                     e.setPhoto(photo);
+                    
+                    
+//                        String DateConverter=obj.get("date").toString().substring(obj.get("Date").toString().indexOf("timestamp")+10 , obj.get("Date").toString().lastIndexOf("}"));      
+   //             Date currentTime = new Date(Double.valueOf(DateConverter).longValue() * 1000);
+   //             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    //            String dateString = formatter.format(currentTime);
+    //            v.setDate(dateString);
+                result.add(e);
+                  
+                    }
+                } 
+
+       catch(Exception e ){
+                       e.printStackTrace();
+                   }
+            }           
+                });
         
+         NetworkManager.getInstance().addToQueueAndWait(req);
+                             
+           return result;
+}
+      
+  public ArrayList<Eventl> titrerecher(String titre) {
+       ArrayList<Eventl> result = new ArrayList<>();
+        String url = Statics.BASE_URL + "/detailevent/"+titre;
+    req.setUrl(url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                JSONParser jsonp;                
+                jsonp = new JSONParser();
+                try {
+                    //renvoi une map avec clé = root et valeur le reste
+                    Map<String, Object> mapEvent = jsonp.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+
+                    List<Map<String, Object>> listOfMaps = (List<Map<String, Object>>) mapEvent.get("root");
+                      
+                    for (Map<String, Object> obj : listOfMaps) {
+                        Eventl e = new Eventl();
+                        int id = (int) Float.parseFloat(obj.get("idevent").toString());
+                        String ville = obj.get("ville").toString();
+                        String titre = obj.get("titre").toString();
+                       
+   String photo = obj.get("photo").toString();
+                        
+                        e.setIdevent((int) id);
+                        e.setTitre(titre);
+                        e.setVille(ville);
+                     e.setPhoto(photo);
+                    
+                    
+//                        String DateConverter=obj.get("date").toString().substring(obj.get("Date").toString().indexOf("timestamp")+10 , obj.get("Date").toString().lastIndexOf("}"));      
+   //             Date currentTime = new Date(Double.valueOf(DateConverter).longValue() * 1000);
+   //             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    //            String dateString = formatter.format(currentTime);
+    //            v.setDate(dateString);
+                result.add(e);
+                  
+                    }
+                } 
+
+       catch(Exception e ){
+                       e.printStackTrace();
+                   }
+            }           
+                });
         
+         NetworkManager.getInstance().addToQueueAndWait(req);
+                             
+           return result;
     }
 }
     
