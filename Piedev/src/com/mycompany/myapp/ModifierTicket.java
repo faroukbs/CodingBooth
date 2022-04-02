@@ -25,7 +25,7 @@ import com.mycompany.services.ServiceTicket;
  *
  * @author Home
  */
-public class ModifierTicket extends BaseForm{
+public class ModifierTicket extends BaseFormBack{
      Form current;
       public ModifierTicket(Resources res ,Ticket t) {
          super("Newsfeed",BoxLayout.y()); //herigate men Newsfeed w l formulaire vertical
@@ -34,17 +34,17 @@ public class ModifierTicket extends BaseForm{
         current = this ;
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Ajout Reclamation");
+        setTitle("Modifier Ticket");
         getContentPane().setScrollVisible(false);
         
         
-        super.addSideMenu(res);
+           super.addSideMenu1(res);
         
-        TextField typeticket = new TextField(t.getTypeticket() , "titre" , 20 , TextField.ANY);
-        TextField description = new TextField(t.getDescription() , "ville" , 20 , TextField.ANY);
-   TextField idevent = new TextField("","2453");
-                        idevent.getStyle().setFgColor(154245);
-        
+        TextField typeticket = new TextField(t.getTypeticket() , "ttpeticket" , 20 , TextField.ANY);
+        TextField description = new TextField(t.getDescription() , "description" , 20 , TextField.ANY);
+       TextField prix = new TextField(String.valueOf(t.getPrix()) , "prix" , 20 , TextField.ANY);
+  
+                    
     
         
         
@@ -52,11 +52,11 @@ public class ModifierTicket extends BaseForm{
         
         typeticket.setUIID("NewsTopLine");
         description.setUIID("NewsTopLine");
-        idevent.setUIID("NewsTopLine");
+        prix.setUIID("NewsTopLine");
         
         typeticket.setSingleLineTextArea(true);
       description.setSingleLineTextArea(true);
-        idevent.setSingleLineTextArea(true);
+        prix.setSingleLineTextArea(true);
         
         Button btnModifier = new Button("Modifier");
        btnModifier.setUIID("Button");
@@ -67,18 +67,18 @@ public class ModifierTicket extends BaseForm{
            
            t.setTypeticket(typeticket.getText());
            t.setDescription(description.getText());
-           t.setIdevent((int) Float.parseFloat(idevent.getText()));
+           t.setPrix((int) Float.parseFloat(prix.getText()));
           
        
-       //appel fonction modfier reclamation men service
+       //appel fonction modfier event men service
        
        if(ServiceTicket.getInstance().modifieticket(t)) { // if true
-           new AfficheEForm(res,"").show();
+           new Ticketf(res).show();
        }
         });
        Button btnAnnuler = new Button("Annuler");
        btnAnnuler.addActionListener(e -> {
-           new AfficheEForm(res,"").show();
+           new Ticketf(res).show();
        });
        
        
@@ -98,7 +98,7 @@ public class ModifierTicket extends BaseForm{
                 createLineSeparator(),
                 new FloatingHint(description),
                 createLineSeparator(),
-                new FloatingHint(idevent),
+                new FloatingHint(prix),
                 createLineSeparator(),
                 createLineSeparator(),//ligne de séparation
                 btnModifier,

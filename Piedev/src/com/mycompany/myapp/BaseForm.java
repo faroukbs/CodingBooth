@@ -19,73 +19,113 @@
 
 package com.mycompany.myapp;
 
-import com.codename1.components.ScaleImageLabel;
-import com.codename1.ui.Component;
-import com.codename1.ui.Display;
+import com.codename1.io.Storage;
+import com.codename1.ui.Button;
+import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
-import com.codename1.ui.Toolbar;
+import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
-import com.codename1.ui.layouts.LayeredLayout;
-import com.codename1.ui.layouts.Layout;
-import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
-import com.mycompany.myapp.NewsfeedForm;
 
 /**
- * Base class for the forms with common functionality
+ * Utility methods common to forms e.g. for binding the side menu
  *
  * @author Shai Almog
  */
 public class BaseForm extends Form {
       Form current;
-    public BaseForm() {
-    }
-
-    public BaseForm(Layout contentPaneLayout) {
-        super(contentPaneLayout);
-    }
-
-    public BaseForm(String title, Layout contentPaneLayout) {
-        super(title, contentPaneLayout);
-    }
-    
-    
-    public Component createLineSeparator() {
-        Label separator = new Label("", "WhiteSeparator");
-        separator.setShowEvenIfBlank(true);
-        return separator;
-    }
-    
-    public Component createLineSeparator(int color) {
-        Label separator = new Label("", "WhiteSeparator");
-        separator.getUnselectedStyle().setBgColor(color);
-        separator.getUnselectedStyle().setBgTransparency(255);
-        separator.setShowEvenIfBlank(true);
-        return separator;
-    }
-
-    protected void addSideMenu(Resources res) {
-        Toolbar tb = getToolbar();
-        Image img = res.getImage("profile-background.jpg");
-        if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
-            img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
-        }
-        ScaleImageLabel sl = new ScaleImageLabel(img);
-        sl.setUIID("BottomPad");
-        sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+    public void installSidemenu(Resources res) {
+          
+        /*Image selection = res.getImage("selection-in-sidemenu.png");
         
-        tb.addComponentToSideMenu(LayeredLayout.encloseIn(
-                sl,
-                FlowLayout.encloseCenterBottom(
-                        new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
-        ));
+        Image inboxImage = null;
+        if(isCurrentInbox()) inboxImage = selection;
+
+        Image trendingImage = null;
+        if(isCurrentTrending()) trendingImage = selection;
         
-        tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, e -> new ListEventForm(current,0,res).show());
-        tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
-        tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
-           tb.addMaterialCommandToSideMenu("Admin", FontImage.MATERIAL_EXIT_TO_APP, e -> new SigninBa(res).show());
+        Image calendarImage = null;
+        if(isCurrentCalendar()) calendarImage = selection;
+        
+        Image statsImage = null;
+        if(isCurrentStats()) statsImage = selection;
+        */
+        
+         // spacer
+        
+        getToolbar().addComponentToSideMenu(new Label(SessionManager.getImage(), "Container"));
+        getToolbar().addComponentToSideMenu(new Label(SessionManager.getEmail(), "SideCommandNoPad"));
+        getToolbar().addComponentToSideMenu(new Label(" ", "SideCommand"));
+               
+        Button inboxButton = new Button("Accueil");
+        inboxButton.setUIID("SideCommand");
+        inboxButton.getAllStyles().setPaddingBottom(0);
+        Container inbox = FlowLayout.encloseMiddle(inboxButton);
+        inbox.setLeadComponent(inboxButton);
+        inbox.setUIID("SideCommand");
+        inboxButton.addActionListener(e -> new ListE(res,0,current).show());
+        getToolbar().addComponentToSideMenu(inbox);
+        
+       // getToolbar().addCommandToSideMenu("Stat", statsImage, e -> new StatsForm(res).show());
+       // getToolbar().addCommandToSideMenu("Calendar", calendarImage, e -> new CalendarForm(res).show());
+         //getToolbar().addCommandToSideMenu("Trending", trendingImage, e -> new TrendingForm(res).show());
+         
+
+/*getToolbar().addCommandToSideMenu("Stats", null, e ->{
+    new StatForm().show();
+        });
+getToolbar().addCommandToSideMenu("Affich Rest", null, e ->{
+    new AffichAdminRest().show();
+        });
+getToolbar().addCommandToSideMenu("Affich Region", null, e ->{
+    new AffichAdminReg().show();
+        });
+getToolbar().addCommandToSideMenu("Ajout Region", null, e ->{
+    new AjoutRegion().show();
+        });
+      
+getToolbar().addCommandToSideMenu("Ajout Resto", null, e ->{
+    new AjoutResto().show();
+        });*/
+getToolbar().addCommandToSideMenu("Search", null, e ->{
+   new SearchProd(current).show();
+        }); 
+getToolbar().addCommandToSideMenu("Profil", null, e ->{
+    new Profil().show();
+        }); 
+getToolbar().addCommandToSideMenu("home", null, e ->{
+    new ListE(res,0,current).show();
+        }); 
+getToolbar().addCommandToSideMenu("Déconnexion", null, e ->{ new SignInForm_1().show();
+SessionManager.pref.clearAll();  
+Storage.getInstance().clearStorage();
+Storage.getInstance().clearCache(); //code deconexion
+//System.out.println(SessionManager.getUserName());
+
+
+});
+   refreshTheme();    
+       
+        
+    }
+
+        
+    protected boolean isCurrentInbox() {
+        return false;
+    }
+    
+    protected boolean isCurrentTrending() {
+        return false;
+    }
+
+    protected boolean isCurrentCalendar() {
+        return false;
+    }
+
+    protected boolean isCurrentStats() {
+        return false;
     }
 }

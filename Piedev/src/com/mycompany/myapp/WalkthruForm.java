@@ -35,7 +35,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.util.Resources;
-import com.mycompany.myapp.SignInForm;
+import com.mycompany.myapp.SigninForm;
 
 /**
  * Swiping thru tutorial
@@ -109,7 +109,7 @@ public class WalkthruForm extends Form {
         
         Button skip = new Button("Skip");
         skip.setUIID("SkipButton");
-        skip.addActionListener(e -> new SignInForm(res).show());
+        skip.addActionListener(e -> new SigninForm(res).show());
         
         Container welcomeNoteArea = BoxLayout.encloseY(message,
                 LayeredLayout.encloseIn(

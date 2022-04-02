@@ -63,14 +63,14 @@ public class ServiceTicket {
                       
                     for (Map<String, Object> obj : listOfMaps) {
                         Ticket t = new Ticket();
-                         
+                            int prix = (int) Float.parseFloat(obj.get("prix").toString());
                      
                         int id = (int) Float.parseFloat(obj.get("idticket").toString());
                         String typeticket = obj.get("typeticket").toString();
                         String description = obj.get("description").toString();
 
                         t.setIdticket((int) id);
-                        
+                        t.setPrix((int) prix);
                         t.setTypeticket(typeticket);
                         t.setDescription(description);
              
@@ -99,7 +99,7 @@ public class ServiceTicket {
   
          public boolean Addticket(Ticket ticket)
     {
-      String url = Statics.BASE_URL+"/addticket?typeticket="+ticket.getTypeticket()+"&description="+ticket.getDescription()+"&idevent="+ticket.getIdevent();
+      String url = Statics.BASE_URL+"/addticket?typeticket="+ticket.getTypeticket()+"&description="+ticket.getDescription()+"&idevent="+ticket.getIdevent()+"&prix="+ticket.getPrix();
              //  String url = Statics.BASE_URL + "create";
         req.setUrl(url);
     req.addResponseListener((e) -> {
@@ -129,7 +129,7 @@ return resultOK;
     }
               //Update 
     public boolean modifieticket(Ticket ticket) {
-         String url = Statics.BASE_URL +"/updateticket?id="+ticket.getIdticket()+"&typeticket="+ticket.getTypeticket()+"&description="+ticket.getDescription()+"&idevent="+ticket.getIdevent();
+         String url = Statics.BASE_URL +"/updateticket?id="+ticket.getIdticket()+"&typeticket="+ticket.getTypeticket()+"&description="+ticket.getDescription()+"&prix="+ticket.getPrix();
         req.setUrl(url);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override

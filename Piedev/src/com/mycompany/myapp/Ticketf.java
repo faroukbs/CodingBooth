@@ -46,7 +46,7 @@ import java.util.ArrayList;
  *
  * @author Home
  */
-public class Ticketf  extends BaseForm{
+public class Ticketf  extends BaseFormBack{
      Form current;
     public Ticketf (Resources res ) {
           super("Newsfeed",BoxLayout.y()); //herigate men Newsfeed w l formulaire vertical
@@ -54,9 +54,9 @@ public class Ticketf  extends BaseForm{
         current = this ;
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Ajout Eventl");
+        setTitle("Liste Ticket");
         getContentPane().setScrollVisible(false);
-        
+         super.addSideMenu1(res);
         
         tb.addSearchCommand(e ->  {
             
@@ -124,6 +124,14 @@ public class Ticketf  extends BaseForm{
         
         //  ListReclamationForm a = new ListReclamationForm(res);
           //  a.show();
+            refreshTheme();
+        });
+              partage.addActionListener((e) -> {
+               InfiniteProgress ip = new InfiniteProgress();
+        final Dialog ipDlg = ip.showInifiniteBlocking();
+        
+        Ajoutticket a = new   Ajoutticket(res);
+           a.show();
             refreshTheme();
         });
 
@@ -247,7 +255,8 @@ public class Ticketf  extends BaseForm{
         Label typeTxt = new Label("Type : "+ticket.getTypeticket(),"NewsTopLine2");
         Label villeTxt = new Label("description : "+ticket.getDescription(),"NewsTopLine2");
        
-      Label idTxt = new Label("description : "+ticket.getIdevent(),"NewsTopLine2");
+      Label prixTxt = new Label("prix : "+ticket.getPrix(),"NewsTopLine2");
+        
         createLineSeparator();
       
         
@@ -290,8 +299,8 @@ public class Ticketf  extends BaseForm{
         
         
         lModifier.addPointerPressedListener(l -> {
-            //System.out.println("hello update");
-          //  new ModifierTicket(res,t).show();
+            System.out.println("hello update");
+            new ModifierTicket(res,ticket).show();
         });
         
 
@@ -300,7 +309,8 @@ public class Ticketf  extends BaseForm{
                 
                 BoxLayout.encloseX(typeTxt),
                 BoxLayout.encloseX(villeTxt),
-           BoxLayout.encloseX(idTxt),
+       
+           BoxLayout.encloseX(prixTxt),
                 BoxLayout.encloseX(lModifier,lSupprimer)));
         
         

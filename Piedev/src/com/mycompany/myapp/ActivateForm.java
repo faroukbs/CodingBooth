@@ -20,7 +20,7 @@
 package com.mycompany.myapp;
 
 import com.mycompany.myapp.NewsfeedForm;
-import com.mycompany.myapp.BaseForm;
+import com.mycompany.myapp.BaseForm1;
 import com.codename1.components.FloatingHint;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
@@ -40,7 +40,7 @@ import com.codename1.ui.util.Resources;
  *
  * @author Shai Almog
  */
-public class ActivateForm extends BaseForm {
+public class ActivateForm extends BaseForm1 {
 
     public ActivateForm(Resources res) {
         super(new BorderLayout());

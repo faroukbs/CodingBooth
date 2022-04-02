@@ -49,7 +49,7 @@ import java.util.ArrayList;
  * @author Home
  */
 
-public class AjoutEventForm  extends BaseForm {
+public class AjoutEventForm  extends BaseFormBack {
       Form current;
         int Oxeeeeee;
   
@@ -63,7 +63,7 @@ public class AjoutEventForm  extends BaseForm {
             setTitle("Ajout evenement");
             getContentPane().setScrollVisible(false);
     
-        super.addSideMenu(res);
+        super.addSideMenu1(res);
         tb.addSearchCommand(e -> {});
         
         Tabs swipe = new Tabs();
@@ -144,15 +144,20 @@ public class AjoutEventForm  extends BaseForm {
         });
         
             
-            TextField titre=new TextField("","ENTER NOM");
+            TextField titre=new TextField("","ENTER Titre");
             titre.setUIID("TextFieldBlack");
             addStringValue("titre",titre);
             TextField ville=new TextField("","ville");
               ville.setUIID("TextFieldBlack");
       addStringValue("ville",ville);
+        TextField description=new TextField("","description");
+              description.setUIID("TextFieldBlack");
+      addStringValue("description",description);
        TextField photo=new TextField("","photo");
               photo.setUIID("TextFieldBlack");
       addStringValue("photo",photo);
+       
+      
       
          
         
@@ -162,23 +167,28 @@ public class AjoutEventForm  extends BaseForm {
          @Override
          public void actionPerformed(ActionEvent l) {
              try{
-                 if(titre.getText().equals("") || ville.getText().equals("")|| photo.getText().equals("")){
+                 if(titre.getText().equals("") || ville.getText().equals("")|| description.getText().equals("")|| photo.getText().equals("")){
                      
                      Dialog.show("Verifier vos donne", "", "annuler","ok");
                  }
                  else{
                      InfiniteProgress ip= new InfiniteProgress();
                      final Dialog iDialog = ip.showInfiniteBlocking();
-                     Eventl e = new Eventl(String.valueOf(titre.getText()).toString(),
+                     Eventl e = new Eventl(
+                             String.valueOf(titre.getText()).toString(),
                             
                              String.valueOf(ville.getText()).toString(),
+                              String.valueOf(description.getText()).toString(),
                       String.valueOf(photo.getText()
                                   ).toString()
+                             
+                            
+                             
                      );
                      System.out.println(" data evenement" +e);
                      ServiceEventl.getInstance().ajouterevent(e);
                      iDialog.dispose();
-                     new ListEventForm(current,0,res).show();
+                     new AfficheEForm(res,"").show();
                      refreshTheme();
                  }
              }

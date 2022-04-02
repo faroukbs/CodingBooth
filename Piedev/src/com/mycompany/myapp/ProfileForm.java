@@ -19,7 +19,7 @@
 
 package com.mycompany.myapp;
 
-import com.mycompany.myapp.BaseForm;
+import com.mycompany.myapp.BaseForm1;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Command;
@@ -42,7 +42,7 @@ import com.codename1.ui.util.Resources;
  *
  * @author Shai Almog
  */
-public class ProfileForm extends BaseForm {
+public class ProfileForm extends BaseForm1 {
 
     public ProfileForm(Resources res) {
         super("Newsfeed", BoxLayout.y());

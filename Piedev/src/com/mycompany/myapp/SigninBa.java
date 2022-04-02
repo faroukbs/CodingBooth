@@ -21,7 +21,7 @@ import com.mycompany.myapp.util.SignUpForm;
  *
  * @author Home
  */
-public class SigninBa extends BaseForm {
+public class SigninBa extends BaseForm1 {
     
     public SigninBa(Resources res) {
         super(new BorderLayout());

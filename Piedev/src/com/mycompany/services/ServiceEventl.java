@@ -47,7 +47,7 @@ public class ServiceEventl {
     }
  public boolean resultOK;
   public boolean ajouterevent(Eventl l){
-                 String url = Statics.BASE_URL+"/addeventl?titre="+l.getTitre()+"&ville="+l.getVille()+"&photo="+l.getPhoto();
+                 String url = Statics.BASE_URL+"/addeventl?titre="+l.getTitre()+"&ville="+l.getVille()+"&description="+l.getDescription()+"&photo="+l.getPhoto();
                req.setUrl(url);
                  req.addResponseListener((e) -> {
                     resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
@@ -62,7 +62,7 @@ return resultOK;
   }
  //Update 
     public boolean modifierevent(Eventl eventl) {
-         String url = Statics.BASE_URL +"/updateevent?id="+eventl.getIdevent()+"&titre="+eventl.getTitre()+"&ville="+eventl.getVille()+"&photo="+eventl.getPhoto();
+         String url = Statics.BASE_URL +"/updateevent?id="+eventl.getIdevent()+"&titre="+eventl.getTitre()+"&ville="+eventl.getVille()+"&description="+eventl.getDescription()+"&photo="+eventl.getPhoto();
         req.setUrl(url);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -113,15 +113,16 @@ return resultOK;
                       
                     for (Map<String, Object> obj : listOfMaps) {
                         Eventl e = new Eventl();
-                        int id = (int) Float.parseFloat(obj.get("idevent").toString());
+                   int id = (int) Float.parseFloat(obj.get("idevent").toString());
                         String ville = obj.get("ville").toString();
                         String titre = obj.get("titre").toString();
-                       
+                        String description = obj.get("description").toString();
    String photo = obj.get("photo").toString();
                         
                         e.setIdevent((int) id);
                         e.setTitre(titre);
                         e.setVille(ville);
+                           e.setDescription(description);
                      e.setPhoto(photo);
                     
                     
@@ -167,12 +168,13 @@ return resultOK;
                         int id = (int) Float.parseFloat(obj.get("idevent").toString());
                         String ville = obj.get("ville").toString();
                         String titre = obj.get("titre").toString();
-                       
+                        String description = obj.get("description").toString();
    String photo = obj.get("photo").toString();
                         
                         e.setIdevent((int) id);
                         e.setTitre(titre);
                         e.setVille(ville);
+                           e.setDescription(description);
                      e.setPhoto(photo);
                     
                     

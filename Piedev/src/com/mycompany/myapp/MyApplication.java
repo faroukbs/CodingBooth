@@ -23,14 +23,14 @@ import com.codename1.io.NetworkEvent;
 public class MyApplication {
 
     private Form current;
-    private Resources theme;
-
+    private Resources theme1;
+ 
     public void init(Object context) {
         // use two network threads instead of one
         updateNetworkThreadCount(2);
 
-        theme = UIManager.initFirstTheme("/theme");
-
+        theme1 = UIManager.initFirstTheme("/theme1");
+ 
         // Enable Toolbar on all Forms by default
         Toolbar.setGlobalToolbar(true);
 
@@ -53,12 +53,25 @@ public class MyApplication {
             current.show();
             return;
         } 
-             //new Ticketf (theme).show();
-            //  new Ajoutticket (theme).show();
-        new ListEventForm(current,0,theme).show();
+        int id;
+           //  new Ticketf (theme).show();
+           //new ListE(theme1,0,current).show();
+           //   new Ajoutticket (theme).show();
+      //  new ListEventForm (current,0,theme).show();
       // new AfficheEForm(theme,"").show();
     //new WalkthruForm(theme).show();
-   //  new Rechere("").show();
+   //new SignInForm(theme1).show();
+ 
+  // new AjoutCategorie(theme).show();
+    // new AjoutSalle(theme).show();
+ // new SplashForm(theme1).show();
+  new SignInForm_1().show();
+  //    new ListSalle(theme).show();
+    //new ListCategorie(theme).show();
+  //  new ListProduct(theme1,current).show();
+  // new ListCategory(theme, current).show();
+     // new AjoutLigneForm(theme).show();
+    // new AjoutCommandeForm(theme).show();
     }
     
 

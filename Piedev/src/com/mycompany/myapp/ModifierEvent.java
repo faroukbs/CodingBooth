@@ -22,7 +22,7 @@ import com.mycompany.services.ServiceEventl;
  *
  * @author Home
  */
-public class ModifierEvent extends BaseForm{
+public class ModifierEvent extends BaseFormBack{
      Form current;
       public ModifierEvent(Resources res , Eventl rec) {
          super("Newsfeed",BoxLayout.y()); //herigate men Newsfeed w l formulaire vertical
@@ -31,15 +31,17 @@ public class ModifierEvent extends BaseForm{
         current = this ;
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Ajout Reclamation");
+        setTitle("Modifier event");
         getContentPane().setScrollVisible(false);
         
         
-        super.addSideMenu(res);
+        super.addSideMenu1(res);
         
         TextField titre = new TextField(rec.getTitre() , "titre" , 20 , TextField.ANY);
         TextField ville = new TextField(rec.getVille() , "ville" , 20 , TextField.ANY);
+         TextField description = new TextField(rec.getDescription() , "description" , 20 , TextField.ANY);
  TextField photo = new TextField(rec.getPhoto() , "photo" , 20 , TextField.ANY);
+ 
         //etat bch na3mlo comobbox bon lazm admin ya3mlleha approuver mais just chnwarikom ComboBox
         
     
@@ -49,12 +51,14 @@ public class ModifierEvent extends BaseForm{
         
         titre.setUIID("NewsTopLine");
         ville.setUIID("NewsTopLine");
+          description.setUIID("NewsTopLine");
         photo.setUIID("NewsTopLine");
         
         titre.setSingleLineTextArea(true);
         ville.setSingleLineTextArea(true);
+           description.setSingleLineTextArea(true);
         photo.setSingleLineTextArea(true);
-        
+      
         Button btnModifier = new Button("Modifier");
        btnModifier.setUIID("Button");
        
@@ -64,10 +68,11 @@ public class ModifierEvent extends BaseForm{
            
            rec.setTitre(titre.getText());
            rec.setVille(ville.getText());
+             rec.setDescription(description.getText());
             rec.setPhoto(photo.getText());
           
        
-       //appel fonction modfier reclamation men service
+       //appel fonction modfier event men service
        
        if(ServiceEventl.getInstance().modifierevent(rec)) { // if true
            new AfficheEForm(res,"").show();
@@ -94,9 +99,11 @@ public class ModifierEvent extends BaseForm{
                 new FloatingHint(titre),
                 createLineSeparator(),
                 new FloatingHint(ville),
+                 createLineSeparator(),
+                 new FloatingHint(description),
                 createLineSeparator(),
                 new FloatingHint(photo),
-                createLineSeparator(),
+           
                 createLineSeparator(),//ligne de séparation
                 btnModifier,
                 btnAnnuler

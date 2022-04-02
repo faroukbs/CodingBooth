@@ -1,5 +1,6 @@
 package com.mycompany.myapp;
 
+import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
@@ -47,6 +48,10 @@ public class AfficheEForm  extends BaseFormBack{
      Form current;
      int Oxeeeeee;
      int n=0;
+   
+    Image imgg = null;
+    ImageViewer iv = null;
+    EncodedImage ec;
     public AfficheEForm (Resources res,String titre) {
         
           super("Newsfeed",BoxLayout.y()); //herigate men Newsfeed w l formulaire vertical
@@ -54,7 +59,7 @@ public class AfficheEForm  extends BaseFormBack{
         current = this ;
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Ajout Eventl");
+        setTitle(" Liste evenement");
         getContentPane().setScrollVisible(false);
          
          super.addSideMenu1(res);
@@ -67,7 +72,7 @@ public class AfficheEForm  extends BaseFormBack{
         Label s1 = new Label();
         Label s2 = new Label();
         
-        addTab(swipe,s1, res.getImage("gallery4.png"),"","",res);
+        addTab(swipe,s1, res.getImage("gallery2.png"),"","",res);
         
        
          swipe.setUIID("Container");
@@ -109,12 +114,12 @@ public class AfficheEForm  extends BaseFormBack{
         add(LayeredLayout.encloseIn(swipe, radioContainer));
   
         ButtonGroup barGroup = new ButtonGroup();
-        RadioButton mesListes = RadioButton.createToggle("Mes   Evenemens", barGroup);
+        RadioButton mesListes = RadioButton.createToggle("Mes  Evenemens", barGroup);
         mesListes.setUIID("SelectBar");
         RadioButton liste = RadioButton.createToggle("Autres", barGroup);
         liste.setUIID("SelectBar");
-        RadioButton partage = RadioButton.createToggle("Ajouter", barGroup);
-        partage.setUIID("SelectBar");
+        RadioButton Ajouter = RadioButton.createToggle("Ajouter", barGroup);
+       Ajouter .setUIID("SelectBar");
         Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
 
 
@@ -127,8 +132,16 @@ public class AfficheEForm  extends BaseFormBack{
             refreshTheme();
         });
 
+          Ajouter .addActionListener((e) -> {
+               InfiniteProgress ip = new InfiniteProgress();
+        final Dialog ipDlg = ip.showInifiniteBlocking();
+        
+         AjoutEventForm a = new  AjoutEventForm (res);
+            a.show();
+            refreshTheme();
+        });
        add(LayeredLayout.encloseIn(
-                GridLayout.encloseIn(3, mesListes, liste, partage),
+                GridLayout.encloseIn(3, mesListes, liste, Ajouter ),
                 FlowLayout.encloseBottom(arrow)
         ));
             
@@ -136,15 +149,15 @@ public class AfficheEForm  extends BaseFormBack{
   
 
 
-        partage.setSelected(true);
+       Ajouter .setSelected(true);
        arrow.setVisible(false);
        addShowListener(e -> {
             arrow.setVisible(true);
-            updateArrowPosition(partage, arrow);
+            updateArrowPosition(Ajouter , arrow);
         });
        bindButtonSelection(mesListes, arrow);
        bindButtonSelection(liste, arrow);
-        bindButtonSelection(partage, arrow);
+        bindButtonSelection(Ajouter , arrow);
          //special case for rotation
        addOrientationListener(e -> {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
@@ -308,10 +321,20 @@ public class AfficheEForm  extends BaseFormBack{
         
         
         //kif nzidouh  ly3endo date mathbih fi codenamone y3adih string w y5alih f symfony dateTime w ytab3ni cha3mlt taw yjih
-        Label titreTxt = new Label("Date : "+rec.getTitre(),"NewsTopLine2");
-        Label villeTxt = new Label("objet : "+rec.getVille(),"NewsTopLine2");
-        Label photoTxt = new Label("etat : "+rec.getPhoto(),"NewsTopLine2" );
-          Label idTxt = new Label("description : "+rec.getIdevent(),"NewsTopLine2");
+        Label titreTxt = new Label("Titre : "+rec.getTitre(),"NewsTopLine2");
+        Label villeTxt = new Label("ville: "+rec.getVille(),"NewsTopLine2");
+        Label descriptionTxt = new Label("description : "+rec.getDescription(),"NewsTopLine2" );
+        Label photoTxt = new Label("photo : "+rec.getPhoto(),"NewsTopLine2" );
+   
+             
+              Button btnModifier = new Button("Modifier");
+              
+       btnModifier.setUIID("Button");
+       btnModifier.addPointerPressedListener(l -> {
+            System.out.println("hello update");
+        
+        });
+        
         createLineSeparator();
       
         
@@ -330,7 +353,7 @@ public class AfficheEForm  extends BaseFormBack{
             
             Dialog dig = new Dialog("Suppression");
             
-            if(dig.show("Suppression","Vous voulez supprimer ce reclamation ?","Annuler","Oui")) {
+            if(dig.show("Suppression","Vous voulez supprimer ce evenement?","Annuler","Oui")) {
                 dig.dispose();
             }
             else {
@@ -364,8 +387,8 @@ public class AfficheEForm  extends BaseFormBack{
                 
                 BoxLayout.encloseX(titreTxt),
                 BoxLayout.encloseX(villeTxt),
-                BoxLayout.encloseX(idTxt),
-                BoxLayout.encloseX(photoTxt,lModifier,lSupprimer)));
+                BoxLayout.encloseX(descriptionTxt),
+                BoxLayout.encloseX(photoTxt,lModifier,lSupprimer,btnModifier)));
         
         
         

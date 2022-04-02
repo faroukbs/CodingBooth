@@ -36,9 +36,9 @@ import com.mycompany.myapp.util.SignUpForm;
  *
  * @author Shai Almog
  */
-public class SignInForm extends BaseForm {
+public class SigninForm extends BaseForm1 {
 
-    public SignInForm(Resources res) {
+    public SigninForm(Resources res) {
         super(new BorderLayout());
         
         if(!Display.getInstance().isTablet()) {

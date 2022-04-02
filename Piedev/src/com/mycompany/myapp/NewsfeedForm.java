@@ -19,7 +19,7 @@
 
 package com.mycompany.myapp;
 
-import com.mycompany.myapp.BaseForm;
+import com.mycompany.myapp.BaseForm1;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
 import com.codename1.components.ToastBar;
@@ -49,7 +49,7 @@ import com.codename1.ui.util.Resources;
  *
  * @author Shai Almog
  */
-public class NewsfeedForm extends BaseForm {
+public class NewsfeedForm extends BaseForm1 {
 
     public NewsfeedForm(Resources res) {
         super("Newsfeed", BoxLayout.y());

@@ -32,7 +32,7 @@ public class MapForm {
     Form f = new Form();
   MapContainer cnt = null;
       Form current;
-public MapForm(Resources theme,Form previous) {
+public MapForm(Resources res,Form previous) {
         current=f;
     try{
         cnt = new MapContainer("AIzaSyCy-fMWerzvXcPCV0FDI07hW2DAzs_mnpY");
@@ -105,7 +105,7 @@ public MapForm(Resources theme,Form previous) {
 f.show();
 // f.getToolbar().addCommandToRightBar("back", null, (ev)->{ new AjoutReclamationForm(f).show()});
         f.getToolbar().addMaterialCommandToLeftBar("",FontImage.MATERIAL_ARROW_BACK, (evt) -> {
-        new BaseFormBack().show();
+        new AfficheEForm(res,"").show();
       });
     
     }

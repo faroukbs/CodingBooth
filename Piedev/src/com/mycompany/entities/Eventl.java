@@ -150,10 +150,28 @@ public class Eventl {
         this.photo = photo;
     }
 
+    public Eventl(int idevent, String titre, String ville, String description, String datedebut, String photo) {
+        this.idevent = idevent;
+        this.titre = titre;
+        this.ville = ville;
+        this.description = description;
+        this.datedebut = datedebut;
+        this.photo = photo;
+    }
+
+    public Eventl(String titre, String ville, String description, String photo) {
+        this.titre = titre;
+        this.ville = ville;
+        this.description = description;
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
-        return "Eventl{" + "idevent=" + idevent + ", titre=" + titre + ", ville=" + ville + ", datedebut=" + datedebut + ", photo=" + photo + '}';
+        return "Eventl{" + "idevent=" + idevent + ", titre=" + titre + ", ville=" + ville + ", description=" + description + ", datedebut=" + datedebut + ", photo=" + photo + '}';
     }
+
+  
 
   
 

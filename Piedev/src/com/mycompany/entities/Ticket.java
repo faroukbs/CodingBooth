@@ -19,7 +19,7 @@ public class Ticket {
    
     }
         private  String image;
-          private  float prix ;
+          private  int prix ;
            private  String description;
            int idevent;
 
@@ -31,6 +31,13 @@ public class Ticket {
         this.typeticket = typeticket;
         this.description = description;
         this.idevent = idevent;
+    }
+
+    public Ticket(int idticket, String typeticket, int prix, String description) {
+        this.idticket = idticket;
+        this.typeticket = typeticket;
+        this.prix = prix;
+        this.description = description;
     }
     
 
@@ -63,7 +70,7 @@ public class Ticket {
         this.image = image;
     }
 
-    public void setPrix(float prix) {
+    public void setPrix(int prix) {
         this.prix = prix;
     }
 
@@ -98,7 +105,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(String typeticket, String image, float prix, String description) {
+    public Ticket(String typeticket, String image, int prix, String description) {
         this.typeticket = typeticket;
         this.image = image;
         this.prix = prix;
@@ -107,13 +114,20 @@ public class Ticket {
        
     }
 
-    public Ticket(int idticket, String typeticket, String image, float prix, String description) {
+    public Ticket(int idticket, String typeticket, String image, int prix, String description) {
         this.idticket = idticket;
         this.typeticket = typeticket;
         this.image = image;
         this.prix = prix;
         this.description = description;
       
+    }
+
+    public Ticket(String typeticket, String description, int idevent ,int prix) {
+        this.typeticket = typeticket;
+        this.prix = prix;
+        this.description = description;
+        this.idevent = idevent;
     }
 
 

@@ -57,7 +57,7 @@ import static java.util.concurrent.ThreadLocalRandom.current;
  *
  * @author Home
  */
-public class ListEventForm extends BaseForm {
+public class ListEventForm extends BaseForm1 {
            Form current;
               int n=0;
 Image imgg = null;
@@ -202,6 +202,7 @@ Image imgg = null;
          //SpanLabel sp = new SpanLabel();
         //sp.setText(ServiceVoyage.getInstance().affichageVoyage().toString());
         this.add(list);
+        
         //getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> res.showBack());
 
     }

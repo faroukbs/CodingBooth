@@ -20,7 +20,7 @@
 package com.mycompany.myapp.util;
 
 import com.mycompany.myapp.ActivateForm;
-import com.mycompany.myapp.BaseForm;
+import com.mycompany.myapp.BaseForm1;
 import com.codename1.components.FloatingHint;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
@@ -40,7 +40,7 @@ import static com.sun.javafx.fxml.expression.Expression.add;
  *
  * @author Shai Almog
  */
-public class SignUpForm extends BaseForm {
+public class SignUpForm extends BaseForm1 {
 
     public SignUpForm(Resources res) {
         super(new BorderLayout());

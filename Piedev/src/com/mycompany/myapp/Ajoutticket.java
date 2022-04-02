@@ -53,7 +53,7 @@ import com.mycompany.services.ServiceEventl;
  *
  * @author Home
  */
-public class Ajoutticket extends BaseForm{
+public class Ajoutticket extends BaseFormBack{
        Form current;
         int Oxeeeeee;
     public  Ajoutticket (Resources res){
@@ -63,10 +63,10 @@ public class Ajoutticket extends BaseForm{
         current = this;
             setToolBar(tb);
             getTitleArea().setUIID("Container");
-            setTitle("Ajout evenement");
+            setTitle("Ajout ticket");
             getContentPane().setScrollVisible(false);
     
-        super.addSideMenu(res);
+        super.addSideMenu1(res);
         tb.addSearchCommand(e -> {});
         
         Tabs swipe = new Tabs();
@@ -145,18 +145,20 @@ public class Ajoutticket extends BaseForm{
         addOrientationListener(e -> {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
-        TextField idevent=new TextField("","ENTER NOM");
+        TextField idevent=new TextField("","event");
             idevent.setUIID("TextFieldBlack");
-            addStringValue("typeticket",idevent);
+            addStringValue("event",idevent);
             
-            TextField typeticket=new TextField("","ENTER NOM");
+            TextField typeticket=new TextField("","ENTER Type");
             typeticket.setUIID("TextFieldBlack");
             addStringValue("typeticket",typeticket);
             TextField description=new TextField("","description");
               description.setUIID("TextFieldBlack");
-      addStringValue("ville",description);
+      addStringValue("description",description);
     
-      
+            TextField prix=new TextField("","prix");
+              prix.setUIID("TextFieldBlack");
+      addStringValue("prix",prix);
          
         
       Button btnAjouter= new Button("ajouter:");
@@ -165,19 +167,19 @@ public class Ajoutticket extends BaseForm{
          @Override
          public void actionPerformed(ActionEvent l) {
              try{
-                 if(typeticket.getText().equals("") || description.getText().equals("")|| idevent.getText().equals("")){
+                 if(typeticket.getText().equals("") || description.getText().equals("")|| idevent.getText().equals("")|| prix.getText().equals("")){
                      
                      Dialog.show("Verifier vos donne", "", "annuler","ok");
                  }
                  else{
                      InfiniteProgress ip= new InfiniteProgress();
                      final Dialog iDialog = ip.showInfiniteBlocking();
-                              Ticket e = new Ticket(typeticket.getText(),description.getText(),Integer.parseInt(idevent.getText()));
+                              Ticket e = new Ticket(typeticket.getText(),description.getText(),Integer.parseInt(idevent.getText()),Integer.parseInt(prix.getText()));
                   
                      System.out.println(" data evenement" +e);
                      ServiceTicket.getInstance().Addticket(e);
                      iDialog.dispose();
-                     new ListEventForm(current,0,res).show();
+                     new Ticketf(res).show();
                      refreshTheme();
                  }
              }
