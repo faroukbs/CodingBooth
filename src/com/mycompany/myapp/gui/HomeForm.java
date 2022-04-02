@@ -28,21 +28,27 @@ Form current;
         //product
         Button btnAddProd = new Button("Add Product");
         Button btnListProd = new Button("List Product");
+       
        //category
         Button btnAddTask = new Button("Add Category");
         Button btnListTasks = new Button("List category");
+        Button btnSeeProd = new Button("Search and Sort category");
+        btnSeeProd.addActionListener(e-> new SearchProd(current).show());
+        
+
         
         
         
         //product
         btnAddProd.addActionListener(e-> new AddProduct(current).show());
         btnListProd.addActionListener(e-> new ListProduct(current).show());
-        addAll(btnAddProd,btnListProd);
+  
+     
         
         //category
         btnAddTask.addActionListener(e-> new AddCategory(current).show());
         btnListTasks.addActionListener(e-> new ListCategory(current).show());
-        addAll(btnAddTask,btnListTasks);
+        addAll(btnAddProd,btnListProd,btnAddTask,btnListTasks,btnSeeProd);
         
         
     }
@@ -59,6 +65,8 @@ Form current;
        //category
         Button btnAddTask = new Button("Add Category");
         Button btnListTasks = new Button("List category");
+        Button btnSeeProd = new Button("Search and Sort category");
+
         
         
         
@@ -70,7 +78,8 @@ Form current;
         //category
         btnAddTask.addActionListener(e-> new AddCategory(current).show());
         btnListTasks.addActionListener(e-> new ListCategory(current).show());
-        addAll(btnAddTask,btnListTasks);
+        btnSeeProd.addActionListener(e-> new SearchProd(current).show());
+       addAll(btnAddProd,btnListProd,btnAddTask,btnListTasks,btnSeeProd);
     }
     
     

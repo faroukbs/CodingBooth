@@ -7,6 +7,7 @@ package com.mycompany.myapp.gui;
 
 import com.codename1.components.MultiButton;
 import com.codename1.ui.Button;
+import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
@@ -45,6 +46,31 @@ public class ListProduct extends Form {
             add(update);
             
             }
+        /* *** *SEARCHBAR* *** */
+        getToolbar().addSearchCommand(e -> {
+            String text = (String) e.getSource();
+            if (text == null || text.length() == 0) {
+                // clear search
+                for (Component cmp : getContentPane()) {
+                    cmp.setHidden(false);
+                    cmp.setVisible(true);
+                }
+                getContentPane().animateLayout(150);
+            } else {
+                text = text.toLowerCase();
+                for (Component cmp : getContentPane()) {
+                    MultiButton mb = (MultiButton) cmp;
+                    String line1 = mb.getTextLine1();
+                    String line2 = mb.getTextLine2();
+                    boolean show = line1 != null && line1.toLowerCase().indexOf(text) > -1 ||
+                            line2 != null && line2.toLowerCase().indexOf(text) > -1;
+                    mb.setHidden(!show);
+                    mb.setVisible(show);
+
+                }
+                getContentPane().animateLayout(150);
+            }
+        }, 4);
         
 //        SpanLabel sp = new SpanLabel();
 //        sp.setText(ServiceProduct.getInstance().getAllProduct().toString());

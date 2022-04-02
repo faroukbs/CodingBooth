@@ -12,5 +12,6 @@ package com.mycompany.myapp.utils;
 public class Statics {
     
     public static final String BASE_URL="http://127.0.0.1:8000/";
-    
+    public static final String BOOK_IMG_URL = "http://localhost/CodingBooth-faroukapi/public/uploads";
+
 }

@@ -5,6 +5,8 @@
  */
 package com.mycompany.myapp.entities;
 
+import java.util.Comparator;
+
 /**
  *
  * @author bouss
@@ -100,5 +102,13 @@ public class Product {
         return "Product{" + "idProduit=" + idProduit + ", nomprod=" + nomprod + ", description=" + description + ", image=" + image + ", prix=" + prix + ", quantity=" + quantity + '}';
     }
     
+    public static Comparator<Product> statusComparator = new Comparator<Product>() {
+        @Override
+        public int compare(Product o1, Product o2) {
+            return (int) (o1.getNomprod().toLowerCase().compareTo(o2.getNomprod().toLowerCase()));
+        }
+    };
+    
+
     
 }

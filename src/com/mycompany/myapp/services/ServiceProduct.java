@@ -29,7 +29,7 @@ public class ServiceProduct {
     public boolean resultOK;
     private ConnectionRequest req;
 
-    private ServiceProduct() {
+    public ServiceProduct() {
         req = new ConnectionRequest();
     }
 

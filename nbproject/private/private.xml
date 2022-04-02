@@ -3,18 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/gui/ModifierCategory.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/gui/ModifierProduct.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/services/ServiceProduct.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/gui/DeleteProduct.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/gui/DeleteCategory.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/gui/ListCategory.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/entities/Product.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/services/ServiceCategory.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/gui/ListProduct.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/gui/HomeForm.java</file>
-            <file>file:/C:/Users/bouss/Desktop/WorkshopOarsingJson/src/com/mycompany/myapp/gui/AddProduct.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
