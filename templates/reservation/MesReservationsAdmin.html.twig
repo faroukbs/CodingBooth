@@ -1,0 +1,53 @@
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Listes Des Reservations</h4>
+
+            <p class="card-description">
+
+            </p>
+            <div class="table-responsive pt-3">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+
+
+                        <th>Quantity</th>
+                        <th>DateReservation</th>
+
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in reservations %}
+                        <tr>
+
+                            <td>{{ i.Quantity }}</td>
+                            <td>{{ i.datereser|date }}</td>
+
+<td>
+                            <a href="{{ path('deleteAdminReser',{'id': i.idreser }) }}"><button type="button" class="btn" ><font size="3pt" >{% trans %}Supprimer{% endtrans %}</font></button></a>
+
+</td>
+
+
+
+
+
+
+
+                        </tr>
+                    {% endfor %}
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

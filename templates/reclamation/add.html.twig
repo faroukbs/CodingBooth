@@ -1,0 +1,121 @@
+{% extends 'base3.html.twig' %}
+{% use "bootstrap_4_layout.html.twig" %}
+{% block title %}<title>Reclamation</title> {% endblock %}
+{% block body %}
+    <!-- Begin Li's Breadcrumb Area -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Contact</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+    {% endfor %}
+
+    <!-- Li's Breadcrumb Area End Here -->
+    <!-- Begin Contact Main Page Area -->
+   
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 offset-lg-1 col-md-12 order-1 order-lg-2">
+                    <div class="contact-page-side-content">
+                        <h3 class="contact-page-title">Contact Us</h3>
+                        <p class="contact-page-message mb-25"></p>
+                        <div class="single-contact-block">
+                            <h4><i class="fa fa-fax"></i> Address</h4>
+                            <p>El Ghazala.</p>
+                        </div>
+                        <div class="single-contact-block">
+                            <h4><i class="fa fa-phone"></i> Phone</h4>
+                            <p>Mobile: (+216) 28 608 927</p>
+                            <p>Hotline: 77 777 777</p>
+                        </div>
+                        <div class="single-contact-block last-child">
+                            <h4><i class="fa fa-envelope-o"></i> Email</h4>
+                            <p>gogympi@gym.tn</p>
+                            <p>support@gogympi.tn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 order-2 order-lg-1">
+                    <div class="contact-form-content pt-sm-55 pt-xs-55">
+                        <h3 class="contact-page-title mt-20">Tell Us Your Message</h3>
+                        <div class="contact-form">
+                                {{ form_start(formA,{'attr': {'novalidate': 'novalidate'}} ) }}
+                                <div class="form-group">
+                                    <div class="row">
+                                        {{ form_label(formA.name,"Your Name") }}
+                                        <span class="required">*</span>
+                                        {{ form_widget(formA.name,{'attr':{"class":"mb-0"}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        {{ form_label(formA.email,"Your Email") }}
+                                        <span class="required">*</span>
+                                        {{ form_widget(formA.email)}}
+                                    </div>
+
+                                </div>
+
+                            
+
+                                <div class="form-group">
+                                    <div class="row">
+                                    {{ form_label(formA.type,"Reclamation Type") }}
+                                    <span class="required">*</span>
+                                    {{ form_widget(formA.type)}}
+                                    </div>
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    <div class="row">
+                                    {{ form_label(formA.idCommande,"Command ID") }}
+                                    <span class="required">*</span>
+                                    {{ form_widget(formA.idCommande)}}
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                    {{ form_label(formA.subject,"Reclamation Subject") }}
+                                    <span class="required">*</span>
+                                    {{ form_widget(formA.subject) }}
+                                    </div>
+
+                                </div>
+                                
+                                <div class="form-group mt-20">
+                                    <div class="row">
+                                    {{ form_label(formA.message,"Your Message") }}
+                                    <span class="required">*</span>
+                                    {{ form_widget(formA.message) }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                
+                                    {{ form_row(formA.Ajouter, {"label":"Send"},{'attr':{ "class":"btn btn-primary btn-lg" }}) }}
+                                    </div>
+                                </div>
+
+                                {{ form_end(formA) }}
+                        </div>
+                        <p class="form-messege"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Main Page Area End Here -->
+
+   
+{% endblock %}

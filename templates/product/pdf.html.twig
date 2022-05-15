@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<title>Product list</title>
+
+
+<h1>Products</h1>
+
+<table class="table" border="1">
+	<thead>
+		<tr></tr>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Description</th>
+			<th scope="col">Name</th>
+
+			<th scope="col">Prix</th>
+
+			<th scope="col">image
+			</th>
+		</tr>
+	</thead>
+</tr></thead>{% for item in product %}
+<tr>
+
+	<th scope="row">{{item.idproduit}}</th>
+
+	<td>{{item.description}}</td>
+	<td>{{item.nomprod}}</td>
+	<td>{{item.Prix}}</td>
+    {# <link href="{{asset("C:/Users/bouss/Desktop/CodingBooth-integration2/publicuploads\image") }}" /> #}
+     <td><img src="{{asset('uploads/image/') ~ item.image}}"  width="50" height="50"></td> 
+
+</tr>{% else %}
+<tr>
+	<td colspan="5">no records found</td>
+</tr>{% endfor %}</tbody></table>

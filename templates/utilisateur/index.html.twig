@@ -1,0 +1,57 @@
+{% use "bootstrap_4_layout.html.twig" %}
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function search(keyword, page = 1){
+            $.ajax({
+                type: 'GET',
+                url: '/admin/users?term='+keyword + '&page=' + page,
+                success: function (result) {
+                    $("#users_table").html(result);
+                }
+            });
+        }
+        $(document).ready(function(){
+            search("");
+            $(document).on('click', '.page-link', function(event){
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                var term = $("#search").val();
+                var url = new URL("http://www.example.com" + $(this).attr("href"));
+                var page = url.searchParams.get("page");
+                search(term, page);
+            })
+            $("#search").keyup(function () {
+                var value = $("#search").val();
+                search(value);
+            });
+        });
+    </script>
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="page-titles">
+                <h4>Liste</h4>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Des</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">membres</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                    
+                            <div class="table-responsive" id="users_table">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

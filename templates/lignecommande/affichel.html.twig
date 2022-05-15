@@ -1,0 +1,37 @@
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+    <div class="table-responsive" width="10%">
+
+        {%  for message in app.flashes ('info') %}
+            <div class="alert alert-success">
+                {{ message }}
+
+            </div>
+        {% endfor %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+
+                <th>Num de la commande</th>
+                <th>Nom du produit</th>
+                <th>Quantité</th>
+
+                <th>{% trans %}Modifier{% endtrans %}</th>
+                <th>{% trans %}Supprimer{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr {% for l in ligne %}>
+                <td>{{ l.idcommande }}</td>
+                <td>{{ l.idProduit }}</td>
+                <td>{{ l.quantite }}</td>
+                <td><a class="btn" href="{{ path('updateligne',{'idlignecommande':l.idlignecommande})  }}"> Modifier</a> </td>
+                <td><a class="btn" href="{{ path('supprimerligne',{'idlignecommande':l.idlignecommande})  }}"> Supprimer</a> </td>
+
+            </tr>
+            {% endfor %}>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

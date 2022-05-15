@@ -1,0 +1,19 @@
+{% use "bootstrap_4_layout.html.twig" %}
+
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+	<h1>add categories</h1>
+<center>
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	
+	{{ form_end(form) }}
+
+	<a href="{{ path('category_produit') }}">
+		<button type="button" class="btn btn-outline-danger">
+			<font size="3pt">{% trans %}back to list{% endtrans %}</font>
+		</button>
+	</a>
+  </center>
+
+{% endblock %}

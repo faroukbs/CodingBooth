@@ -1,0 +1,233 @@
+{%block css%}
+	<!-- CSS here -->
+	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../assets/css/slicknav.css">
+	<link rel="stylesheet" href="../../assets/css/flaticon.css">
+	<link rel="stylesheet" href="../../assets/css/gijgo.css">
+	<link rel="stylesheet" href="../../assets/css/animate.min.css">
+	<link rel="stylesheet" href="../../assets/css/animated-headline.css">
+	<link rel="stylesheet" href="../../assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="../../assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="../../assets/css/themify-icons.css">
+	<link rel="stylesheet" href="../../assets/css/slick.css">
+	<link rel="stylesheet" href="../../assets/css/nice-select.css">
+	<link rel="stylesheet" href="../../assets/css/style.css">
+
+{% endblock %}
+{%block header%}
+	<header>
+
+		<!-- Header Start -->
+		<div class="header-area  black-bg">
+			<div class="container-fluid">
+				<div
+					class="menu-wrapper d-flex align-items-center justify-content-between">
+					<!-- Logo -->
+					<div class="logo">
+						 <a href="{{ path('admin') }}"  ><img src="../../../assets/img/logo/LOGO.png" alt=""></a>  
+					</div>
+
+					{% block nav%}
+						<div class="main-menu f-right d-none d-lg-block">
+
+							<nav>
+
+								<ul id="navigation">
+									<li>
+										<a href="{{ path('home') }}">Home</a>
+									</li>
+									<li>
+										<a href="{{ path('about') }}">About</a>
+									</li>
+									<li>
+										<a href="{{ path('cours') }}">Courses</a>
+									</li>
+									<li>
+										<a href="{{ path('pricing') }}">Pricing</a>
+									</li>
+									<li>
+										<a href="{{ path('AfficheEvenementsPublic') }}">Event</a>
+									</li>
+									{% if app.user and app.user.isVerified %}
+										<li>
+											<a href="{{ path('messages') }}">Chat</a>
+										</li>
+									{% endif %}
+									<li>
+										<a href="{{ path('list') }}">Shop</a>
+									</li>
+									<li>
+										<a href="">
+											<i class="bi-cart-fill me-1"></i>
+										</ul>
+									</li>
+								</nav>
+
+							</div>
+						{% endblock %}
+						<!-- Header-btn -->
+						<div class="d-flex">
+							{% if app.user and app.user.isVerified %}
+								<div class="header-btns d-none d-lg-block f-right">
+									<a href="{{ path('app_logout') }}" class="btn">Deconnexion</a>
+								</div>
+							{% else %}
+
+								<div class="header-btns d-none d-lg-block f-right">
+									<a href="{{ path('app_login') }}" class="btn">Connexion</a>
+								</div>
+								<div class="header-btns d-none d-lg-block f-right px-4">
+									<a href="{{ path('app_register') }}" class="btn">Inscription</a>
+								</div>
+							{% endif %}
+							<!--* profil *-->
+							{% if app.user and app.user.isVerified %}
+								<div class="header-btns d-none d-lg-block f-right px-4">
+									<a href="{{ path('utilisateur_show',{'id': app.user.id}) }}" class="btn">
+										PROFIL</a>
+								</div>
+							{% endif  %}
+							<script type="text/javascript">
+								var Tawk_API = Tawk_API || {},
+Tawk_LoadStart = new Date();
+(function () {
+var s1 = document.createElement("script"),
+s0 = document.getElementsByTagName("script")[0];
+s1.async = true;
+s1.src = 'https://embed.tawk.to/62268b16a34c24564129ecac/1ftj8ukhu';
+s1.charset = 'UTF-8';
+s1.setAttribute('crossorigin', '*');
+s0.parentNode.insertBefore(s1, s0);
+})();
+							</script>
+							<!-- Mobile Menu -->
+							<div class="col-12">
+								<div class="mobile_menu d-block d-lg-none"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Header End -->
+		</header>
+	{% endblock %}
+
+
+	{% block body %}{% endblock  %}
+</body>
+
+{% block footer %}
+<footer>
+	<!--? Footer Start-->
+	<div class="footer-area black-bg">
+		<div class="container">
+			<div
+				class="footer-top footer-padding">
+				<!-- Footer Menu -->
+				<div class="row">
+					<div class="col-xl-12">
+						<div
+							class="single-footer-caption mb-50 text-center">
+							<!-- logo -->
+							<div class="footer-logo wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+								<a href="index.html"><img src="../../../../assets/img/logo/LOGO.png" alt=""></a>
+							</div>
+							<!-- Menu -->
+							<!-- Header Start -->
+							<div class="header-area main-header2 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
+								<div class="main-header main-header2">
+									<div
+										class="menu-wrapper menu-wrapper2">
+										<!-- Main-menu -->
+										<div class="main-menu main-menu2 text-center">
+											<nav>
+												<ul id="navigation">
+													<li>
+														<a href="{{ path('home') }}">Home</a>
+													</li>
+													<li>
+														<a href="{{ path('about') }}">About</a>
+													</li>
+													<li>
+														<a href="{{ path('cours') }}">Courses</a>
+													</li>
+													<li>
+														<a href="{{ path('pricing') }}">Pricing</a>
+													</li>
+													<li>
+														<a href="{{ path('AfficheEvenementsPublic') }}">Event</a>
+													</li>
+
+													<li>
+														<a href="{{ path('list') }}">Shop</a>
+													</li>
+													<li>
+														<a href="{{ path('cart_index') }}">
+															<i class="bi-cart-fill me-1"></i>
+															Cart</a>
+													</li>
+												</ul>
+
+											</li>
+										</nav>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Header End -->
+						<!-- social -->
+						<div class="footer-social mt-30 wow fadeInUp" data-wow-duration="3s" data-wow-delay=".8s">
+							<a href="#">
+								<i class="fab fa-twitter"></i>
+							</a>
+							<a href="https://bit.ly/sai4ull">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+							<a href="#">
+								<i class="fab fa-pinterest-p"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer Bottom -->
+	</div>
+</div>
+<!-- Footer End--></footer>{%endblock%}<!-- Scroll Up --><div id="back-top">
+<a title="Go to Top" href="#">
+	<i class="fas fa-level-up-alt"></i>
+</a></div>{%block js%}<!-- JS here --><script src="./../../assets/js/vendor/modernizr-3.5.0.min.js"></script><!-- Jquery, Popper, Bootstrap --><script src="./../../assets/js/vendor/jquery-1.12.4.min.js"></script><script src="./../../assets/js/popper.min.js"></script><script src="./../../assets/js/bootstrap.min.js"></script><!-- Jquery Mobile Menu --><script src="./../../assets/js/jquery.slicknav.min.js"></script><script src="https://unpkg.com/axios/dist/axios.min.js"></script><!-- Jquery Slick , Owl-Carousel Plugins --><script src="./../../assets/js/owl.carousel.min.js"></script><script src="./../../assets/js/slick.min.js"></script><!-- One Page, Animated-HeadLin --><script src="./../../assets/js/wow.min.js"></script><script src="./../../assets/js/animated.headline.js"></script><script src="./../../assets/js/jquery.magnific-popup.js"></script><!-- Date Picker --><script src="./../../assets/js/gijgo.min.js"></script><!-- Nice-select, sticky --><script src="./../../assets/js/jquery.nice-select.min.js"></script><script src="./../../assets/js/jquery.sticky.js"></script><!-- counter , waypoint,Hover Direction --><script src="./../../assets/js/jquery.counterup.min.js"></script><script src="./../../assets/js/waypoints.min.js"></script><script src="./../../assets/js/jquery.countdown.min.js"></script><script src="./../../assets/js/hover-direction-snake.min.js"></script><!-- contact js --><script src="./../../assets/js/contact.js"></script><script src="./../../assets/js/jquery.form.js"></script><script src="./../../assets/js/jquery.validate.min.js"></script><script src="./../../assets/js/mail-script.js"></script><script src="./../../assets/js/jquery.ajaxchimp.min.js"></script><!-- Jquery Plugins, main Jquery --><script src="./../../assets/js/plugins.js"></script><script src="./../../assets/js/main.js"></script><script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+<script>
+	$(function () {
+$(".rateyo").rateYo().on("rateyo.change", function (e, data) {
+var rating = data.rating;
+$(this).parent().find('.score').text('score :' + $(this).attr('data-rateyo-score'));
+$(this).parent().find('.result').text('rating :' + rating);
+$(this).parent().find('input[id=rating]').val(rating); // add rating value to input field
+});
+});
+</script>
+<script>
+	(function (d, s, id) {
+var js,
+fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) 
+return;
+
+
+js = d.createElement(s);
+js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<script>
+	{%endblock%}

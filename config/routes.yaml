@@ -1,0 +1,24 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+utilisateur_inscription:
+  path:     /inscriptionn
+  defaults: { _controller: App\Controller\RegistrationController::inscription }
+
+
+
+utilisateur_loginJSON:
+  path:     /loginnJSON
+  defaults: { _controller: App\Controller\SecurityController::loginJSON }
+
+utilisateur_modifieruser:
+  path:     /modifieruser
+  defaults: { _controller: App\Controller\UtilisateurController::modifieruser }
+
+utilisateur_afficheruser:
+  path:     /afficheruser
+  defaults: { _controller: App\Controller\UtilisateurController::afficheruser }
+
+utilisateur_deleteuser:
+  path:    /deleteuserr/{id}
+  defaults: { _controller: App\Controller\UtilisateurController::deleteuser }

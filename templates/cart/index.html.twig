@@ -1,0 +1,78 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}panier
+{% endblock %}
+
+{% block body %}
+    <style>
+        .button {
+            background-color: #990F1D;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button2 {background-color: #008CBA;}
+        .button3 {background-color: #f44336;}
+        .button4 {background-color: #e7e7e7; color: black;}
+        .button5 {background-color: #555555;}
+    </style>
+    <div class="bg-light p-3">
+        <h1>Votre panier</h1>
+
+    </div>
+    <table class="table bg-white">
+        <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Totale</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for element in dataPanier %}
+        <tr>
+            <td> {{ element.produit.getNomprod() }}</td>
+            <td>{{ element.produit.prix }}$</td>
+            <td>{{ element.quantite }}</td>
+            <td>{{ element.produit.prix * element.quantite }}</td>
+            <td>
+                <button class="btn" ><a href="{{ path("cart_add",{idProduit:element.produit.getIdProduit}) }}"> Add</a></button>
+                <button class="btn" ><a href="{{ path("cart_remove",{idProduit:element.produit.getIdProduit}) }}"> remove</a></button>
+                <button class="btn" ><a href="{{ path("delete_all",{idProduit:element.produit.getIdProduit}) }}"> remove all</a></button>
+
+
+
+            </td>
+        </tr>
+        {% else%}
+            <p>panier vide !</p>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">Total</td>
+            <td>{{ total }}</td>
+            <td>
+            <button class="btn" ><a href="{{ path("delete_all")}}"> remove all</a></button>
+            </td>
+
+            <td>
+                <button class="btn" ><a href="{{ path("ajout")}}"> valider</a></button>
+            </td>
+            <td>
+                <button class="btn" ><a href="{{ path("list")}}"> Continuer mes achats</a></button>
+            </td>
+
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}

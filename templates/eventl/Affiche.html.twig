@@ -1,0 +1,107 @@
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+<div class="container">
+    {% block style %}
+        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+        <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
+    {% endblock %}
+    {% block js %}
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    {% endblock %}
+    <i class="material-icons">speaker_notes</i>
+    {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+    <h5>list event</h5>
+    <div>
+        <a href="{{ path('r_add') }}"> <button type="button" class="btn"
+            ><font size="3pt" >{% trans %}Ajout{% endtrans %}</font></button></a>
+
+    <br>
+    <form method="POST">
+        <div class="rt-banner-searchbox trip-search">
+            <div class="rt-input-group">
+
+
+                <div class="single-input  col-md-9">
+                    <input type="text" class="form-control" name="recherche" placeholder="{% trans %}Events{% endtrans %}">
+
+
+                        <input type="submit" class="btn "value="{% trans %}search{% endtrans %}"  >
+
+
+                </div><!-- /.single-input -->
+
+            </div><!-- /.rt-input-group -->
+        </div><!-- /.rt-banner-searchbox --><br>
+    </form>
+
+    <table  class="table table-striped">
+        <thead>
+        <tr>
+
+            <th>titre</th>
+            <th>description</th>
+            <th>ville</th>
+            <th>adresse</th>
+            <th>datedebut</th>
+
+            <th>datefin</th>
+            <th>heure</th>
+            <th>Image</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for e in eventl  %}
+            <tr>
+
+                <td>
+                    {{ e.titre }}
+                </td>
+                <td>
+                    {{ e.description }}
+                </td>
+                <td>
+                    {{ e.ville }}
+                </td>
+                <td>
+                    {{ e.adresse }}
+                </td>
+
+                <td>{{ e.datedebut |date ("m/d/Y")}}</td>
+                <td>{{ e.datefin |date ("m/d/Y")}}</td>
+
+
+
+
+                <td>{{ e.heure}}</td>
+
+                <td>
+
+                    <a href="{{ path('event_list',{'idevent': e.idevent}) }}">
+                        <img src="{{ asset('uploads/image/'~e.photo) }}" alt="  {{ e.photo }}" width="80" height="80"></a></td>
+                <td><a href="{{ path('delevent',{'idevent': e.idevent}) }}"> <button type="button" class="btn"><font size="3pt" >{% trans %}Delete{% endtrans %}</font></button></a>
+                </td>
+                <td><a href="{{ path('modevent',{'idevent': e.idevent}) }}"> <button type="button" class="btn" ><font size="3pt" >{% trans %}Update{% endtrans %}</font></button></a>
+                </td>
+            </tr>
+           
+
+        {%endfor%}
+        </tbody>
+    </table>
+
+
+
+</div>
+
+
+
+
+
+    <h4 style= "text-align:center">  {{ knp_pagination_render(eventl) }}</h4>
+{% endblock %}
+
+
+

@@ -1,0 +1,86 @@
+{% use "bootstrap_4_layout.html.twig" %}
+{% extends 'base-back/admin.html.twig' %}
+{% block body %}
+<Title>{% block title %}SHOP {% endblock %} </Title>
+
+
+<body>
+<style>
+.button {
+  background-color: white; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button2 {background-color: #008CBA;} 
+.button3 {background-color: #f44336;} 
+.button4 {background-color: #e7e7e7; color: black;}
+.button5 {background-color: #555555;} 
+</style>
+
+
+<center>
+<h1>OUR PRODUCTS: </h1>
+<a href="{{ path('new')  }}"><button type="button" class="btn btn-outline-danger">
+			<font size="3pt">{% trans %}ADD{% endtrans %}</font>
+		</button>
+	</a>
+	
+<table class="display min-w850" >
+<thead>
+  <tr >
+    
+    
+    <th scope="col">Name</th>
+<th scope="col">Description</th>
+    <th scope="col">Prix</th>
+    <th scope="col">modifier</th>
+    <th scope="col">Delete </th>
+    <th scope="col">image </th>
+
+  </tr>
+  </thead>
+
+  
+  <tbody id="">
+  {% for item in form %}
+  <tr>
+  
+  
+    <td>{{item.nomprod}}</td>
+    <td>{{item.description}}</td>
+    <td>{{item.Prix}}</td>
+    <td>{{item.quantity}}</td>
+
+
+    <td><a href="{{ path('update_product',{'id':item.idproduit})  }}"> Modifier</a>  </td>
+    <td><a href="{{ path('sup_product',{'id':item.idproduit})  }}"> Delete</a>  </td>
+    <td><img src="{{asset('uploads/image/') ~ item.image}}"  width="50" height="50"></td>
+   
+</tr>
+    {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+
+  </tbody>
+
+
+</table>
+<a href="{{ path('pdf') }}">pdf</a>
+{{ knp_pagination_render(form) }}
+</center>
+
+
+
+
+</body>
+{% endblock %}

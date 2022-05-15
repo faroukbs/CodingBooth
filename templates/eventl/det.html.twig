@@ -1,0 +1,267 @@
+{% extends 'base2.html.twig '%}
+{% block body %}
+
+    {% block style %}
+
+
+
+
+        <style>
+
+            form{
+                margin-top: 60px;
+                margin-right: 100px;
+
+            }
+
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+
+            }
+            body{
+                background-color: rgb(219,226,226);
+                border-radius: 30px;
+                background-color: white;
+            }
+            .row{
+
+
+            }
+            .button{
+                margin-left: 350px;
+                margin-top: 60px;
+                margin-bottom: 30px;
+            }
+            .rounded{
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 5px;
+                width: 1000px;
+                margin-left: 180px;
+                margin-top: 60px;
+            }
+            .rating{
+                margin-left: 180px;
+
+
+            }
+
+            .rounded:hover {
+                box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+
+            }
+            photo{
+                border-top-left-radius:30px;
+                border-bottom: 30px;
+                width: 1200px;
+                height: 2000px;
+            }
+            .classform{
+                padding: 80px;
+                border: 1px solid black;
+
+            }
+
+
+        </style>
+    {% endblock %}
+
+    <body >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <div >
+        <section class="form my-4 mx-5">
+            <div class="container">
+
+                <div  class="row no-gutters">
+                    <div class="col-lg-5">
+
+                        <img src="{{ asset('uploads/image/'~eventl.photo) }}" alt="  {{ eventl.photo }}" style="height: 250px;width: 270px;margin-bottom: +10%" class="rounded" alt="Cinque Terre" >
+
+                        <div class="col-lg-5">
+                            <div class="rating">
+
+                                {{form_start(noteform)}}
+                                <div>
+                                    {{form_widget(noteform.nom , {'value':eventl.titre ,'type':'hidden'})}}
+
+                                </div>
+
+                                {% set somme = 0 %}
+                                {% for eve in evaluations %}
+                                    {% set somme = (eve.note / evaluations|length)+ somme %}
+                                {% endfor %}
+                                <div class="rateyo" id= "rating"
+                                     data-rateyo-rating={{somme}}
+                                     data-rateyo-num-stars="5"
+                                     data-rateyo-score="3">
+
+                                </div>
+                                <br>
+                                <style>
+                                    h5{
+                                        color:grey;
+
+                                    }
+                                </style>
+
+                                <h5>Raiting : {{somme|number_format(1, '.')}} /5</h5>
+
+                                {{form_widget(noteform.note , { 'id': 'rating','type':'hidden'} ) }}
+                                <br>
+                                {{form_end(noteform)}}
+
+                                <br>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-7" >
+
+
+                        <form class="classform">
+                            <div class="col-lg-7">
+                                <h5 class="text-danger" id="exampleModalCenterTitle">Nombre de Vue: {{ eventl.view}}</h5>
+                            </div>
+                            <div class="col-lg-7">
+                                <h2 >Nom :  {{ eventl.titre }}</h2>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <h3>  Adresse : {{ eventl.adresse }}</h3>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <h3 class="text-danger" id="exampleModalCenterTitle">Description:{{ eventl.Description }}</h3>
+
+
+
+                            </div>
+
+
+                            <div class="col-lg-7">
+                                <h3  id="exampleModalCenterTitle" class="text-black">Date : {{ eventl.dateDebut | date ("m/d/Y")}}</h3>
+
+                            </div>
+                            <div class="col-lg-7">
+                                <h3  id="exampleModalCenterTitle" class="text-black">Date : {{ eventl.datefin | date ("m/d/Y")}}</h3>
+
+                            </div>
+
+                            <div class="col-lg-7">
+                                <h3 class="text-danger" id="exampleModalCenterTitle">adresse: {{ eventl.adresse}}</h3>
+                            </div>
+                            <div class="col-lg-7">
+                                <h3 class="text-danger" id="exampleModalCenterTitle">ville: {{ eventl.ville}}</h3>
+                            </div>
+                            <div class="col-lg-7">
+                                <h3 class="text-black" id="exampleModalCenterTitle">Heure: {{ eventl.heure}}</h3>
+                            </div>
+
+
+                            <div class="author-bottom">
+
+                                <a href="javascript:void(0)" class="icon-area"id="nbParticipantsShowed">
+                                    <i class="fas fa-user"></i>
+                                    <p class="mdr" > Nombre participant :{{ eventl.nombreParticipants }}</p>
+                                </a>
+                            </div>
+
+
+                            <div class="author-content">
+                                {% if eventl.nombreParticipants <= 0%}
+                                    <div class="img__wrapper">
+                                        <a class="sold_out" >Sold out</a>
+                                    </div>
+                                {% else %}
+
+                                    <div class="author-bottom">
+                                        <a href ="{{ path('ticket',{'id': eventl.idevent }) }}"> <button type="button" class="btn btn-outline-danger" ><font size="3pt" >{% trans %}Reserver Ticket{% endtrans %}</font></button></a>
+                                    </div>
+                                {% endif %}
+
+                                <div class="bottom-item d-flex justify-content-between align-items-center">
+                                    <div id="fb-root"></div>
+
+                                    <div class="fb-share-button"
+                                         data-layout="button_count">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <script>
+
+                                var participerButton = document.getElementById('apply');
+                                addOnClick(
+                                    participerButton,'{{ path('detailEvent',{'id': eventl.idevent }) }}'
+                                );
+                                function hideButton(button){
+                                    button.disabled = true;
+                                    button.style.display = 'none' ;
+                                }
+                                function addOnClick(button,path){
+                                    button.addEventListener('click',function(eventl){
+                                        hideButton(button);
+                                        $.ajax({
+                                            url : "{{ path('detailEvent',{'id': eventl.idevent }) }}",
+                                            type : 'GET',
+                                            data: {
+                                                'idevent' : {{ eventl.idevent }}
+                                            },
+                                            success : function(retour)
+                                            {
+                                                $('#nbParticipantsShowed').html(retour);
+                                            },
+                                        });
+                                    });
+                                }
+                            </script>
+
+                            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+                            <script>
+
+
+
+
+                                function onClickBtnLike(event){
+                                    event.preventDefault();
+                                    const url=this.href;
+                                    const spanCount= this.querySelector('span.js-likes');
+                                    const icone=this.querySelector('i');
+                                    axios.get(url).then(function (response){
+                                        spanCount.textContent=response.data.likes;
+                                        if (icone.classList.contains('fas')) icone.classList.replace('fas','far');
+                                        else icone.classList.replace('far','fas');
+                                    })
+
+                                }
+                                document.querySelectorAll('a.js-like').forEach(function (link)
+                                {
+                                    link.addEventListener('click',onClickBtnLike);
+
+                                })</script>
+
+
+
+                        </form>
+
+                        <iframe style="border:0; width: 100%; height: 350px;" class="img-fluid" src="https://maps.google.com/maps?q=+{{eventl.adresse}}++{{eventl.ville}}+&hl=fr&z=14&amp;output=embed
+" frameborder="0" allowfullscreen></iframe>              <div class="map-wrapper-300 mb-3">      <!-- Modal -->
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+        </section>
+
+    </div>
+    </body>
+
+
+{%endblock%}

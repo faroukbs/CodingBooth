@@ -1,0 +1,51 @@
+
+{% extends 'base-back/admin.html.twig' %}
+{% block title %}<title>History</title> {% endblock %}
+{% block body %}
+    <!-- Begin Li's Breadcrumb Area -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Reclamation List</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Li's Breadcrumb Area End Here -->
+    <div class="container align-content-center mt-50">
+    <h1 align="center">Reclamations History</h1>
+    <div class="form-group mt-20">
+    <table class="table table-striped">
+        <tr>
+        
+            <th>Your Name</th>
+            <th>Email</th>
+            <th>Reclamation Subject</th>
+            <th>Message</th>
+            <th>Reclamation Type</th>
+            {#<th>CreatedAt</th>#}
+            <th>Reclamation Status</th>
+        </tr>
+        {% for r in tab %}
+            <tr>
+            
+                <td>{{ r.name }}</td>
+                <td>{{ r.email }}</td>
+                <td>{{ r.subject}}</td>
+                <td>{{ r.message }}</td>
+                <td>{{ r.type }}</td>
+               {% if r.reponse != null %}
+                <td><a href="{{path('etat_rec', {id:r.reponse.id})}}"    onclick="return confirm('Do You want to see The Response to Your reclamation?')">{{ r.etat }}</a></td>
+                {% else %}
+                
+                <td><a href="#">{{ r.etat }}</a></td>
+
+                {% endif %} 
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+    </div>
+{% endblock %}

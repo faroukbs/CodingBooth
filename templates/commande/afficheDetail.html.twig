@@ -1,0 +1,61 @@
+
+{% block body %}
+
+    <body >
+    <h1 align="center">Detail commande: </h1>
+
+    <div >
+        <section class="form my-4 mx-5">
+            <div class="container">
+
+                <div  class="row no-gutters">
+
+
+                    <div class="col-lg-7" >
+
+                        <form class="classform">
+                            <div class="col-lg-7">
+                                <h3 >Nom :  {{ commande.getNomClient() }}</h3>
+                            </div>
+                            <div class="col-lg-7">
+                                <h3 >Prenom :  {{ commande.getPrenomClient() }}</h3>
+                            </div>
+
+
+                            <div class="col-lg-7">
+                                <h3>  Telephone : {{ commande.telephone }}</h3>
+                            </div>
+                            <div class="col-lg-7">
+                                <h3>  Adresse : {{ commande.adresse }}</h3>
+                            </div>
+
+
+                            <div class="col-lg-7">
+                                <h3  >Mode paiement : {{ commande.getModePaiement() }}</h3>
+
+                            </div>
+
+
+                        </form>
+
+                        <div class="button">
+                            <a class="btn " href="{{path("pdf",{'idcommande':item.idcommande}) }}">Facture PDF</a> </td>
+
+
+                            <a href ="{{ path('Affiche_commande',{'idcommande': commande.idcommande }) }}"> <button type="button" class="btn " ><font size="3pt" >{% trans %}Retour{% endtrans %}</font></button></a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </section>
+
+    </div>
+    </body>
+
+
+{%endblock%}

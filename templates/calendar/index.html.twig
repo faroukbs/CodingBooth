@@ -1,0 +1,57 @@
+{% extends 'base-back/admin.html.twig' %}
+
+{% block title %}Calendar index{% endblock %}
+
+{% block body %}
+    <h1>Liste des cours</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom du cours</th>
+                <th>Image du cours</th>
+                <th>Categorie</th>
+                <th>Coach</th>
+                <th>Salle de cours</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Description</th>
+                <th>All_day</th>
+                <th>Background_color</th>
+                <th>Border_color</th>
+                <th>Text_color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for calendar in calendars %}
+            <tr>
+                <td>{{ calendar.id }}</td>
+                <td>{{ calendar.title }}</td>
+                <td><img src="{{asset('uploads/image/') ~ calendar.imagecours}}"  width="50" height="50"></td>
+                <td>{{ calendar.idcategorie.GetNomCategorie() }}</td> 
+                <td>{{ calendar.idcoach.GetNom() }}</td>
+                <td>{{ calendar.idsalle.GetNomSalle() }}</td>
+                <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ calendar.description }}</td>
+                <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
+                <td>{{ calendar.backgroundColor }}</td>
+                <td>{{ calendar.borderColor }}</td>
+                <td>{{ calendar.textColor }}</td>
+                <td>
+                    <a href="{{ path('calendar_show', {'id': calendar.id}) }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Detailles{% endtrans %}</font></button></a>
+                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Modifier{% endtrans %}</font></button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('calendar_new') }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Create new{% endtrans %}</font></button></a>
+{% endblock %}

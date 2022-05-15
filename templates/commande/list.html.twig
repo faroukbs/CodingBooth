@@ -1,0 +1,57 @@
+{% extends 'base-back/admin.html.twig' %}
+{% use 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<body class="bg-white">
+
+  <h2>Fetch The List: </h2>
+  {%  for message in app.flashes ('info') %}
+    <div class="alert alert-success">
+      {{ message }}
+
+    </div>
+  {% endfor %}
+  <table class="table table-striped">
+
+    <tr>
+      <th>Date</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Numero telephone</th>
+      <th>Adresse</th>
+      <th>Etat commande</th>
+      <th>mode de paiement</th>
+      <th>Modifier</th>
+      <th>Supprimer</th>
+      <th>Facture PDF</th>
+    </tr>
+    {% for item in form %}
+    <tr>
+      <td>{{item.Date | date("m/d/y")}}</td>
+      <td>{{item.getNomClient()}}</td>
+      <td>{{item.getPrenomClient()}}</td>
+      <td>{{item.telephone}}</td>
+      <td>{{item.adresse}}</td>
+      {% if item.getEtatCommande() == 0 %}
+        <td>Non Payer </td>
+      {% else %}
+        <td> Payer </td>
+      {% endif %}
+      {% if item.getModePaiement() == 0 %}
+        <td>Par Carte Bancaire </td>
+      {% else %}
+        <td>Par Cash </td>
+      {% endif %}
+
+
+      <td><a class="btn" href="{{ path('AdminUpdate',{'idcommande':item.idcommande})  }}"> Modifier</a> </td>
+      <td><a class="btn" href="{{ path('AdminDelete',{'idcommande':item.idcommande})  }}"> Supprimer</a> </td>
+      <td><a class="btn" href="{{path('pdf',{'idcommande':item.idcommande}) }}">Facture PDF</a> </td>
+
+    </tr>
+    {% endfor %}
+
+  </table>
+
+</body>
+
+{%endblock%}

@@ -1,0 +1,38 @@
+{% form_theme formA 'bootstrap_4_layout.html.twig' %}
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+    {{ form_start(formA) }}
+    <h1>Ajouter commande:</h1>
+    {{ form_widget(formA.Date) }}
+    {{ form_errors(formA.Date) }}
+
+    {{ form_label(formA.nom_client,"Nom")  }}
+    {{ form_widget(formA.nom_client) }}
+    {{ form_errors(formA.nom_client) }}
+
+    {{ form_label(formA.prenom_client,"Prenom")  }}
+    {{ form_widget(formA.prenom_client) }}
+    {{ form_errors(formA.prenom_client) }}
+
+    {{ form_label(formA.telephone,"Telephone")  }}
+    {{ form_widget(formA.telephone) }}
+    {{ form_errors(formA.telephone) }}
+
+    {{ form_label(formA.adresse,"Adresse")  }}
+    {{ form_widget(formA.adresse) }}
+    {{ form_errors(formA.adresse) }}
+
+    {{ form_label(formA.montant,"Montant")  }}
+    {{ form_widget(formA.montant,{'attr':{"value" : total }}) }}
+    {{ form_errors(formA.montant) }}
+
+    {{ form_label(formA.mode_paiement,"Mode de paiement")  }}
+    {{ form_widget(formA.mode_paiement) }}
+    {{ form_errors(formA.mode_paiement) }}
+
+    {{ form_end(formA) }}
+
+
+
+{% endblock %}

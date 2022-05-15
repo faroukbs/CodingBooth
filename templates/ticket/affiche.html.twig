@@ -1,0 +1,76 @@
+{% extends 'base-back/admin.html.twig' %}
+         {% block body %}
+
+<body class="bg-white">
+                            <h5>la liste des ticket</h5>
+                            <div>
+                                <a href="{{ path('addticket') }}"> <button type="button" class="btn "
+                                    ><font size="3pt" >{% trans %}Ajout{% endtrans %}</font></button></a>
+
+                            </div>
+             {%  for message in app.flashes ('info') %}
+                 <div class="alert alert-success">
+                     {{ message }}
+
+                 </div>
+             {% endfor %}
+             {%  for message in app.flashes ('info1') %}
+                 <div class="alert alert-warning">
+                     {{ message }}
+
+                 </div>
+             {% endfor %}
+             {%  for message in app.flashes ('info2') %}
+                 <div class="alert alert-danger">
+                     {{ message }}
+
+                 </div>
+             {% endfor %}
+                            <table  class="table table-striped">
+                                <thead>
+                                <tr>
+
+                                    <th>type</th>
+                                    <th>description</th>
+                                    <th>prix</th>
+                                    <th>Idevent</th>
+                                    <th>image</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for t in ticket %}
+                                    <tr>
+
+                                        <td>
+                                            {{ t.typeticket }}
+                                        </td>
+                                        <td>
+                                            {{ t.prix }}
+                                        </td>
+                                        <td>
+                                            {{ t.description}}
+                                        </td>
+
+
+                                        <td>
+
+                                            <a href="{{ path('ticketAdmin',{'idticket': t.idticket}) }}">
+                                                <img src="{{ asset('uploads/image/'~t.image) }}" alt="  {{ t.image }}" width="80" height="80"></a></td>
+                                        <td><a href="{{ path('modt',{'idticket': t.idticket}) }}">
+                                                <button type="button" class="btn "><font size="3pt">{% trans %}Update{% endtrans %}</font></button></a></td>
+                                        <td><a href="{{ path('supprimerticket',{'idticket': t.idticket}) }}">
+                                                <button type="button" class="btn "><font size="3pt">{% trans %}delete{% endtrans %}</font></button></a></td>
+
+                                    </tr>
+
+                                {%endfor%}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+</body</body>
+                    {% endblock %}
+
+
+

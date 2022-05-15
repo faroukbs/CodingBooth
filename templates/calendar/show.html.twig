@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendar{% endblock %}
+
+{% block body %}
+    <h1>Calendar</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ calendar.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom du cours</th>
+                <td>{{ calendar.title }}</td>
+            </tr>
+            <tr>
+                <th>image du cours</th>
+                <td><img src="{{asset('uploads/image/') ~ calendar.imagecours}}"  width="50" height="50"></td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ calendar.idcategorie.GetNomCategorie() }}</td>
+            </tr>
+            <tr>
+                <th>Coach</th>
+                <td>{{ calendar.idcoach.GetNom() }}</td>
+            </tr>
+            <tr>
+                <th>Salle de cours</th>
+                <td>{{ calendar.idsalle.GetNomSalle() }}</td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ calendar.description }}</td>
+            </tr>
+            <tr>
+                <th>All_day</th>
+                <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Background_color</th>
+                <td>{{ calendar.backgroundColor }}</td>
+            </tr>
+            <tr>
+                <th>Border_color</th>
+                <td>{{ calendar.borderColor }}</td>
+            </tr>
+            <tr>
+                <th>Text_color</th>
+                <td>{{ calendar.textColor }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('calendar_index') }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Restour à la liste{% endtrans %}</font></button></a>
+
+    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}"><button type="button" class="btn btn-outline-danger"><font size="3pt">{% trans %}Modifier{% endtrans %}</font></button></a>
+
+    {{ include('calendar/_delete_form.html.twig') }}
+{% endblock %}
